@@ -1,0 +1,8 @@
+
+5, August 2023--------------
+
+- Run Adiabatic ground search problem on real quantum computer.
+- Run simulation of example spin system on Pennylane Spin system database, and compare the result of them.
+- Study the Quantum Walk simulation and as a simulator algorithm of it at Nielson and Chung
+- Implement the adiabatic approximation with VQE approach.
+
