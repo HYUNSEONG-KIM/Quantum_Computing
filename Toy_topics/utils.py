@@ -1,0 +1,201 @@
+from typing import Tuple, Literal, Callable
+
+import numpy as np
+from numpy.lib.stride_tricks import as_strided
+
+def get_state_strings(n):
+    total_n = 2**n
+    
+    st = []
+    for i in range(0, total_n):
+        str_num = format(i, 'b')
+        st.append((n-len(str_num))*"0" + str_num)
+    return st
+
+    
+# 2D Convolution
+def get_dim_ext(dim_k, dim_crop):
+    l, k = dim_k
+    cr, cc = dim_crop
+
+    if cr * cc *l *k  == 0:
+        raise ValueError(f"None of dimension can be zero, l:{l}, k:{k}, cc:{cc}, cr:{cr}") 
+    if cr <0 or cc<0 or l<0 or k<0:
+        raise ValueError(f"None of dimension can be negative, l:{l}, k:{k}, cc:{cc}, cr:{cr}") 
+    if cr > l or cc >k:
+        raise ValueError(f"Cropping dimension must be smaller than kernel dimension.")
+    return l-cr, k-cc
+
+def get_dim_convole(dim_i, dim_k, dim_c):
+    n, m = dim_i
+    l, k = dim_k
+
+    if l> n or k>m:
+        n ,l = l, n
+        m, k = k, m
+
+    cr, cc = dim_c
+    
+    return n+l - 2*cr+1, m+k - 2*cc +1
+
+def _expand_matrix(data, dim_ext, edge_param):
+    er, ec = dim_ext
+
+    if edge_param[0] == "custom" and len(edge_param) >=2:
+        C1, C2, R1, R2  = edge_param[1](data, (er, ec), edge_param[2:])
+    else: C1, C2, R1, R2 = _edge_matrix(data, (er, ec), edge_param)
+
+    # Column expand
+    if isinstance(C1, np.ndarray):
+        data = np.concatenate([C1, data, C2], axis=1)
+    # Row expand
+    if isinstance(R1, np.ndarray):
+        data = np.concatenate([R1, data, R2], axis=0)
+
+    return data
+
+def _edge_matrix(data, dim_ext, edge_param):
+    n, m = data.shape
+    er, ec = dim_ext
+    # Column Matrix: (n, ec)
+    # Row Matrix: (er, m+2ec) 
+    dim_column = (n, ec)
+    dim_row = (er, int(m+2*ec))
+
+    e_method_name, e_method_param = edge_param
+
+    if e_method_name == "extend":
+        
+        a_col_1 = np.expand_dims(data[0:, 0], axis=0)
+        a_col_2 = np.expand_dims(data[0:,-1], axis=0)
+        C1 = np.repeat(a_col_1, ec, axis=0).transpose()
+        C2 = np.repeat(a_col_2, ec, axis=0).transpose()
+
+        a_row_1 = np.expand_dims(np.concatenate([C1[0],data[0], C2[0]]), axis=0)
+        a_row_2 = np.expand_dims(np.concatenate([C1[-1], data[-1], C2[-1]]), axis=0)
+        R1 =np.repeat(a_row_1, er, axis=0)
+        R2 =np.repeat(a_row_2, er, axis=0) 
+
+    elif e_method_name ==  "wrap":
+        if er >0 and ec >0:
+            Cor1 = data[-er:,   -ec:  ] 
+            Cor2 = data[-er:,      :ec] 
+            Cor3 = data[   :er, -ec:  ]
+            Cor4 = data[   :er,    :ec]
+
+            Row1 = data[-er:,    :]
+            Row2 = data[   :er,  :]
+
+            R1 = np.concatenate([Cor1, Row1, Cor2], axis=1)
+            R2 = np.concatenate([Cor3, Row2, Cor4], axis=1)
+
+            C1 = data[:, -ec:  ] 
+            C2 = data[:,    :ec]
+        elif er>0: # ec ==0
+            R1 = data[-er:,    :]
+            R2 = data[   :er,  :]
+            C1 = C2 = None
+        else:
+            R1 = R2 = None
+            C1 = data[:, -ec:  ] 
+            C2 = data[:,    :ec]
+
+    elif e_method_name == "reflect":
+        if er * ec >0:
+            C1 = np.flip(data[:,    :ec], axis=1)
+            C2 = np.flip(data[:, -ec:  ], axis=1)
+
+            Cor1 = np.flip(C1[   :er, :], axis=0) #
+            Cor2 = np.flip(C2[   :er, :], axis=0) #
+
+            Cor3 = np.flip(C1[-er:  , :], axis=0) #
+            Cor4 = np.flip(C2[-er:  , :], axis=0) # 
+
+            Row1 = np.flip(data[:er, :], axis=0)
+            Row2 = np.flip(data[-er:, :], axis=0)
+
+            R1 = np.concatenate([Cor1 , Row1, Cor2], axis =1) 
+            R2 = np.concatenate([Cor3 , Row2, Cor4], axis =1)
+        elif er > 0:
+            R1 = np.flip(data[:er, :], axis=0)
+            R2 = np.flip(data[-er:, :], axis=0)
+            C1 = C2 = None
+        else:
+            R1 = R2 = None
+            C1 = np.flip(data[:,    :ec], axis=1)
+            C2 = np.flip(data[:, -ec:  ], axis=1)
+    elif e_method_name == "mirror":
+        if er*ec >0:
+            C1 = np.flip(data[:,    1:ec+1], axis=1)
+            C2 = np.flip(data[:, -(ec+1): -1  ], axis=1)
+
+            Cor1 = np.flip(C1[   1:er+1, :], axis=0)
+            Cor2 = np.flip(C2[   1:er+1, :], axis=0)
+            Cor3 = np.flip(C1[-er-1: -1  , :], axis=0)
+            Cor4 = np.flip(C2[-er-1: -1  , :], axis=0)
+
+            Row1 = np.flip(data[1:er+1, :], axis=0)
+            Row2 = np.flip(data[-(er+1):-1, :], axis=0)
+
+            R1 = np.concatenate([Cor1 , Row1, Cor2], axis =1) 
+            R2 = np.concatenate([Cor3 , Row2, Cor4], axis =1)
+        elif er >0:
+            R1 = np.flip(data[1:er+1, :], axis=0)
+            R2 = np.flip(data[-(er+1):-1, :], axis=0)
+            C1 = C2 = None
+        else:
+            R1 = R2 = None
+            C1 = np.flip(data[:,    1:ec+1], axis=1)
+            C2 = np.flip(data[:, -(ec+1): -1  ], axis=1)
+    elif e_method_name == "constant":
+        c = e_method_param
+        C1 = C2 = c*np.ones(shape=dim_column) if ec>0 else None
+        R1 = R2 = c*np.ones(shape=dim_row) if er>0 else None
+    
+    else:
+        C1 = C2 = R1 = R2 = None
+
+    return C1, C2, R1, R2
+
+def convolve2d(  ## 1dim with 2dim convolution
+    data:np.ndarray, 
+    filter:np.ndarray,
+    crop:Tuple[int, int]=(1, 1),
+    edge_mode:Literal["extend", "wrap", "mirror", "reflect", "constant"]="constant",
+    edge_params = [0],
+    image_mode = False
+    ):
+    
+    #no, mo = data.shape
+    #l, k = filter.shape
+    #if l*k > no*mo and not image_mode:
+    #    data, filter = filter, data
+
+    l, k = filter.shape
+    filter = np.flip(filter, axis=0) # axis=1 flip occured at np.convolve routine.
+    
+    if image_mode:
+        add_row = add_col = False
+        crop = (int(np.floor((l+1)/2)), int(np.floor((k+1)/2)))
+        if l%2 == 0:
+            add_row = True
+        if k%2 == 0:
+            add_col = True
+    
+
+    er, ec = get_dim_ext((l, k), crop)
+
+    data_ext = _expand_matrix(data, (er, ec), [edge_mode]+edge_params)
+
+    n,m = data_ext.shape
+    result = np.zeros(shape = (n-l+1, m-k+1))
+    for i, h_row in enumerate(filter):
+        data_i = data_ext[i:n-l+i+1]
+        result += np.stack([np.convolve(h_row, r, mode="vaild") for r in data_i])
+    
+    if image_mode:
+        if add_row:
+            result = result[1:]
+        if add_col:
+            result = result[:, 1:]
+    return result
