@@ -1,0 +1,637 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{apa/apasortcite//global/global}
+    \entry{chapuis_finding_2018}{misc}{}
+      \name{author}{4}{}{%
+        {{hash=50aa9452f01b9c88afbf3ac21505e61b}{%
+           family={Chapuis},
+           familyi={C\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod}}}%
+        {{hash=3efa0b5404058cdc84aa4c74fbd4e483}{%
+           family={Djidjev},
+           familyi={D\bibinitperiod},
+           given={Hristo\bibnamedelima N.},
+           giveni={H\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=2bf186f47dce2b522c69f7e7394c7156}{%
+           family={Hahn},
+           familyi={H\bibinitperiod},
+           given={Georg},
+           giveni={G\bibinitperiod}}}%
+        {{hash=ae2b4aa0ac8cf2c6c33e4ce050e4f727}{%
+           family={Rizk},
+           familyi={R\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{af059f443d1a147962821fcd169c237c}
+      \strng{fullhash}{01d2c17ecbad3a69f67501378b63be98}
+      \strng{bibnamehash}{01d2c17ecbad3a69f67501378b63be98}
+      \strng{authorbibnamehash}{01d2c17ecbad3a69f67501378b63be98}
+      \strng{authornamehash}{af059f443d1a147962821fcd169c237c}
+      \strng{authorfullhash}{01d2c17ecbad3a69f67501378b63be98}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper assesses the performance of the D-Wave 2X (DW) quantum annealer for finding a maximum clique in a graph, one of the most fundamental and important NP-hard problems. Because the size of the largest graphs DW can directly solve is quite small (usually around 45 vertices), we also consider decomposition algorithms intended for larger graphs and analyze their performance. For smaller graphs that fit DW, we provide formulations of the maximum clique problem as a quadratic unconstrained binary optimization (QUBO) problem, which is one of the two input types (together with the Ising model) acceptable by the machine, and compare several quantum implementations to current classical algorithms such as simulated annealing, Gurobi, and third-party clique finding heuristics. We further estimate the contributions of the quantum phase of the quantum annealer and the classical post-processing phase typically used to enhance each solution returned by DW. We demonstrate that on random graphs that fit DW, no quantum speedup can be observed compared with the classical algorithms. On the other hand, for instances specifically designed to fit well the DW qubit interconnection network, we observe substantial speed-ups in computing time over classical approaches.}
+      \field{month}{4}
+      \field{note}{arXiv:1801.08649 [quant-ph]}
+      \field{title}{Finding {Maximum} {Cliques} on the {D}-{Wave} {Quantum} {Annealer}}
+      \field{urlday}{27}
+      \field{urlmonth}{8}
+      \field{urlyear}{2023}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb arXiv Fulltext PDF:/Users/hyunseongkim/Zotero/storage/MEDFXT6V/Chapuis 등 - 2018 - Finding Maximum Cliques on the D-Wave Quantum Anne.pdf:application/pdf;arXiv.org Snapshot:/Users/hyunseongkim/Zotero/storage/9JZI6W9J/1801.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1801.08649
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1801.08649
+      \endverb
+      \keyw{Quantum Physics}
+    \endentry
+    \entry{9248636}{article}{}
+      \name{author}{8}{}{%
+        {{hash=f81b959a274cf858af12371d973186a4}{%
+           family={Gokhale},
+           familyi={G\bibinitperiod},
+           given={Pranav},
+           giveni={P\bibinitperiod}}}%
+        {{hash=f082953cb70161b87a0869d90d9bb16a}{%
+           family={Angiuli},
+           familyi={A\bibinitperiod},
+           given={Olivia},
+           giveni={O\bibinitperiod}}}%
+        {{hash=42c19e7d8e4f58481c6b4e4d73a06715}{%
+           family={Ding},
+           familyi={D\bibinitperiod},
+           given={Yongshan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=63bbc5626b2af9fc59d7a7d1b49ef1eb}{%
+           family={Gui},
+           familyi={G\bibinitperiod},
+           given={Kaiwen},
+           giveni={K\bibinitperiod}}}%
+        {{hash=1adb469c4a0a4ad3b690a85068ae396a}{%
+           family={Tomesh},
+           familyi={T\bibinitperiod},
+           given={Teague},
+           giveni={T\bibinitperiod}}}%
+        {{hash=d000a1b24e892d6c31367f83ed18564e}{%
+           family={Suchara},
+           familyi={S\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=51a2ecd59392c7fa73fa8648cea933be}{%
+           family={Martonosi},
+           familyi={M\bibinitperiod},
+           given={Margaret},
+           giveni={M\bibinitperiod}}}%
+        {{hash=3dc30ce8848da64646a981d48b5d2701}{%
+           family={Chong},
+           familyi={C\bibinitperiod},
+           given={Frederic\bibnamedelima T.},
+           giveni={F\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \strng{namehash}{0f4cd699cb4b7364b2d54d7226315200}
+      \strng{fullhash}{80109502c6ee6a4810ef8c5cd3d45733}
+      \strng{bibnamehash}{80109502c6ee6a4810ef8c5cd3d45733}
+      \strng{authorbibnamehash}{80109502c6ee6a4810ef8c5cd3d45733}
+      \strng{authornamehash}{0f4cd699cb4b7364b2d54d7226315200}
+      \strng{authorfullhash}{80109502c6ee6a4810ef8c5cd3d45733}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Quantum Engineering}
+      \field{title}{$O(N^3)$ Measurement Cost for Variational Quantum Eigensolver on Molecular Hamiltonians}
+      \field{volume}{1}
+      \field{year}{2020}
+      \field{pages}{1\bibrangedash 24}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1109/TQE.2020.3035814
+      \endverb
+    \endentry
+    \entry{Karp1972}{inbook}{}
+      \name{author}{1}{}{%
+        {{hash=5290385c419686f6312edeb3578dc9cf}{%
+           family={Karp},
+           familyi={K\bibinitperiod},
+           given={Richard\bibnamedelima M.},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=61845d8713df720183097da97764018e}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={Raymond\bibnamedelima E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=0c49a2a69eb15e588235d478d36d70ea}{%
+           family={Thatcher},
+           familyi={T\bibinitperiod},
+           given={James\bibnamedelima W.},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=537f41cb482bc0f5db46135172b12347}{%
+           family={Bohlinger},
+           familyi={B\bibinitperiod},
+           given={Jean\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Boston, MA}%
+      }
+      \list{publisher}{1}{%
+        {Springer US}%
+      }
+      \strng{namehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{fullhash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{bibnamehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{authorbibnamehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{authornamehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{authorfullhash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{editorbibnamehash}{1077d79ee83f896243c11f49212c756b}
+      \strng{editornamehash}{8702c61fdb8232d217eb652036dc29db}
+      \strng{editorfullhash}{1077d79ee83f896243c11f49212c756b}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A large class of computational problems involve the determination of properties of graphs, digraphs, integers, arrays of integers, finite families of finite sets, boolean formulas and elements of other countable domains. Through simple encodings from such domains into the set of words over a finite alphabet these problems can be converted into language recognition problems, and we can inquire into their computational complexity. It is reasonable to consider such a problem satisfactorily solved when an algorithm for its solution is found which terminates within a number of steps bounded by a polynomial in the length of the input. We show that a large number of classic unsolved problems of covering, matching, packing, routing, assignment and sequencing are equivalent, in the sense that either each of them possesses a polynomial-bounded algorithm or none of them does.}
+      \field{booktitle}{Complexity of Computer Computations: Proceedings of a symposium on the Complexity of Computer Computations, held March 20--22, 1972, at the IBM Thomas J. Watson Research Center, Yorktown Heights, New York, and sponsored by the Office of Naval Research, Mathematics Program, IBM World Trade Corporation, and the IBM Research Mathematical Sciences Department}
+      \field{isbn}{978-1-4684-2001-2}
+      \field{title}{Reducibility among Combinatorial Problems}
+      \field{year}{1972}
+      \field{pages}{85\bibrangedash 103}
+      \range{pages}{19}
+      \verb{doi}
+      \verb 10.1007/978-1-4684-2001-2_9
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-1-4684-2001-2_9
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-1-4684-2001-2_9
+      \endverb
+    \endentry
+    \entry{doi:10.1021/acs.jpca.2c06453}{article}{}
+      \name{author}{4}{}{%
+        {{hash=d3e8dfb0911a39c008dda909401036ef}{%
+           family={Kurita},
+           familyi={K\bibinitperiod},
+           given={Tomochika},
+           giveni={T\bibinitperiod}}}%
+        {{hash=11d6ed038f124673aa6c479c7f1c795a}{%
+           family={Morita},
+           familyi={M\bibinitperiod},
+           given={Mikio},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a5bf86cc978d879229cc784a8f276dd0}{%
+           family={Oshima},
+           familyi={O\bibinitperiod},
+           given={Hirotaka},
+           giveni={H\bibinitperiod}}}%
+        {{hash=dc9421b25289d038f77de4715a84ac80}{%
+           family={Sato},
+           familyi={S\bibinitperiod},
+           given={Shintaro},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{38dfad70d4ac28b815fa0e2bbeae96a9}
+      \strng{fullhash}{8a6c7a2abcc5fab4aad8a6c9401a57e8}
+      \strng{bibnamehash}{8a6c7a2abcc5fab4aad8a6c9401a57e8}
+      \strng{authorbibnamehash}{8a6c7a2abcc5fab4aad8a6c9401a57e8}
+      \strng{authornamehash}{38dfad70d4ac28b815fa0e2bbeae96a9}
+      \strng{authorfullhash}{8a6c7a2abcc5fab4aad8a6c9401a57e8}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Physical Chemistry A}
+      \field{note}{PMID: 36653017}
+      \field{number}{4}
+      \field{title}{Pauli String Partitioning Algorithm with the Ising Model for Simultaneous Measurements}
+      \field{volume}{127}
+      \field{year}{2023}
+      \field{pages}{1068\bibrangedash 1080}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1021/acs.jpca.2c06453
+      \endverb
+      \verb{eprint}
+      \verb https://doi.org/10.1021/acs.jpca.2c06453
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1021/acs.jpca.2c06453
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1021/acs.jpca.2c06453
+      \endverb
+    \endentry
+    \entry{schmitz_graph_2023}{misc}{}
+      \name{author}{4}{}{%
+        {{hash=0dcff2b29caf718f18af4931c9cf1862}{%
+           family={Schmitz},
+           familyi={S\bibinitperiod},
+           given={Albert\bibnamedelima T.},
+           giveni={A\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=fa5a81edbec820ec863a0acd11b4283b}{%
+           family={Sawaya},
+           familyi={S\bibinitperiod},
+           given={Nicolas\bibnamedelimb P.\bibnamedelimi D.},
+           giveni={N\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=0f87478ebf5f14649bb515fbeb4b6742}{%
+           family={Johri},
+           familyi={J\bibinitperiod},
+           given={Sonika},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5d84cc8c888f24346ec8555342e0e240}{%
+           family={Matsuura},
+           familyi={M\bibinitperiod},
+           given={A.\bibnamedelimi Y.},
+           giveni={A\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{ed4755dfd055b8124fb9ea5c666958fd}
+      \strng{fullhash}{48cec6a6dca26b6fd1fe4290dcdd4166}
+      \strng{bibnamehash}{48cec6a6dca26b6fd1fe4290dcdd4166}
+      \strng{authorbibnamehash}{48cec6a6dca26b6fd1fe4290dcdd4166}
+      \strng{authornamehash}{ed4755dfd055b8124fb9ea5c666958fd}
+      \strng{authorfullhash}{48cec6a6dca26b6fd1fe4290dcdd4166}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Hamiltonian simulation represents an important module in a large class of quantum algorithms and simulations such as quantum machine learning, quantum linear algebra methods, and modeling for physics, material science and chemistry. One of the most prominent methods for realizing the time-evolution unitary is via the Trotter-Suzuki decomposition. However, there is a large class of possible decompositions for the infinitesimal time-evolution operator as the order in which the Hamiltonian terms are implemented is arbitrary. We introduce a novel perspective for generating a low-depth Trotter-Suzuki decomposition assuming the standard Clifford+RZ gate set by adapting ideas from quantum error correction. We map a given Trotter-Suzuki decomposition to a constrained path on a graph which we deem the Pauli Frame Graph (PFG). Each node of the PFG represents the set of possible Hamiltonian terms currently available to be applied, Clifford operations represent a move from one node to another, and so the graph distance represents the gate cost of implementing the decomposition. The problem of finding the optimal decomposition is then equivalent to solving a problem similar to the traveling salesman. Though this is an NP-hard problem, we demonstrate the simplest heuristic, greedy search, and compare the resulting two-qubit gate count and circuit depth to more standard methods for a large class of scientifically relevant Hamiltonians, both fermionic and bosonic, found in chemical, vibrational and condensed matter problems which naturally scale. We find in nearly every case we study, the resulting depth and two-qubit gate counts are less than those provided by standard methods, by as much as an order of magnitude. We also find the method is efficient and amenable to parallelization, making the method scalable for problems of real interest.}
+      \field{month}{5}
+      \field{note}{arXiv:2103.08602 [cond-mat, physics:math-ph, physics:physics, physics:quant-ph]}
+      \field{title}{Graph {Optimization} {Perspective} for {Low}-{Depth} {Trotter}-{Suzuki} {Decomposition}}
+      \field{urlday}{20}
+      \field{urlmonth}{8}
+      \field{urlyear}{2023}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb arXiv Fulltext PDF:/Users/hyunseongkim/Zotero/storage/TPS93W9F/Schmitz 등 - 2023 - Graph Optimization Perspective for Low-Depth Trott.pdf:application/pdf;arXiv.org Snapshot:/Users/hyunseongkim/Zotero/storage/9ESITMU3/2103.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2103.08602
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2103.08602
+      \endverb
+      \keyw{Quantum Physics,Mathematical Physics,Condensed Matter - Materials Science,Physics - Computational Physics}
+    \endentry
+  \enddatalist
+  \datalist[entry]{apa/global//global/global}
+    \entry{chapuis_finding_2018}{misc}{}
+      \name{author}{4}{}{%
+        {{hash=50aa9452f01b9c88afbf3ac21505e61b}{%
+           family={Chapuis},
+           familyi={C\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod}}}%
+        {{hash=3efa0b5404058cdc84aa4c74fbd4e483}{%
+           family={Djidjev},
+           familyi={D\bibinitperiod},
+           given={Hristo\bibnamedelima N.},
+           giveni={H\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=2bf186f47dce2b522c69f7e7394c7156}{%
+           family={Hahn},
+           familyi={H\bibinitperiod},
+           given={Georg},
+           giveni={G\bibinitperiod}}}%
+        {{hash=ae2b4aa0ac8cf2c6c33e4ce050e4f727}{%
+           family={Rizk},
+           familyi={R\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{af059f443d1a147962821fcd169c237c}
+      \strng{fullhash}{01d2c17ecbad3a69f67501378b63be98}
+      \strng{bibnamehash}{01d2c17ecbad3a69f67501378b63be98}
+      \strng{authorbibnamehash}{01d2c17ecbad3a69f67501378b63be98}
+      \strng{authornamehash}{af059f443d1a147962821fcd169c237c}
+      \strng{authorfullhash}{01d2c17ecbad3a69f67501378b63be98}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper assesses the performance of the D-Wave 2X (DW) quantum annealer for finding a maximum clique in a graph, one of the most fundamental and important NP-hard problems. Because the size of the largest graphs DW can directly solve is quite small (usually around 45 vertices), we also consider decomposition algorithms intended for larger graphs and analyze their performance. For smaller graphs that fit DW, we provide formulations of the maximum clique problem as a quadratic unconstrained binary optimization (QUBO) problem, which is one of the two input types (together with the Ising model) acceptable by the machine, and compare several quantum implementations to current classical algorithms such as simulated annealing, Gurobi, and third-party clique finding heuristics. We further estimate the contributions of the quantum phase of the quantum annealer and the classical post-processing phase typically used to enhance each solution returned by DW. We demonstrate that on random graphs that fit DW, no quantum speedup can be observed compared with the classical algorithms. On the other hand, for instances specifically designed to fit well the DW qubit interconnection network, we observe substantial speed-ups in computing time over classical approaches.}
+      \field{month}{4}
+      \field{note}{arXiv:1801.08649 [quant-ph]}
+      \field{title}{Finding {Maximum} {Cliques} on the {D}-{Wave} {Quantum} {Annealer}}
+      \field{urlday}{27}
+      \field{urlmonth}{8}
+      \field{urlyear}{2023}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb arXiv Fulltext PDF:/Users/hyunseongkim/Zotero/storage/MEDFXT6V/Chapuis 등 - 2018 - Finding Maximum Cliques on the D-Wave Quantum Anne.pdf:application/pdf;arXiv.org Snapshot:/Users/hyunseongkim/Zotero/storage/9JZI6W9J/1801.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1801.08649
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1801.08649
+      \endverb
+      \keyw{Quantum Physics}
+    \endentry
+    \entry{9248636}{article}{}
+      \name{author}{8}{}{%
+        {{hash=f81b959a274cf858af12371d973186a4}{%
+           family={Gokhale},
+           familyi={G\bibinitperiod},
+           given={Pranav},
+           giveni={P\bibinitperiod}}}%
+        {{hash=f082953cb70161b87a0869d90d9bb16a}{%
+           family={Angiuli},
+           familyi={A\bibinitperiod},
+           given={Olivia},
+           giveni={O\bibinitperiod}}}%
+        {{hash=42c19e7d8e4f58481c6b4e4d73a06715}{%
+           family={Ding},
+           familyi={D\bibinitperiod},
+           given={Yongshan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=63bbc5626b2af9fc59d7a7d1b49ef1eb}{%
+           family={Gui},
+           familyi={G\bibinitperiod},
+           given={Kaiwen},
+           giveni={K\bibinitperiod}}}%
+        {{hash=1adb469c4a0a4ad3b690a85068ae396a}{%
+           family={Tomesh},
+           familyi={T\bibinitperiod},
+           given={Teague},
+           giveni={T\bibinitperiod}}}%
+        {{hash=d000a1b24e892d6c31367f83ed18564e}{%
+           family={Suchara},
+           familyi={S\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=51a2ecd59392c7fa73fa8648cea933be}{%
+           family={Martonosi},
+           familyi={M\bibinitperiod},
+           given={Margaret},
+           giveni={M\bibinitperiod}}}%
+        {{hash=3dc30ce8848da64646a981d48b5d2701}{%
+           family={Chong},
+           familyi={C\bibinitperiod},
+           given={Frederic\bibnamedelima T.},
+           giveni={F\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \strng{namehash}{0f4cd699cb4b7364b2d54d7226315200}
+      \strng{fullhash}{80109502c6ee6a4810ef8c5cd3d45733}
+      \strng{bibnamehash}{80109502c6ee6a4810ef8c5cd3d45733}
+      \strng{authorbibnamehash}{80109502c6ee6a4810ef8c5cd3d45733}
+      \strng{authornamehash}{0f4cd699cb4b7364b2d54d7226315200}
+      \strng{authorfullhash}{80109502c6ee6a4810ef8c5cd3d45733}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Quantum Engineering}
+      \field{title}{$O(N^3)$ Measurement Cost for Variational Quantum Eigensolver on Molecular Hamiltonians}
+      \field{volume}{1}
+      \field{year}{2020}
+      \field{pages}{1\bibrangedash 24}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1109/TQE.2020.3035814
+      \endverb
+    \endentry
+    \entry{Karp1972}{inbook}{}
+      \name{author}{1}{}{%
+        {{hash=5290385c419686f6312edeb3578dc9cf}{%
+           family={Karp},
+           familyi={K\bibinitperiod},
+           given={Richard\bibnamedelima M.},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=61845d8713df720183097da97764018e}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={Raymond\bibnamedelima E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=0c49a2a69eb15e588235d478d36d70ea}{%
+           family={Thatcher},
+           familyi={T\bibinitperiod},
+           given={James\bibnamedelima W.},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=537f41cb482bc0f5db46135172b12347}{%
+           family={Bohlinger},
+           familyi={B\bibinitperiod},
+           given={Jean\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Boston, MA}%
+      }
+      \list{publisher}{1}{%
+        {Springer US}%
+      }
+      \strng{namehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{fullhash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{bibnamehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{authorbibnamehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{authornamehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{authorfullhash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{editorbibnamehash}{1077d79ee83f896243c11f49212c756b}
+      \strng{editornamehash}{8702c61fdb8232d217eb652036dc29db}
+      \strng{editorfullhash}{1077d79ee83f896243c11f49212c756b}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A large class of computational problems involve the determination of properties of graphs, digraphs, integers, arrays of integers, finite families of finite sets, boolean formulas and elements of other countable domains. Through simple encodings from such domains into the set of words over a finite alphabet these problems can be converted into language recognition problems, and we can inquire into their computational complexity. It is reasonable to consider such a problem satisfactorily solved when an algorithm for its solution is found which terminates within a number of steps bounded by a polynomial in the length of the input. We show that a large number of classic unsolved problems of covering, matching, packing, routing, assignment and sequencing are equivalent, in the sense that either each of them possesses a polynomial-bounded algorithm or none of them does.}
+      \field{booktitle}{Complexity of Computer Computations: Proceedings of a symposium on the Complexity of Computer Computations, held March 20--22, 1972, at the IBM Thomas J. Watson Research Center, Yorktown Heights, New York, and sponsored by the Office of Naval Research, Mathematics Program, IBM World Trade Corporation, and the IBM Research Mathematical Sciences Department}
+      \field{isbn}{978-1-4684-2001-2}
+      \field{title}{Reducibility among Combinatorial Problems}
+      \field{year}{1972}
+      \field{pages}{85\bibrangedash 103}
+      \range{pages}{19}
+      \verb{doi}
+      \verb 10.1007/978-1-4684-2001-2_9
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-1-4684-2001-2_9
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-1-4684-2001-2_9
+      \endverb
+    \endentry
+    \entry{doi:10.1021/acs.jpca.2c06453}{article}{}
+      \name{author}{4}{}{%
+        {{hash=d3e8dfb0911a39c008dda909401036ef}{%
+           family={Kurita},
+           familyi={K\bibinitperiod},
+           given={Tomochika},
+           giveni={T\bibinitperiod}}}%
+        {{hash=11d6ed038f124673aa6c479c7f1c795a}{%
+           family={Morita},
+           familyi={M\bibinitperiod},
+           given={Mikio},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a5bf86cc978d879229cc784a8f276dd0}{%
+           family={Oshima},
+           familyi={O\bibinitperiod},
+           given={Hirotaka},
+           giveni={H\bibinitperiod}}}%
+        {{hash=dc9421b25289d038f77de4715a84ac80}{%
+           family={Sato},
+           familyi={S\bibinitperiod},
+           given={Shintaro},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{38dfad70d4ac28b815fa0e2bbeae96a9}
+      \strng{fullhash}{8a6c7a2abcc5fab4aad8a6c9401a57e8}
+      \strng{bibnamehash}{8a6c7a2abcc5fab4aad8a6c9401a57e8}
+      \strng{authorbibnamehash}{8a6c7a2abcc5fab4aad8a6c9401a57e8}
+      \strng{authornamehash}{38dfad70d4ac28b815fa0e2bbeae96a9}
+      \strng{authorfullhash}{8a6c7a2abcc5fab4aad8a6c9401a57e8}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Physical Chemistry A}
+      \field{note}{PMID: 36653017}
+      \field{number}{4}
+      \field{title}{Pauli String Partitioning Algorithm with the Ising Model for Simultaneous Measurements}
+      \field{volume}{127}
+      \field{year}{2023}
+      \field{pages}{1068\bibrangedash 1080}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1021/acs.jpca.2c06453
+      \endverb
+      \verb{eprint}
+      \verb https://doi.org/10.1021/acs.jpca.2c06453
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1021/acs.jpca.2c06453
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1021/acs.jpca.2c06453
+      \endverb
+    \endentry
+    \entry{schmitz_graph_2023}{misc}{}
+      \name{author}{4}{}{%
+        {{hash=0dcff2b29caf718f18af4931c9cf1862}{%
+           family={Schmitz},
+           familyi={S\bibinitperiod},
+           given={Albert\bibnamedelima T.},
+           giveni={A\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=fa5a81edbec820ec863a0acd11b4283b}{%
+           family={Sawaya},
+           familyi={S\bibinitperiod},
+           given={Nicolas\bibnamedelimb P.\bibnamedelimi D.},
+           giveni={N\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=0f87478ebf5f14649bb515fbeb4b6742}{%
+           family={Johri},
+           familyi={J\bibinitperiod},
+           given={Sonika},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5d84cc8c888f24346ec8555342e0e240}{%
+           family={Matsuura},
+           familyi={M\bibinitperiod},
+           given={A.\bibnamedelimi Y.},
+           giveni={A\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{ed4755dfd055b8124fb9ea5c666958fd}
+      \strng{fullhash}{48cec6a6dca26b6fd1fe4290dcdd4166}
+      \strng{bibnamehash}{48cec6a6dca26b6fd1fe4290dcdd4166}
+      \strng{authorbibnamehash}{48cec6a6dca26b6fd1fe4290dcdd4166}
+      \strng{authornamehash}{ed4755dfd055b8124fb9ea5c666958fd}
+      \strng{authorfullhash}{48cec6a6dca26b6fd1fe4290dcdd4166}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Hamiltonian simulation represents an important module in a large class of quantum algorithms and simulations such as quantum machine learning, quantum linear algebra methods, and modeling for physics, material science and chemistry. One of the most prominent methods for realizing the time-evolution unitary is via the Trotter-Suzuki decomposition. However, there is a large class of possible decompositions for the infinitesimal time-evolution operator as the order in which the Hamiltonian terms are implemented is arbitrary. We introduce a novel perspective for generating a low-depth Trotter-Suzuki decomposition assuming the standard Clifford+RZ gate set by adapting ideas from quantum error correction. We map a given Trotter-Suzuki decomposition to a constrained path on a graph which we deem the Pauli Frame Graph (PFG). Each node of the PFG represents the set of possible Hamiltonian terms currently available to be applied, Clifford operations represent a move from one node to another, and so the graph distance represents the gate cost of implementing the decomposition. The problem of finding the optimal decomposition is then equivalent to solving a problem similar to the traveling salesman. Though this is an NP-hard problem, we demonstrate the simplest heuristic, greedy search, and compare the resulting two-qubit gate count and circuit depth to more standard methods for a large class of scientifically relevant Hamiltonians, both fermionic and bosonic, found in chemical, vibrational and condensed matter problems which naturally scale. We find in nearly every case we study, the resulting depth and two-qubit gate counts are less than those provided by standard methods, by as much as an order of magnitude. We also find the method is efficient and amenable to parallelization, making the method scalable for problems of real interest.}
+      \field{month}{5}
+      \field{note}{arXiv:2103.08602 [cond-mat, physics:math-ph, physics:physics, physics:quant-ph]}
+      \field{title}{Graph {Optimization} {Perspective} for {Low}-{Depth} {Trotter}-{Suzuki} {Decomposition}}
+      \field{urlday}{20}
+      \field{urlmonth}{8}
+      \field{urlyear}{2023}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb arXiv Fulltext PDF:/Users/hyunseongkim/Zotero/storage/TPS93W9F/Schmitz 등 - 2023 - Graph Optimization Perspective for Low-Depth Trott.pdf:application/pdf;arXiv.org Snapshot:/Users/hyunseongkim/Zotero/storage/9ESITMU3/2103.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2103.08602
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2103.08602
+      \endverb
+      \keyw{Quantum Physics,Mathematical Physics,Condensed Matter - Materials Science,Physics - Computational Physics}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
