@@ -32,8 +32,8 @@ def RY(theta):
         ])
 def RZ(theta):
     return sp.Matrix([
-        [1,0],
-        [0, sp.exp(complex(0,1)*theta)]
+        [sp.exp(-complex(0,1)*theta/2),0],
+        [0, sp.exp(complex(0,1)*theta/2)]
         ])
 # Multi-qubit gates
 def X(i, n:int):
@@ -74,6 +74,21 @@ def CNOT(i:int, j:int, n:int):
     glist0[i] = CNOT0
     glist1[i] = CNOT1
     glist1[j] = Xg    
+    return tp(*glist0) + tp(*glist1) 
+def CU(i:int, j:int, n:int, U):
+    assert i != j, "Two qubit gate must have 2 different qubit index."
+    assert type(i) is int, "Index i must be integer." 
+    assert type(j) is int, "Index j must be integer." 
+    assert type(n) is int, "Qubit number n must be integer."
+    assert i<n and j<n, "Index must be smaller than total qubit number."
+    assert i>-1 and j>-1, "Index must be positive integer including 0."
+    
+    glist0 = n*[Ig]
+    glist1 = n*[Ig]
+    
+    glist0[i] = CNOT0
+    glist1[i] = CNOT1
+    glist1[j] = U
     return tp(*glist0) + tp(*glist1) 
 def Uni(U, i, n:int): # Using this function for multi-qubit Rx,Ry,and Rz and arbitary single gates. 
     assert type(i) is int, "Index i must be integer." 

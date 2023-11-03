@@ -6,12 +6,14 @@ from qiskit.quantum_info import SparsePauliOp
 # basic gates
 I = np.eye(2)
 Z = np.array([[1, 0],[ 0, -1]])
+i_v = np.array([1,1])
+z_v = np.array([1, -1])
 
 
 def krons(oper_list):
     return reduce(np.kron, oper_list)
 def get_pauli_z_family_n_qubit(n):
-    return list(map(krons, product([I, Z], repeat=int(n)))), list(map(lambda x: "".join(x), product("IZ", repeat=int(n))))
+    return list(map(krons, product([i_v, z_v], repeat=int(n)))), list(map(lambda x: "".join(x), product("IZ", repeat=int(n))))
 def V_potential(n, data):
     assert int(2**n)==data.size, f"The data size {data.size} must be same with 2^n: {int(2**n)}."
     V_x = np.matrix(np.diag(data))
