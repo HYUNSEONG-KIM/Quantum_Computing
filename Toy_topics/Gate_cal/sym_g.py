@@ -7,8 +7,8 @@ from sympy.physics.quantum.qapply import qapply
 
 from functools import reduce
 
-def combie_circuit_gate(circuit):
-    return reduce(lambda x,y: x*y, circuit)
+def combine_circuit_gate(circuit):
+    return reduce(lambda x,y: x@y, circuit)
 
 # Default Gates
 Xg = sp.Matrix([[0, 1], [1,0]])
@@ -32,8 +32,8 @@ def RY(theta):
         ])
 def RZ(theta):
     return sp.Matrix([
-        [1,0],
-        [0, sp.exp(complex(0,1)*theta)]
+        [sp.exp(-complex(0,1)*theta/2),0],
+        [0, sp.exp(complex(0,1)*theta/2)]
         ])
 # Multi-qubit gates
 def X(i, n:int):
