@@ -24,3 +24,39 @@ def V_potential(n, data):
 def V_potential_from_function(n, x_i, x_f, func):
     xline = np.linspace(x_i, x_f, n, endpoint=True)
     return V_potential(n, func(xline))
+
+#-----------------------------------------------------------------
+
+# Opeartors
+def position_operator(n):
+    return np.diag(np.arange(0, n))
+def momentum_operator(n):
+    dia_array = (2*np.pi/(int(2**n)))* np.concatenate(
+        [
+            np.arange(0, int(2**(n -1)+1)), 
+            int(2**(n-1)) - np.arange(int(2**(n -1)+1), int(2**n))
+        ])
+    return np.diag(dia_array)
+
+# Page-Wootters
+
+class PaW:
+    """_summary_
+    """
+    def __init__(self):
+        pass
+    
+    @staticmethod
+    def cal_minimum_qubits(ns, dt, steps):
+        """Calculate minimum number of qubits for clock register to get a desired precise clock system.
+
+            Prototype
+        Args:
+            ns (int): Evolution system register
+            dt (float): Evolution step unit
+            steps (int): Total steps of the time evolution
+        """
+        T = dt*steps # total evolution
+        nc = int(np.log2(steps)+1)
+        return nc
+        
