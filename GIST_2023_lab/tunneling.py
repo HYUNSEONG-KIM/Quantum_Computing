@@ -39,7 +39,6 @@ def momentum_operator(n):
     return np.diag(dia_array)
 
 # Page-Wootters
-
 class PaW:
     """_summary_
     """
