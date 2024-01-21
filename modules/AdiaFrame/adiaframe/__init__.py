@@ -21,6 +21,9 @@ from scipy import linalg
 import pandas as pd
 
 
+from adiaframe.utils import (
+    commute_reggio_df, integer_order_map, 
+    frobenius_inner, krons, get_coef)
 
 I = np.eye(2)
 pauli_X = np.array([[0, 1], [1, 0]], dtype=complex)
@@ -28,31 +31,95 @@ pauli_Y = complex(0, 1)*np.array([[0, -1], [1, 0]], dtype=complex)
 pauli_Z = np.array([[1, 0], [0, -1]], dtype=complex)
 p_basis = {"I":I, "X":pauli_X, "Y":pauli_Y, "Z":pauli_Z}
 
-
-
-
 class Hamiltonian:
     def __init__(self, 
                  H:np.matrix, 
+                 pauli_basis:Union[None, dict]=None,
                  tols=(1E4*float_tol , float_tol), 
-                 pauli_basis:Union[None, dict]=None):
+                 commute_map = True):
         assert len(H.shape) ==2, f"H must be 2dim matrix. current: {H.shape}."
         n1, n2 = H.shape
         assert n1 == n2, f"Hamiltonian must be square matrix. Current:{(n1, n2)}."
         assert np.allclose(H, H.H, *tols), f"Hamiltonian must be a hermite matrix. Relative, absolute tolerance, {tols}."
-        assert bin(8)[2:].count("1") == 1, f"Dimension must be a 2^n. Current:{n1}."
+        assert bin(n1)[2:].count("1") == 1, f"Dimension must be a 2^n. Current:{n1}."
         
         self.Hamiltonian = H
         
+        if pauli_basis is None:
+            pauli_basis = self.H_to_p_poly(H, tols[1])
         # None or Dataframe
-        self.local_decomposition = self._check_decomposition(pauli_basis)  
-        self.exist_decompositon = False if pauli_basis is None else True 
-        self.x_family = None # save as integer 2dim matrix point the latin matrix.
-        self.z_family = None
-        self.coefficients = None # Latin matrix corresponding coefficient.
-        
+        self.local_decomposition = self.get_decomposition(pauli_basis)  
+
+        # Commute term
+        self.commute_map = self.get_commuting_map() if commute_map else None
+        self.commute_map_exist = True if commute_map else False
         self.qubit_num = len(bin(H.shape[0])[3:]) # Consider a 1 bit position of 2^n integer.
-    # Basic utils
+    #--------------------------------------------------------------
+    def get_commuting_map(self):
+        df = self.local_decomposition
+        edge_df = pd.DataFrame(combinations(df["Pstring"].values ,2), columns=['source', 'target'])
+        
+        edge_df = edge_df.merge(df[["Pstring", "Z", "X"]], how="left", left_on="source", right_on='Pstring').drop("Pstring", axis=1)
+        edge_df.rename(columns={"Z": "Zs", "X": "Xs"}, inplace=True)
+        edge_df = edge_df.merge(df[["Pstring", "Z", "X"]], how="left", left_on="target", right_on='Pstring').drop("Pstring", axis=1)
+        edge_df.rename(columns={"Z": "Zt", "X": "Xt"}, inplace=True)
+        
+        edge_df["commute"] = edge_df[["Zs", "Xs", "Zt", "Xt"]].apply(commute_reggio_df, axis=1)
+        return edge_df
+    def save_as(self, filepath:Union[Path, str]):
+        raise NotImplementedError
+        if isinstance(filepath, str):
+            filepath = Path(filepath)
+        pass
+    #--------------------------------------------------------------
+    @property
+    def pauli_decomposition(self):
+        return self.local_decomposition.loc[["Pstring", "Coef"]]
+    @property
+    def xz_family(self):
+        return self.local_decomposition.loc[["Z", "X", "Coef"]]
+    @property
+    def latin_matrix(self):
+        return self.local_decomposition.pivot(index="X", columns="Z", values="Coef") 
+    #--------------------------------------------------------------
+    @classmethod
+    def from_latin_matrix(cls:Hamiltonian, 
+                      l_matrix:np.matrix, 
+                      xz_famileis:Tuple[Iterable, Iterable])->Hamiltonian:
+        pass
+    @classmethod
+    def from_pauli_polynomial(cls:Hamiltonian, 
+                               p_poly:Union[dict, np.ndarray], 
+                               p_coef:Union[None, np.ndarray]=None,
+                               *args)-> Hamiltonian:
+        if isinstance(p_poly, dict):
+            H = Hamiltonian.pstr_to_matrix(p_poly)
+        else:
+            p_dict = {}
+            for p, coef in zip(p_poly, p_coef):
+                p_dict[p] = coef
+        
+        return cls(H, p_poly, *args)
+    @classmethod
+    def from_data(cls:Hamiltonian, file_path)->Hamiltonian:
+        pass
+    #------------------------------
+    # Basic utils for hamiltonian analysis
+    @staticmethod
+    def get_decomposition(pauli_basis):
+        p_dict = {}
+        for p in pauli_basis.keys():
+            nx, nz = Hamiltonian.pstr_to_xz_fam_code(p)
+            num = 1 if nx>0 else 0
+            num += num if nz>0 else 0
+
+            p_dict[p] = (num, nz, nx, pauli_basis[p])
+        df = pd.DataFrame.from_dict(
+                                    p_dict, 
+                                    orient="index",
+                                    columns = ["type", "Z", "X", "Coef"])
+        df.reset_index(inplace=True, names="Pstring")
+        return df
     @staticmethod
     def pstr_to_matrix(pstr):
         result = []
@@ -104,7 +171,6 @@ class Hamiltonian:
             else:
                 result.append("Z")
         return "".join(result)
-
     @staticmethod
     def p_poly_to_H(p_poly:dict):
         """Convert pauli-polynomial of dictionary form to total Hamiltonian matrix.
@@ -116,7 +182,7 @@ class Hamiltonian:
         n = len(list(p_poly.keys())[0])
         dim = int(2**n)
         shape = (dim, dim)
-        result = np.zeros(shape, dtype=complex)
+        result = np.asmatrix(np.zeros(shape, dtype=complex))
         for pstr in p_poly:
             coef = p_poly[pstr]
             result += coef*Hamiltonian.pstr_to_matrix(pstr)
@@ -135,8 +201,29 @@ class Hamiltonian:
                 poly[p_str] = coef
         return poly
     @staticmethod
-    def p_poly_to_latin(p_poly:dict, full=False):
-        pass
+    def p_poly_to_latin(p_poly:dict, full=False)->Tuple[np.ndarray, list, list]:
+        p_terms = list(p_poly.keys())
+        x_fam = []
+        z_fam = []
+        for p in p_terms:
+            nx, nz = Hamiltonian.pstr_to_xz_fam_code(p)
+            x_fam.append(nx)
+            z_fam.append(nz)
+            
+        x_fam_unique = np.unique(x_fam)
+        z_fam_unique = np.unique(z_fam)
+        x_l = x_fam_unique.size
+        z_l = z_fam_unique.size
+        
+        x_l_map = integer_order_map(x_fam)
+        z_l_map = integer_order_map(z_fam)
+        
+        latin_matrix = np.zeros(shape=(x_l, z_l), dtype=complex)
+        for p, x_i, z_j in zip(p_poly.values(), x_fam, z_fam):
+            xi, zi = x_l_map[x_i], z_l_map[z_j]
+
+            latin_matrix[xi, zi] = p 
+        return latin_matrix, x_fam_unique, z_fam_unique
     @staticmethod
     def generate_pauli_terms(
         qubit_num:int, 
@@ -198,57 +285,3 @@ class Hamiltonian:
 
         return list(map(krons, product([I, G], repeat=int(n))))
         
-    #--------------------------------------------------------------
-    def _check_decomposition(self, pauli_basis):
-        if pauli_basis is None:
-            return None
-        pass    
-    def get_decomposition(self, H:np.matrix, tol=float_tol ):
-        pass
-    def decompose(self, tol=float_tol , replace = False):
-        if self.exist_decompositon:
-            if not replace:
-                return self.local_decomposition
-        
-        if replace:
-            self.local_decomposition = self.get_decomposition(self.H, tol) 
-            self.exist_decompositon = True
-            return self.local_decomposition
-        return self.get_decomposition(self.H, tol) 
-    def save_as(self, filepath:Union[Path, str]):
-        if isinstance(filepath, str):
-            filepath = Path(filepath)
-            
-        pass
-    #--------------------------------------------------------------
-    @property
-    def pauli_decomposition(self):
-        if self.exist_decompositon:
-            pass
-        return None
-    @property
-    def xz_family(self):
-        if self.exist_decompositon:
-            pass
-        return None
-    @property
-    def latin_matrix(self):
-        if self.exist_decompositon:
-            pass
-        return None    
-    #--------------------------------------------------------------
-    @classmethod
-    def from_latin_matrix(cls:Hamiltonian, 
-                      l_matrix:np.matrix, 
-                      coefficient:Union[np.matrix, None]=None)->Hamiltonian:
-        pass
-    @classmethod
-    def from_pauli_polynomial(cls:Hamiltonian, 
-                               p_poly:Union[dict, np.ndarray], 
-                               p_coef:Union[None, np.ndarray]=None)-> Hamiltonian:
-        pass
-    @classmethod
-    def from_data(cls:Hamiltonian, file_path)->Hamiltonian:
-        pass
-    #------------------------------
-    
