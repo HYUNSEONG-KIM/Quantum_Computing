@@ -66,7 +66,7 @@ class Hamiltonian:
         
         edge_df["commute"] = edge_df[["Zs", "Xs", "Zt", "Xt"]].apply(commute_reggio_df, axis=1)
         return edge_df
-    def save_as(self, filepath:Union[Path, str]):
+    def save_as(self, filepath:Union[Path, str]): # In progress
         raise NotImplementedError
         if isinstance(filepath, str):
             filepath = Path(filepath)
@@ -85,7 +85,7 @@ class Hamiltonian:
     @classmethod
     def from_latin_matrix(cls:Hamiltonian, 
                       l_matrix:np.matrix, 
-                      xz_famileis:Tuple[Iterable, Iterable])->Hamiltonian:
+                      xz_famileis:Tuple[Iterable, Iterable])->Hamiltonian: # In progress
         pass
     @classmethod
     def from_pauli_polynomial(cls:Hamiltonian, 
@@ -101,7 +101,7 @@ class Hamiltonian:
         
         return cls(H, p_poly, *args)
     @classmethod
-    def from_data(cls:Hamiltonian, file_path)->Hamiltonian:
+    def from_data(cls:Hamiltonian, file_path)->Hamiltonian: # In progress
         pass
     #------------------------------
     # Basic utils for hamiltonian analysis
