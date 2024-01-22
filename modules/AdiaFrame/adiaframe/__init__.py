@@ -66,6 +66,12 @@ class Hamiltonian:
         
         edge_df["commute"] = edge_df[["Zs", "Xs", "Zt", "Xt"]].apply(commute_reggio_df, axis=1)
         return edge_df
+    def applying_weight_func(self, weight_func:Callable, columns, name="Weight"):
+        if isinstance(columns[0], str): 
+            self.commute_map[name] = self.commute_map.loc[:, columns].apply(weight_func, axis=1)
+        elif isinstance(columns[0], int):
+            self.commute_map[name] = self.commute_map.iloc[:, columns].apply(weight_func, axis=1)
+        return self.commute_map[name]
     def save_as(self, filepath:Union[Path, str]): # In progress
         raise NotImplementedError
         if isinstance(filepath, str):
@@ -252,9 +258,7 @@ class Hamiltonian:
             for x_i, x_str in zip(p_xs, p_xs_str):
                 for z_j, z_str in zip(p_zs, p_zs_str):
                     g = x_i@z_j
-
                     g_coef, g_str = get_coef(x_str, z_str)
-
                     p_g.append(g_coef*g)
                     p_g_str.append(g_str)
             result.append(p_g) 
