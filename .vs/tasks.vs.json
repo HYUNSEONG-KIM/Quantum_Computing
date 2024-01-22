@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-utils",
+      "appliesTo": "modules/AdiaFrame/c_modules/utils.c",
+      "type": "launch"
+    }
+  ]
+}

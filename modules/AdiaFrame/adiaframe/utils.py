@@ -1,6 +1,6 @@
 from adiaframe import *
 
-
+# default bit functions
 def krons(*oper_list): # Operator Kronecker delta
     if len(oper_list) == 1:
         oper_list = oper_list[0]
@@ -19,8 +19,8 @@ def commute_reggio(pa:Tuple[int, int], pb:Tuple[int, int]):
     return a==b
     
 def commute_reggio_df(s):
-    a = bin(s.iloc[:, 0] & s.iloc[:,3]).count("1")%2
-    b = bin(s.iloc[:, 1] & s.iloc[:,2]).count("1")%2
+    a = bin(s[0] & s[3]).count("1")%2
+    b = bin(s[1] & s[2]).count("1")%2
     return a == b
 
 def integer_order_map(int_list):
@@ -97,8 +97,6 @@ def pstr_from_xz(x_int, z_int):
         pstr[-i] = int_pchar[p]
         i+=1
     return "".join(pstr)
-    
-
 def insert_zeros_in_gaps(n):
     result = 0
     bit_position = 0
