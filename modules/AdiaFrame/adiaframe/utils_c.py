@@ -1,8 +1,12 @@
 import ctypes
 from pathlib import Path
+from platform import system
 # Find a path of shared library considering os dependency. 
 
-path = Path(__file__).parent/"c_modules"/"libutilsc.dll"
+platform_os = system()
+libname = "libutilsc"
+extname = ".dll" if "Windows" in platform_os else ".so"
+path = Path(__file__).parent/"c_modules"/(libname+extname)
 lib = ctypes.CDLL(str(path.absolute()))
 
 # Define the argument and return types for each C function

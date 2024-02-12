@@ -19,8 +19,8 @@ def commute_reggio(pa:Tuple[int, int], pb:Tuple[int, int]):
     return a==b
     
 def commute_reggio_df(s):
-    a = bin(s[0] & s[3]).count("1")%2
-    b = bin(s[1] & s[2]).count("1")%2
+    a = bin(s.iloc[0] & s.iloc[3]).count("1")%2
+    b = bin(s.iloc[1] & s.iloc[2]).count("1")%2
     return a == b
 
 def integer_order_map(int_list):
