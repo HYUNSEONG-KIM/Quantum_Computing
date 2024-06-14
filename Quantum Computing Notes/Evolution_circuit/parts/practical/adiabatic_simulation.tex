@@ -1,0 +1,95 @@
+\chapter{Adiabatic process on gate model}
+
+Adiabatic computation
+
+
+In practical implementation, adiabatic model of quantum computation
+has many advantanges in scale, speed and formulation of problem to run on the system.
+On the gate model, we consider many approximation formula and represetation of the evolution operator. 
+The reason was that we cannot know exactly what form of the time-evolution operator form corresponding to the given hamiltonian matrix;hermite. 
+However, in adiabatic computation, the unitary transformation is a \textbf{job of nature}. 
+Only things we have to consider are how to apply the hamiltonian to the given qubit system and 
+accelerating convergence speed enough to use in calculation.
+This computation model has very huge benefit in binary optimization problem than the gate model computation.
+
+In this chapter, we are going to simulate adiabatic
+process on gate model computer and compare the result obtanined
+from a commerical adiabatic process machine.
+
+\section{Formulation for Adiabatic computing}
+
+Adiabatic theorem states that if the system hamiltonian is varying slowly, 
+the final state of the system is remained in eigenstate of finial hamiltonian 
+which is corresponding eigenstate of the initial hamiltonian eigenstate.
+
+The term slowly is very important, it depends on the initial and final hamiltonian of the system. 
+If the evolution time is $T$, and the eigenvalues of initial and final hamiltonian are $E_i$
+and, $E_f$, the evolution time must be satisfies next,
+
+\begin{equation}
+    \frac{2 \pi}{|E_f - E_i| << T}
+\end{equation}
+
+That is to solve the system with adiabatic method, we have to manipulate the time, $T$.
+It is called by \textit{adiabatic configuration}. 
+The configuration depends on the initial and final system, 
+so the determination requires some physical instuition by the researcher.
+
+\begin{equation}
+    \mathcal{H}_{adia} (f(s), T) = T(1- f(s)) \mathcal{H}_{initial} + f(s) \mathcal{H}_{solve}
+\end{equation}
+
+Our major concern is a ground state of $\mathcal{H}_{solve}$.
+We can expect the system to be a ground state through adiabatic process,
+if the initial system state was a ground state of $\mathcal{H}_{inital}$.
+That is, with adiabatic process, we can obtain the target system ground state 
+using well-known system.
+The requirement is an appropriate Hamiltonian, $\mathcal{H}_{initial}$.
+It must have well-known ground state and 
+their implementation should practically be efficient.
+Common Hamiltonian is a $\mathcal{H}_{inital} = - \sum_{i} \sigma_{X, i}$.
+Its ground state is a $|+\rangle^{\otimes n}$.
+
+\begin{center}
+    \begin{quantikz}
+        \lstick{$| 0_{0} \rangle$} &\gate{H}& \rstick{$| + \rangle$}  \\
+        \lstick{$| 0_{1} \rangle$} &\gate{H}& \rstick{$| + \rangle$} \\
+        \wave&& \\
+        \lstick{$| 0_{n} \rangle$} &\gate{H}& \rstick{$| + \rangle$}
+    \end{quantikz} = $|+\rangle^{\otimes n}$
+\end{center}
+
+The common annealing solutions, such as D-Wave and QuEra, also apply the adiabatic theorem to their initialization process and Hamiltonian form. 
+Quantum annealing is fundamentally based on the phenomenon of quantum fluctuation; 
+however, the starting and final stages, as well as the evolving process, follow the adiabatic theorem. 
+That is why they offer some annealing time and initial state parameters to the user API. 
+Some problems require much more time to achieve the appropriate adiabatic process
+
+\section{Implementation}
+
+The previous simulations were time-independent
+Hamiltonian systems, but adiabatic process is 
+using a time-dependent Hamiltonian.
+The commutation problem still arises in here.
+If the $H(t_1)$ and $H(t_2)$ are not commuting, 
+then we cannot apply the 
+Still, product formula work well except the additional error 
+term was added to the system.
+
+
+\subsection{QUBO}
+
+Quadratic unconstrained binary optimization problem.
+It is widely tried in adiabatic computation and 
+in gate-model computation VQE(Variational Quantum Eigensolver) method is 
+dominant however, in this chapter we will solve the 
+QUBO problem on gate model computer mimicing the adiabatic process.
+
+\subsection{Ising model}
+
+\section{Pennylane implmentation}
+
+\subsection{Graph partitioning problem}
+
+
+

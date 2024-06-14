@@ -1,0 +1,51 @@
+\chapter{Fourier Trasnformation}
+
+\section{DFT and FFT}
+
+Practical implementation of the FFT algorithm is well described in 
+\textit{GSL FFT Algorithm} \cite{brian_gough_2023_7898076}.
+
+\section{QFT}
+
+Quantum Fourier transformation is a Fourier transoformation 
+defined on the finite group.
+
+\begin{equation}
+    \label{eq:qft_def}
+    | \psi \rangle = \sum_{j=1}^n x_j | j \rangle \rightarrow_{QFT} \sum_{j=1}^n y_k | k \rangle
+\end{equation}
+
+where, $y_k = \frac{1}{\sqrt{N}} \sum_{j=0}^{N-1} x_j \exp\left( 2 \pi i j \frac{k}{N} \right)$
+
+\begin{theorem}
+    QFT is an unitary transformation.
+\end{theorem}
+
+\begin{proof}
+Let, $\hat{T}$ be an QFT defined on Eq (\ref{eq:qft_def}),
+
+\begin{equation}
+    \hat{T}\left( \sum_{j=0}^{N-1} x_j | j \rangle \right) = \sum_{k=0}^{N-1} y_k | k \rangle
+\end{equation}
+
+\begin{align}
+    = \sum_{k=0}^{N-1} \frac{1}{\sqrt{N}} \sum_{j=0}^{N-1} x_j \exp\left(2 \pi i j \frac{k}{N} \right) | k \rangle \\
+    = \sum_{j=0}^{N-1} \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \exp\left(2 \pi i j \frac{k}{N} \right) | k \rangle \langle j| x_j | j \rangle
+\end{align}
+
+thereby, we can formulate the operator, $\hat{T}$ as $|k\rangle, |j \rangle$ states.
+
+\begin{equation}
+    \hat{T} = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} \exp\left(2 \pi i j \frac{k}{N} \right) | k \rangle \langle j|
+\end{equation}
+
+
+\begin{align}
+    \hat{T} \hat{T}^\dagger  = \frac{1}{N} \sum \sum \exp\left(2 \pi i \frac{k}{N} (j - j') \right) |j' \rangle \langle j |\\
+    = \sum_{j, j'} \left( \frac{1}{N} \sum_{k=0} \exp(2 \pi i \frac{k}{N} ( j- j') ) \right) |j' \rangle \langle j|\\
+    = \sum_{j=0}^{N-1} | j \rangle \langle j' |  = \mathds{1}, \square \text{.}
+\end{align}
+
+\end{proof}
+
+\section{QFT implementation on Circuit}

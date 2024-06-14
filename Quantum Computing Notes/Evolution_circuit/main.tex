@@ -1,0 +1,121 @@
+\documentclass[10pt]{book}
+\usepackage{NotesTeXV3,lipsum}
+% tikz is in the style file
+\usetikzlibrary{calc, angles, quotes}
+\usetikzlibrary{quantikz2}
+\newcommand{\AxisRotator}[1][rotate=0]{%
+    \tikz [x=0.25cm,y=0.60cm,line width=.2ex,-stealth,#1] \draw (0,0) arc (-150:150:1 and 1);%
+}
+\usepackage{pgf}
+\usepackage{pgfmath}
+\usetikzlibrary{shapes.geometric, math}
+
+\usepackage{imakeidx}
+\makeindex
+
+\title{
+    Materials for the simulation of quantum system behavior on quantum computer}
+\author{Hyunseong Kim}
+\emailAdd{qwqwhsnote@gm.gist.ac.kr}
+
+\begin{document}
+\maketitle
+\newpage
+\pagestyle{fancynotes}
+
+\section*{Preface}
+
+This document is a cheet-sheet and proof-notes about 
+quantum simulation on quantum computer, especially, in gate model.
+If you know basic postulations and concepts of quantum computers and you want to implement the simulation
+of the given quantum system, it might be helpful. 
+
+Mainly focusing on Product-formula method and its optimization topics. 
+They are basic materials for any kinds of quantum simulation and my Bachelor thesis subject.
+The formalization part is a basic materials for the product formula implementation
+minimizing errors on the formulation steps.
+The mathematical background of the evolution circuit and their representations were dicsussed.
+Optimization part is about the optimize the evolution circuit by using various techniques.
+In the practical part, we review the many practical techniques using quantum 
+computer and their simple implementations. 
+The modeling of the single-particle system, adiabatic process implementation, 
+VQE introduction are dicussed.
+In the further topics part, we reviewed the advanced topics. 
+Using 1 dim particle simulator, we dicussed about tunneling phanomenon and their 
+simulation in quantum computer.
+Material modeling and physcial properties simulation in many-body physics,
+binary optimization in quantum computer briefly reviewed.
+
+Written programs and algorithm implemnetations are also provided with refering repositories.
+In appendix, step by step example of simulation and measurement 
+using some popular quantum frameworks;Qiskit, Pennylane, D-Wave et cetra.
+
+
+Most contents are related with author's studies and research in the course of Quantum Graduate School internship
+established by 8 university. Thanks for Dr. Kim(GIST), Dr. Yee(GIST) and Dr. Choi(Korea).
+
+\begin{itemize}
+    \item 2023 Summer Special Internship, held by Korea university
+    \item Bachelor research internship on Quantum Field and Gravitation Lab of GIST
+    \item Bachelor research internship on Computational Material Lab of GIST
+\end{itemize}
+
+Abbrevations
+
+\begin{itemize}
+    \item QC: Quantum computation
+    \item CC: Classcial computation
+\end{itemize}
+
+\newpage
+
+\part{Simulation of Quantum system}
+\chapter{Formalization and Evolution}
+
+\input{parts/formalization/discretization.tex}
+\input{parts/formalization/time_evolution_operator.tex}
+\input{parts/formalization/circuit_representation.tex}
+%======================================================================================================================================
+
+\newpage
+\chapter{Optimization of evolution circuit}
+\input{parts/optimization/optimization_circuit.tex}
+
+%=====================================================================================================================================
+\newpage
+\part{Practical Examples}
+
+\input{parts/practical/basic_simulation.tex}
+\input{parts/practical/adiabatic_simulation.tex}
+\input{parts/practical/imaginary_evolution.tex}
+\input{parts/practical/VQE.tex}
+\input{parts/practical/Material_simulation.tex}
+\input{parts/practical/ttp.tex}
+
+%===================================
+\newpage
+\part{Further Topics}
+\input{parts/further_topics/simulation.tex}
+%======================================================================================================================================
+\newpage
+\bibliographystyle{unsrt}
+\bibliography{references.bib}
+
+%======================================================================================================================================
+\newpage
+\part{Appendix}
+\appendix
+
+\input{appendix/unitary-hermite.tex}
+\input{appendix/notation_int_qc.tex}
+\input{appendix/fourier_transformation.tex}
+\input{appendix/pauli_polynomial.tex}
+\input{appendix/mathematics.tex}
+\input{appendix/NP-problems.tex}
+
+Additional topic: time evolution operator of Hamiltonian,
+
+
+\printindex
+
+\end{document}

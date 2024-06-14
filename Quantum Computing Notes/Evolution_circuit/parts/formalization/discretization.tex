@@ -1,0 +1,64 @@
+\section{How does quantum computer simulate system?}
+
+A quantum system basically lies in continuous Hilbert space of normalized complex functions, \textit{wave function} or \textit{quantum field}.
+However, common universal quantum computing model; \textit{circuit model}, is not a continuous quantum model. 
+It is a discrete computation model. There are some continuous computation model in quantum computer, such as \textit{adiabatic model}. 
+However, in this document we will focus on the circuit model and the adiabatic model would be treated in separated application chapter.
+Therefore, if we want to simulate a given quantum system, 
+first thing to do is a discrete formalization to run on the gate model system.
+
+The discretization is not a new concept in quantum computation. 
+We can simulate various quantum systems in classic computation model already, 
+and the implementation of the simulation on the system requires appropriate discretization techniques.
+The common notation and techniques of the quantum computation were adopted from classic computation technique. 
+The differences are efficiency of computation and existence of the model. 
+Many quantum systems do not have an any approximation model.
+For example, in condensed matter physics, 
+Ising, and Hubbard Hamiltonian have been frequently used to describe the spin system of solid material.
+Even we just increase the dimension or lattice site, the problems become too complicated to solve or to compute 
+their behavior\footnote{For Ising, only 1 and 2 dimension cases are exactly solvable, and the further dimensions have no solution.}.
+However, quantum computer could simulate their behavior efficiently, comparing to the computational techniques
+in classic computers. 
+In addition, even the most complicated system was given, at least, 
+we can try the basic techniques by simulating time-evolution.
+
+Then, what does the discrete model affect the computation and the modeling of the problem?.
+Considering a differential equation. All we do in quantum mechanics is getting solutions of the given differential equations.
+We want to approximate the solution, $f(x)$, of the equation, 
+$D(x, f, f', \dots) = 0$, 
+with given initial or boundary conditions, $(x_0, f(x_0))$.
+We first discrete the region of consideration with $\Delta x$ and approximate 
+the next points start from the initial value to the target value.
+This is called by \textit{Euler method}. 
+
+\begin{align}
+    (x_0, f(x_0)) \\
+    x_i = x_{i-1} + \Delta x \\
+    f(x_i) = f(x_{i-1}) + \sum \lambda_n f^{(n)}(x_i) (\Delta x)^n
+\end{align}
+
+There are several techniques to update the point value in each step, but the details are not a consideration in here, 
+see numerical analysis textbook for the details\footnote[1]{Cheney, E Ward, or Burden et al are famous.}.
+The gate model simulation of quantum system is exactly same with the above discrete approximation. 
+We update the intermediate state until we reach the state we want to observe.
+When we want to simulate the evolution of the system, first thing to do is preparing the initial system configuration, and 
+we can obtain the target state by applying several evolution operators with evolution time, $\Delta t$.
+
+These are main focus of the material. 
+The quantum computer provides for us to simulate the complex systems in many areas 
+not only for physics, but also for many engineering, especially computer science.
+We already have general frameworks to manipulate the operation, preparation,
+and dynamics of the quantum states. 
+However, the exact process to simulate the given quantum state 
+is still remained for us.
+
+\begin{enumerate}
+    \item How to formulate \textit{time-evolution} in quantum computing language?
+    \item How to implement the evolution process?
+    \item What error could be happened during the operation?
+    \item How to model a specific system to simulate with quantum computer?
+\end{enumerate}
+
+There are many techniques and requirements for researchers and engineers to know.
+Thus, in here, we will overlook those techniques
+from solid mathematical backgrounds to programming implementation.

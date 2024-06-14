@@ -1,0 +1,125 @@
+\contentsline {part}{I\hspace {1em}Simulation of Quantum system}{1}{part.1}%
+\contentsline {chapter}{\numberline {1}Formalization and Evolution}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}How does quantum computer simulate system?}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Time evolution operator of the system}{4}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Exponential Map}{5}{subsection.1.2.1}%
+\contentsline {subsubsection}{Pauli matrix and exponential}{6}{equation.1.2.5}%
+\contentsline {subsection}{\numberline {1.2.2}Problem of commutation}{8}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Suzuki Trotter expansion}{10}{subsection.1.2.3}%
+\contentsline {subsubsection}{Stone-von Neumann Theorem}{11}{equation.1.2.29}%
+\contentsline {subsection}{\numberline {1.2.4}Terminology Note}{12}{subsection.1.2.4}%
+\contentsline {subsection}{\numberline {1.2.5}Further methods}{12}{subsection.1.2.5}%
+\contentsline {section}{\numberline {1.3}Formalization of time evolution}{13}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Type of systems}{13}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Spin operator representation of General system}{13}{subsection.1.3.2}%
+\contentsline {subsubsection}{Operator transformation}{14}{equation.1.3.4}%
+\contentsline {section}{\numberline {1.4}Circuit representation of the evolution operator}{14}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Pauli-matrices and decomposition}{14}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Evolution operator on single qubit system}{15}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}N-qubit system}{17}{subsection.1.4.3}%
+\contentsline {subsubsection}{CX structure}{17}{subsection.1.4.3}%
+\contentsline {subsubsection}{Basis transformation}{18}{exercise.7}%
+\contentsline {subsection}{\numberline {1.4.4}Implementation with Phase operator}{18}{subsection.1.4.4}%
+\contentsline {section}{\numberline {1.5}Additional Note}{19}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Clifford Group}{19}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Pauli-Frame}{19}{subsection.1.5.2}%
+\contentsline {chapter}{\numberline {2}Optimization of evolution circuit}{21}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Introduction}{21}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Mutally commuting groups}{21}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Hamiltonian grouping problem}{22}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Commutator of n-folded string}{23}{subsection.2.3.1}%
+\contentsline {subsubsection}{Sympletic representation of Pauli element}{24}{equation.2.3.7}%
+\contentsline {subsection}{\numberline {2.3.2}Partition construction}{24}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Axis transformation weight}{25}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Rough implementation of single qubit transformation}{26}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Pauli-Frame metric}{27}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}Krylov transformation}{28}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Other techniques}{28}{subsection.2.5.1}%
+\contentsline {section}{\numberline {2.6}VQE method and evolution}{28}{section.2.6}%
+\contentsline {part}{II\hspace {1em}Practical Examples}{1}{part.2}%
+\contentsline {chapter}{\numberline {3}Simple quantum systems}{3}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Modeling of 1dim Particle}{3}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Modeling a Hamiltonian}{5}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Slite experiment}{5}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}}{6}{subsection.3.1.3}%
+\contentsline {chapter}{\numberline {4}Adiabatic process on gate model}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Formulation for Adiabatic computing}{7}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Implementation}{8}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}QUBO}{8}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Ising model}{8}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Pennylane implmentation}{8}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Graph partitioning problem}{8}{subsection.4.3.1}%
+\contentsline {chapter}{\numberline {5}Imaginary Time evolution}{9}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Imaginary time}{9}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Non-unitary on unitary}{10}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Embeding in unitary}{10}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}VQE approximation}{10}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Spectrum Search}{10}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Variational method}{11}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introduction}{11}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Variatiaonal Principle}{11}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Circuit as ansatz}{11}{subsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.1.3}Universality of Circuit}{11}{subsection.6.1.3}%
+\contentsline {section}{\numberline {6.2}}{11}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Ansatzs}{12}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Hardware Efficient}{12}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Evolution Based}{12}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}Application}{12}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}QUBO}{12}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Evolution}{12}{subsection.6.4.2}%
+\contentsline {subsubsection}{Real time}{12}{subsection.6.4.2}%
+\contentsline {subsubsection}{Imaginary time}{12}{subsection.6.4.2}%
+\contentsline {section}{\numberline {6.5}Implementation}{12}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Pennylane}{12}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Qiskit}{12}{subsection.6.5.2}%
+\contentsline {chapter}{\numberline {7}Material Simulation}{13}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Hardness of the simulation}{13}{section.7.1}%
+\contentsline {chapter}{\numberline {8}Tunneling Phenomenon}{15}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Introduction to tunneling}{15}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}alpha-decay}{15}{subsection.8.1.1}%
+\contentsline {section}{\numberline {8.2}Tunneling time problem}{15}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Criticisims on tunneling time}{16}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Classical approach}{16}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Measurement- Experimental}{16}{subsection.8.3.2}%
+\contentsline {subsubsection}{Larmor Precession}{16}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}Hartman effect and Superluminal velocity}{16}{subsection.8.3.3}%
+\contentsline {section}{\numberline {8.4}Simulation and Measurement on Quantum circuit}{16}{section.8.4}%
+\contentsline {subsection}{\numberline {8.4.1}Page Wootter Mechanics}{17}{subsection.8.4.1}%
+\contentsline {subsubsection}{Evolution as a basis change}{17}{equation.8.4.3}%
+\contentsline {subsubsection}{Structure of PaW mechancis}{17}{equation.8.4.3}%
+\contentsline {part}{III\hspace {1em}Further Topics}{1}{part.3}%
+\contentsline {section}{\numberline {8.5}Simulation Techniques}{3}{section.8.5}%
+\contentsline {subsection}{\numberline {8.5.1}VQE evolution}{3}{subsection.8.5.1}%
+\contentsline {subsection}{\numberline {8.5.2}Linearization}{3}{subsection.8.5.2}%
+\contentsline {subsection}{\numberline {8.5.3}Quantum Walks}{3}{subsection.8.5.3}%
+\contentsline {subsection}{\numberline {8.5.4}Qubitaization}{3}{subsection.8.5.4}%
+\contentsline {subsection}{\numberline {8.5.5}Fractional Query}{3}{subsection.8.5.5}%
+\contentsline {subsection}{\numberline {8.5.6}Taylorization}{3}{subsection.8.5.6}%
+\contentsline {part}{IV\hspace {1em}Appendix}{1}{part.4}%
+\contentsline {chapter}{\numberline {A}Hermit and Unitary matrix}{3}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Unitary matrix}{3}{section.A.1}%
+\contentsline {subsection}{\numberline {A.1.1}Properties of unitary matrix}{3}{subsection.A.1.1}%
+\contentsline {section}{\numberline {A.2}Hermit matrix}{4}{section.A.2}%
+\contentsline {subsection}{\numberline {A.2.1}Properties of Hermite matrix}{4}{subsection.A.2.1}%
+\contentsline {section}{\numberline {A.3}Additional properties}{5}{section.A.3}%
+\contentsline {chapter}{\numberline {B}Notation in Quantum circuit}{7}{appendix.B}%
+\contentsline {section}{\numberline {B.1}State}{7}{section.B.1}%
+\contentsline {chapter}{\numberline {C}Fourier Trasnformation}{9}{appendix.C}%
+\contentsline {section}{\numberline {C.1}DFT and FFT}{9}{section.C.1}%
+\contentsline {section}{\numberline {C.2}QFT}{9}{section.C.2}%
+\contentsline {section}{\numberline {C.3}QFT implementation on Circuit}{10}{section.C.3}%
+\contentsline {chapter}{\numberline {D}Fast Pauli Polynomial manipulation}{11}{appendix.D}%
+\contentsline {section}{\numberline {D.1}Decomposition}{11}{section.D.1}%
+\contentsline {subsection}{\numberline {D.1.1}Tensorized method}{11}{subsection.D.1.1}%
+\contentsline {subsection}{\numberline {D.1.2}Term-by-Term methods}{11}{subsection.D.1.2}%
+\contentsline {section}{\numberline {D.2}Composition}{12}{section.D.2}%
+\contentsline {subsection}{\numberline {D.2.1}PauliComposer}{12}{subsection.D.2.1}%
+\contentsline {subsection}{\numberline {D.2.2}Inverse of the Tensorized method}{12}{subsection.D.2.2}%
+\contentsline {chapter}{\numberline {E}Miscellaneous Mathematics}{15}{appendix.E}%
+\contentsline {section}{\numberline {E.1}Tensor Product}{15}{section.E.1}%
+\contentsline {section}{\numberline {E.2}Tensor product representation of quantum circuit}{16}{section.E.2}%
+\contentsline {section}{\numberline {E.3}Lie-algebra}{16}{section.E.3}%
+\contentsline {chapter}{\numberline {F}NP-problems}{17}{appendix.F}%
+\contentsline {section}{\numberline {F.1}Traveling Purchaser problem}{17}{section.F.1}%
+\contentsline {subsection}{\numberline {F.1.1}Traveling Saleman problem}{17}{subsection.F.1.1}%
+\contentsline {section}{\numberline {F.2}Max-clique Problem}{17}{section.F.2}%

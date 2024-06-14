@@ -1,0 +1,199 @@
+\chapter{Hermit and Unitary matrix}
+\label{appendix_chap:hermit_uni}
+\section{Unitary matrix}
+
+Let's think about there is a change, whatever it is, in the system.
+The $| \psi \rangle$ represent all the information of the system, so that it will be changed to $| \psi' \rangle$. 
+
+Any modification in the vector space can be represented with an \textit{operator}, $\hat{U}$.
+
+\begin{equation}
+    |\psi' \rangle = \hat{U} | \psi \rangle
+\end{equation}
+
+Now, the modified state function also satisfies normalization, such as $\langle \psi' | \psi \rangle = \langle \psi | \psi \rangle$.
+
+\begin{eqnarray*}
+    \langle \psi' | \psi \rangle = \langle \hat{U} \psi | |\hat{U} \psi \rangle \\ 
+    \langle \hat{U} \psi | |\hat{U} \psi \rangle = \langle  \psi| \hat{U}^{\dagger}|\hat{U} \psi \rangle\\
+    \langle \psi| \hat{U}^{\dagger}|\hat{U} \psi \rangle = \langle \psi| \hat{U}^{\dagger}\hat{U}| \psi \rangle
+\end{eqnarray*}
+
+we get,
+
+\begin{equation}
+    \label{eq:unitary}
+    \hat{U}^\dagger \hat{U} = \hat{I}
+\end{equation}
+
+where, $\hat{I}$ is an identity operator. 
+
+That means that any state change event in the quantum system must be a unitary operator in vector space, in isolated system.
+With well defined basis, we can formulate the operator as matrix, 
+
+\begin{eqnarray*}
+    {|\Psi \rangle} &= {\sum c_i |\psi_i \rangle} \\
+    {[\hat{U}]}_{\psi_i} &= \sum (\langle \psi_j | \hat{U} |\psi_i \rangle) |\psi_i \rangle \langle \psi_j|
+\end{eqnarray*}
+
+It is little bit weired that the function operation as a matrix, however, we are treating basis function that generating all functions.
+About the those set of functions we can find well-ordered basis, of course it does not have to be finite.
+Even in the infinite dimensional vector space, we can find a subspace consist of discreted index basis.
+Think about the Fourier series of the $L$ periodic function. 
+The basis functions are $\cos(\lambda_n x), n \in \mathbb{Z}_+ $.
+
+That is why the unitary matrix is essential topic in quantum computation and simulation.
+
+\subsection{Properties of unitary matrix}
+
+\begin{itemize}
+    \item It preserves the inner product of two vector, $\mathbf{x,y}, \langle \mathbf{x |y }\rangle = \langle U \mathbf{x}| U \mathbf{y}\rangle$
+    \item It is a normal operator: $A A^\dagger = A^\dagger A$.
+    \item $U^\dagger = U^{-1}$
+    \item There exists a Hermit matrix $H$ such that $U = \exp(i H)$.
+    \item Eigenvalues are \textit{unimodular} which is their norms are 1. Therefore, $|\det(U)| =1$.
+\end{itemize}
+
+In quantum systems symulation, 
+finding a proper unitary operation on system is a significant work.
+In sometime, we only focus on the result of the operation, in that case 
+we can find some equivalence unitary operators with less implmentation cost.
+
+In the property of the unitary matrix, there is $U = \exp(i H)$. 
+It is a very familiar term in quantum mechanics; time-evolution operator. 
+In finite dimension, the Hamiltonian, $H$, is represented by \textit{Hermit} matrix.
+
+\section{Hermit matrix}
+
+Suppose the Hamiltonian of the system is given as $H$. The Schr$\ddot{\mbox{o}}$dinger  equation yields next.
+
+\begin{equation}
+    i \hbar \frac{d}{d t} | \psi \rangle = H | \psi \rangle
+\end{equation}
+
+Hamiltonian is a kind of operator of measurement for energy of the system. 
+It means that the eigenvalues of matrix are energy of the eiegenstates.
+Such that 
+
+\begin{equation}
+    \hat{H} | \psi \rangle = E | \psi \rangle
+\end{equation}
+
+
+\begin{eqnarray}
+    \langle \psi | \hat{H} | \psi \rangle = \langle \psi | |\hat{H}\psi \rangle = \langle \hat{H} \psi | | \psi \rangle \\
+    \langle \psi |\hat{H}^\dagger | \psi \rangle = E^{\*} \langle \psi | \psi \rangle = E \langle \psi | \psi \rangle \\
+    \therefore E^{\ast} = E
+\end{eqnarray}
+
+$E^{\ast} = E, \forall E$, the only complex value satisfying this constraint is a real value.
+It means that the all eigenvalues of the matrix are real value.
+Such matrices are called self-adjoint matrix or \textit{Hermit matrix}.
+
+The definition of self-adjoint matrix is 
+
+\begin{equation}
+    H^\dagger = H .
+\end{equation}
+
+It is equivalence to the all eigenvalues are real condition.
+
+We refered a Hamiltonian as an example of measurement, 
+however, any measurement quantity operators are represented with Hermit matrices.
+We call them as \textit{observable}.
+
+\subsection{Properties of Hermite matrix}
+
+\begin{itemize}
+    \item All eigenvalues are real value.
+    \item It is a self-adjoint matrix.
+    \item All eigenvector having different eigenvalues are orthogonal to each other.
+    \item Normal matrix.
+    \item Closed under addition.
+    \item If the two Hermite matrices are commute each other, then their product is Hermite matrix.
+\end{itemize}
+
+\begin{theorem}{Spectrum Theorem of Hermit matrix}
+    \label{theorem:hermit_spectrum}
+\end{theorem}
+\section{Additional properties}
+
+\begin{theorem}{\textbf{Diagonalizability of Hermit matrix}}
+
+    For a given $H$ matrix, there exists an unitary matrix, $U$ such that 
+    \begin{equation*}
+        H = U D U^\dagger
+    \end{equation*}
+    where, $D$ is a diagonal matrix.
+\end{theorem}
+
+There are some common misconcept of the diagonalizability of the Hermit matrix,
+about the orthonormal basis of the Hermit matrix.
+The questions are
+
+\begin{itemize}
+    \item Why do the orthonormal eigenvectors exist, since we cannot guarantee the singularity.
+    \item How do we guarantee that the two eigenvectors sharing 
+    same eigenvalues are orthogonal?".
+\end{itemize}".
+
+The two questions are related with a misconcept in linear algebra.
+The diagonalizability is related with singularity, of course, 
+but it is not equivalent. 
+There are diagonalizable but singular matrices, considering a matrix of which an eigen value is 0.
+\begin{equation*}
+    \begin{bmatrix}
+        0 & 0\\
+        0 & 1
+    \end{bmatrix}
+\end{equation*}
+In other word, physically, we can get a 0 energy state by modifying the potential of the system. 
+Therefore, the first question is solved.
+The second question is equivalent with the existence of the diagonal matrix
+of Hermit matrix. Since, the unitary operator preserve the inner product, 
+the existence of the diagonal matrix, standard basis, guarantees the orthonormal basis.
+ 
+
+\begin{theorem}{\textbf{Eigenvector conservation}}
+
+    For a given non-singular Hermit matrix, $H$, with eigen values and their corresponding eigen vectors, $(\lambda, \mathbf{v})$,
+    \begin{equation*}
+        H \cdot \mathbf{v} = \lambda \mathbf{v}
+    \end{equation*}
+    then, 
+    \begin{equation*}
+        e^{H} \mathbf{v} = e^{\lambda }\mathbf{v}
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    From the taylor representation of matrix exponential, 
+    \begin{equation*}
+        e^{A} = \sum_{n=0}^\infty \frac{A}{n!}
+    \end{equation*}
+    then, 
+    \begin{align*}
+        e^{H} \mathbf{v} &= \left[ I + H + \frac{1}{2!} H^2 + \dots + \frac{1}{k!}H^k + \dots \right] \mathbf{v}&\\
+        &= \left[ I\mathbf{v} + H\mathbf{v} + \frac{1}{2!} H^2\mathbf{v} + \dots + \frac{1}{k!}H^k\mathbf{v} + \dots \right]& \\
+        &= \left[ \mathbf{v} + \lambda\mathbf{v} + \frac{1}{2!} \lambda^2\mathbf{v} + \dots + \frac{1}{k!}\lambda^k\mathbf{v} + \dots \right]& \\
+        &= \left[ 1 + \lambda+ \frac{1}{2!} \lambda^2+ \dots + \frac{1}{k!}\lambda^k + \dots \right] \mathbf{v}& \\
+        &= e^{\lambda} \mathbf{v}&
+    \end{align*}
+\end{proof}
+
+\begin{theorem}{\textbf{Unitary on exponential}}
+
+    For given unitary matrix, $U$, 
+    \begin{equation*}
+        e^{U A U ^\dagger} = U e^A U^\dagger \text{.}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        e^{U A U^\dagger} 
+        &=  I + U A U^\dagger + \frac{1}{2!} (U A U^\dagger)^2 + \dots + \frac{1}{k!}(U A U^\dagger)^k + \dots &\\
+        &= U I U^\dagger + U A U^\dagger + \frac{1}{2!} (U A U^\dagger)^2 + \dots + \frac{1}{k!}(U A U^\dagger)^k + \dots& \\
+        &= U (I + A + \frac{1}{2!}A^2 + \dots + \frac{1}{k!} A^k + \dots ) U^\dagger&\\
+        &= U e^A U^\dagger
+    \end{align*}
+\end{proof}

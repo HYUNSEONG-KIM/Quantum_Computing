@@ -1,0 +1,178 @@
+\chapter{Tunneling Phenomenon}
+
+Quantum tunneling is one of non-classical phenomenon in real-world with entanglement and wave-particle duality.
+Suppose that the free particle of $m, p$ mass and momentum pass through a potential varrier, $V$ in 1-dimension.
+
+\section{Introduction to tunneling}
+
+\begin{figure}
+    \caption{}
+    \label{fig:tunneling}
+\end{figure}
+
+The solution of the Schr$\ddot{\mbox{o}}$dinger  equation yields,
+
+\begin{eqnarray}
+    \psi(x) = A \exp(\pm ikx)
+\end{eqnarray}
+
+
+The tunneling effect arises in the situation when $E <V$. 
+In classically, at the $b<x$, the existence possibility of the particle is zero.
+However, it is not in quantum mechanics
+
+
+\subsection{alpha-decay}
+The tunneling effect successfully explained the \textit{alpha}-decay phenonmenon by George Gamow, and Condon and Gurney, indepedently.
+In the Columb potential of the nuclear, 
+the alpha particle cannot obtain the enough energy 
+to escape the nuclear binding force.
+However, in many experiment and observation alpha particle emission was occured
+
+\section{Tunneling time problem}
+
+\begin{definition}{\textbf{Tunneling time problem}}
+
+    How many time does it take to pass through the potential region, when the tunneling effect is occurred?
+\end{definition}
+
+This simple question has not been solved yet.
+
+\section{Criticisims on tunneling time}
+
+The major problem is that there does not exist about some common definition of \textit{time} in quantum mechanics.
+Time is just a parameter in quantum mechanics, meanwhile, in general relativity, spacetime dynamically interacts with matters.  
+
+Imaginary time evolution problem: Imaginary number has no proper order by the definition. 
+How can we define proper flow direction of time in imaginary numbers?
+
+There are some definitions of tunneling time.
+The concepts have their own criticisims about how they well explain the tunneling time problem, 
+however, they are practically used in required field, such electrodynamics.
+
+\begin{enumerate}
+    \item Dwell-time
+    \item Wignet-time
+    \item Larmor-time
+\end{enumerate}
+
+A proper time observable, $T_c$, should satisfy the following properteis:
+
+\begin{enumerate}
+    \item On average $T_c$ should estimate te elaspsed time $\tau$.
+    \item The variance in a measurement of $T_c$ should be independent of the elapsed time $\tau$.
+\end{enumerate}
+
+\subsection{Classical approach}
+
+In the classsic scale, the potential is simply a hill. 
+
+\subsection{Measurement- Experimental}
+
+\subsubsection{Larmor Precession}
+
+The spin is rotated in the uniform magentic field, $B_0 \hat{z}$ with constant frequency $\omega$. 
+Such phenomenon is called \textit{Larmor precession} and the frequency is called \textit{Larmor frequency}.
+If the particle is 
+
+\subsection{Hartman effect and Superluminal velocity}
+
+Hartman effect
+
+
+\section{Simulation and Measurement on Quantum circuit}
+
+Consider Larmor precession implementation on quantum circuit. 
+The spatial propagation of 1 dimension is well established at section \ref{sec:1dim_particle}.
+If we want to implement Larmor precession, 
+we can add an additional qubit to act as a spin of the free particle,
+and modifying the Hamiltonian adding spiner term. 
+Does it really a good simulation? Why we do a calculation and simulate the phenomenon on circuit?
+We want to obtain a complex system behavior through the simulation, 
+however, designing an affecting circuit to such qubit by time-evolution effect 
+is itself a problem we want to solve. 
+In experiment, it could be a good clock system for the tunneling phenomenon.
+Meanwhile, in simulation, we cannot get a meaningful information from the model.
+
+In addition, it is just a extracting time\footnote[4]{Maybe events} information from the system register.
+Why it must be Larmor time depending on only a specific potential; magenetic potential.
+Tunneling is an universal phenonmenon that does not depends on the types of potential.
+A good clock simulator must act on the general situation whatever potnetial type it is.
+
+\subsection{Page Wootter Mechanics}
+
+The previous definitions of clock and time of tunnleing effect were based on the wave function, 
+probability current and their change by the time.
+
+We are focusing on the situation of \textbf{the event occurred} stuation.
+The particle occurrence proability of the given space is closely related with the event occurrence.
+However, there is a gap between the stuations. 
+Unfortunately, in the common Schr$\ddot{\mbox{o}}$dinger  equation cannot handle the case of our attention.
+It is because the Schr$\ddot{\mbox{o}}$dinger  equation didn't consider the relativity, so that the time is \textit{not an observable quantity}.
+The dynamical interaction of space time with matter is described by general relativity.
+Related with gravity and quantum system. 
+
+However, Dirac/canonical quatization of gravity yields \textit{Frozen Formalism}\footnote{It was impeorted from , Smith, Aleander, "The Page-Wootters formalism: Where are we now?", 10.48660/22010079}. 
+General realtivity can be represented with Hamiltonian form as Eq (\ref{eq:ge_hamiltonian}).
+
+\begin{align}
+    H_{GR}[\gamma , P] = 16 \pi G  G_{abcd}[\gamma] P^{ab} P^{cd} + V{\gamma} + \sqrt{\gamma} \rho =0 \label{eq:ge_hamiltonian}\\
+    H_{GR} | \Psi \rangle = 0\\
+    i \frac{d}{d t} | \Psi \rangle = H_{GR} | \Psi \rangle = 0
+\end{align}
+
+What does the above equation means? The state vector $| \Psi \rangle$ is frozen which means there is no evolution.
+This is gravitation quantization problem related to the problem of time.
+
+However, recently, there is a re-splotlighted perspective of quantum time in the field which has been known as 
+\textit{Page-Wootter formalizm}. In 1983, Page and Wootters presented extended version of the equation\cite{PhysRevD.27.2885}. 
+This is called PaW mechanics.
+PaW mechanics treat the time as a quantum degree of freedom in specific Hilbert space, and 
+in the viewpoint, time flow is occurred from the entanglement between such space and the remained physical system.
+There were some critisim about the formalization of PaW mechanics;proper propagator, ... .
+Giovannetti technically reformalize the PaW structure and showed PaW mechanics can be extended 
+to give the time-independent Schr$\ddot{\mbox{o}}$dinger  equation\cite{PhysRevD.92.045033}.
+
+
+\subsubsection{Evolution as a basis change}
+
+The evolution is an unitary transformation, and 
+every unitary transformation is a kind of basis transformation.
+Even the overall state is frozen by the time. 
+The basis change does not affect the static state,
+however, locally there could be a dynamics.
+
+\subsubsection{Structure of PaW mechancis}
+
+The system, $\mathfrak{H}$ is consist of Hilbert space of the ordinary system, $\mathcal{H}_s$ and ancillary Hilbert space, 
+$\mathcal{H}_T$, of clock or time.
+
+\begin{eqnarray}
+    \mathfrak{H} = \mathcal{H}_T \otimes \mathcal{H}_S
+\end{eqnarray}
+
+\begin{eqnarray}
+    \hat{\mathbb{J}}  = \hbar \hat{\Omega} \otimes \mathbf{1}_S + \mathbf{1}_T \otimes \hat{H}_S \\
+    |\Psi \rangle \rangle = \int dt | t \rangle_T \otimes | \psi(t) \rangle_S \\
+    \hat{\mathbb{J}} | \Psi \rangle\rangle = 0 
+\end{eqnarray}
+
+From unitary time evolution operator on the system, $\hat{U}_S(t)$ we can construct a proper evolution of the system.
+
+\begin{eqnarray}
+    \mathbb{U} &=& \int dt | t \rangle_T \langle| \otimes \hat{U}_S(t) \\
+    &=& \hat{U}(\hat{T}) = \exp(- i \hat{T} \otimes \hat{H}_s /\hbar) 
+\end{eqnarray}
+
+
+The main benefit of the PaW mechanics is that the time is an observable quantity in the mechanics and 
+we can obtain a basyian probability on time-dimension about the occurred event following Boron's rule.
+
+\begin{equation}
+    P(A |B) = \frac{\mbox{tr}(P_A P_B \rho P_B) }{\mbox{tr}(P_B \rho P_B)}
+\end{equation}
+
+In the approach, the author treating the quantum tunneling time on the analysis of \textit{arrival time}.
+
+The goodness of the PaW mechanism is that it can be directly implemented on quantum circuit by ancilla qubit registers.
+The pure state is well-suited with qubit network and 

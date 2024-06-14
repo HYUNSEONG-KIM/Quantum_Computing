@@ -1,0 +1,70 @@
+\chapter{Imaginary Time evolution}
+
+
+\section{Imaginary time}
+
+Imaginary time evolution is frequently used in 
+quantum system simulation especially, in statistical 
+physics. 
+In the statistical mechanics it is called by 
+\textit{Diffusion Montecarlo method}. 
+The reason is that from the Schr$\ddot{\mbox{o}}$dinger equation,
+we can directly obtain a progress to reach the ground state of the system.
+From the time-independent Schr$\ddot{\mbox{o}}$dinger equation, 
+
+\begin{equation}
+    i \hbar \frac{\partial}{\partial}| \psi \rangle = H |\psi \rangle
+\end{equation}
+
+takes $\tau = i t$  then, $df/d\tau = (dt/d\tau) df/dt = i df/dt$, thus,
+
+\begin{align}
+    \frac{\partial}{\partial \tau} | \psi \rangle = H | \psi \rangle \label{eq:imginary_sch_eq}\\
+    | \psi(\tau) \rangle = e^{- \tau H} | \psi(0) \rangle
+\end{align}
+
+From the Eq (\ref{eq:imginary_sch_eq}), we get a general solution,
+
+\begin{equation}
+    |\Psi \rangle = \sum_{i} c_i(0) e^{- E_i \tau} | \psi_i \rangle
+\end{equation}
+
+The terms are decaying and does not oscillate. Therefore, with sufficient long time, $\tau$, 
+we get 
+
+\begin{equation}
+    |\Psi(\tau) \approx_{\tau \rightarrow \infty} c_g(0) e^{- E_g \tau} | \psi_g \rangle
+\end{equation}
+
+However, the imaginary time evolution cannot be directly 
+implemented in common gate model computer. 
+Since, it is a non-unitary transformation, $\exp(-H \tau)^\dagger = \exp(-H \tau)$, Hermit. 
+Therefore, the implementation of ITE is also a challenge in the quantum computation.
+There are several ways, one is approximate the non-unitary gate with unitary gate.
+It is a common method by VQE, we can approximate unitary process to reach the same result 
+of the imaginary time steps. 
+The other methods are a block-encoding, embeding the non-unitary gate into unitary gate, or
+using a measurement based approach. 
+The method we used in the implementation was non-unitary Trotter circuit suggested by Leadbeater et al\cite{leadbeater_non-unitary_2023}.
+Once we get a proper ITE routine, then the quantum computer could find a ground state from 
+the \textit{given} states.
+
+\section{Non-unitary on unitary}
+
+There are many method to obtain non-unitary
+operation on unitary system.
+\subsection{Embeding in unitary}
+
+Even the whole gate was unitary,
+their sub-block matrix could be non-unitary.
+Using an ancilla register, we can obtain a
+non-unitary operation on the main register.
+
+Especially, the measurement based 
+operation suggested by 
+is based on Trotterization.
+
+
+\subsection{VQE approximation}
+
+\section{Spectrum Search}

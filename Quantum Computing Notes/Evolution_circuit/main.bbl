@@ -1,0 +1,109 @@
+\begin{thebibliography}{10}
+
+\bibitem{hall2015lie}
+B.~Hall.
+\newblock {\em Lie Groups, Lie Algebras, and Representations: An Elementary Introduction}.
+\newblock Graduate Texts in Mathematics. Springer International Publishing, 2015.
+
+\bibitem{suzuki_convergence_1977}
+Masuo Suzuki.
+\newblock On the convergence of exponential operators—the {Zassenhaus} formula, {BCH} formula and systematic approximants.
+\newblock {\em Communications in Mathematical Physics}, 57(3):193--200, October 1977.
+
+\bibitem{lloyd_universal_1996}
+Seth Lloyd.
+\newblock Universal {Quantum} {Simulators}.
+\newblock {\em Science}, 273(5278):1073--1078, August 1996.
+
+\bibitem{suzuki_finding_2005}
+Naomichi Hatano and Masuo Suzuki.
+\newblock Finding {Exponential} {Product} {Formulas} of {Higher} {Orders}.
+\newblock In R.~Beig, W.~Beiglb{\"o}ck, W.~Domcke, B.-G. Englert, U.~Frisch, P.~H{\"a}nggi, G.~Hasinger, K.~Hepp, W.~Hillebrandt, D.~Imboden, R.~L. Jaffe, R.~Lipowsky, H.~V. L{\"o}hneysen, I.~Ojima, D.~Sornette, S.~Theisen, W.~Weise, J.~Wess, J.~Zittartz, Arnab Das, and Bikas K.~Chakrabarti, editors, {\em Quantum {Annealing} and {Other} {Optimization} {Methods}}, volume 679, pages 37--68. Springer Berlin Heidelberg, Berlin, Heidelberg, November 2005.
+\newblock Series Title: Lecture Notes in Physics.
+
+\bibitem{PhysRevX.11.011020}
+Andrew~M. Childs, Yuan Su, Minh~C. Tran, Nathan Wiebe, and Shuchen Zhu.
+\newblock Theory of trotter error with commutator scaling.
+\newblock {\em Phys. Rev. X}, 11:011020, Feb 2021.
+
+\bibitem{trotter_product_1959}
+H.~F. Trotter.
+\newblock On the product of semi-groups of operators.
+\newblock {\em Proceedings of the American Mathematical Society}, 10(4):545--551, 1959.
+
+\bibitem{cohen_eigenvalue_1982}
+Joel~E. Cohen, Shmuel Friedland, Tosio Kato, and Frank~P. Kelly.
+\newblock Eigenvalue inequalities for products of matrix exponentials.
+\newblock {\em Linear Algebra and its Applications}, 45:55--95, June 1982.
+
+\bibitem{de2019quantum}
+Ronald De~Wolf.
+\newblock Quantum computing: Lecture notes.
+\newblock {\em arXiv preprint arXiv:1907.09415}, 2019.
+
+\bibitem{suzuki_general_1993}
+Masuo Suzuki.
+\newblock General {Decomposition} {Theory} of {Ordered} {Exponentials}.
+\newblock {\em Proceedings of the Japan Academy, Series B}, 69(7):161--166, 1993.
+
+\bibitem{BRAVYI2002210}
+Sergey~B. Bravyi and Alexei~Yu. Kitaev.
+\newblock Fermionic quantum computation.
+\newblock {\em Annals of Physics}, 298(1):210--226, 2002.
+
+\bibitem{gokhale_on3_2020}
+Pranav Gokhale, Olivia Angiuli, Yongshan Ding, Kaiwen Gui, Teague Tomesh, Martin Suchara, Margaret Martonosi, and Frederic~T. Chong.
+\newblock \${O}({N}{\textasciicircum}3)\$ {Measurement} {Cost} for {Variational} {Quantum} {Eigensolver} on {Molecular} {Hamiltonians}.
+\newblock {\em IEEE Transactions on Quantum Engineering}, 1:1--24, 2020.
+
+\bibitem{reggio_fast_2023}
+Ben Reggio, Nouman Butt, Andrew Lytle, and Patrick Draper.
+\newblock Fast {Partitioning} of {Pauli} {Strings} into {Commuting} {Families} for {Optimal} {Expectation} {Value} {Measurements} of {Dense} {Operators}, June 2023.
+\newblock arXiv:2305.11847 [hep-lat, physics:hep-ph, physics:quant-ph].
+
+\bibitem{havlicek_moebius_2009}
+Hans Havlicek, Boris Odehnal, and Metod Saniga.
+\newblock Moebius {Pairs} of {Simplices} and {Commuting} {Pauli} {Operators}, August 2009.
+\newblock arXiv:0905.4648 [math-ph, physics:quant-ph].
+
+\bibitem{miller_reducibility_1972}
+Richard~M. Karp.
+\newblock Reducibility among {Combinatorial} {Problems}.
+\newblock In Raymond~E. Miller, James~W. Thatcher, and Jean~D. Bohlinger, editors, {\em Complexity of {Computer} {Computations}}, pages 85--103. Springer US, Boston, MA, 1972.
+
+\bibitem{kurital_2023}
+Tomochika Kurita, Mikio Morita, Hirotaka Oshima, and Shintaro Sato.
+\newblock Pauli string partitioning algorithm with the ising model for simultaneous measurements.
+\newblock {\em The Journal of Physical Chemistry A}, 127(4):1068--1080, 2023.
+\newblock PMID: 36653017.
+
+\bibitem{santhanam_quantum_1976}
+T.~S. Santhanam and A.~R. Tekumalla.
+\newblock Quantum mechanics in finite dimensions.
+\newblock {\em Foundations of Physics}, 6(5):583--587, October 1976.
+
+\bibitem{PhysRevA.104.012405-Universal-approxi}
+Adri\'an P\'erez-Salinas, David L\'opez-N\'u\~nez, Artur Garc\'{\i}a-S\'aez, P.~Forn-D\'{\i}az, and Jos\'e~I. Latorre.
+\newblock One qubit as a universal approximant.
+\newblock {\em Phys. Rev. A}, 104:012405, Jul 2021.
+
+\bibitem{PhysRevD.27.2885}
+Don~N. Page and William~K. Wootters.
+\newblock Evolution without evolution: Dynamics described by stationary observables.
+\newblock {\em Phys. Rev. D}, 27:2885--2892, Jun 1983.
+
+\bibitem{PhysRevD.92.045033}
+Vittorio Giovannetti, Seth Lloyd, and Lorenzo Maccone.
+\newblock Quantum time.
+\newblock {\em Phys. Rev. D}, 92:045033, Aug 2015.
+
+\bibitem{yuan_theory_2019}
+Xiao Yuan, Suguru Endo, Qi~Zhao, Ying Li, and Simon~C. Benjamin.
+\newblock Theory of variational quantum simulation.
+\newblock {\em Quantum}, 3:191, October 2019.
+
+\bibitem{brian_gough_2023_7898076}
+Brian Gough.
+\newblock {\em GSL FFT Algorithms}, May 2023.
+
+\end{thebibliography}

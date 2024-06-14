@@ -1,0 +1,76 @@
+\begin{tikzpicture}
+            \node[] (IX) at (2*0.7653668647301797 , 2* 1.847759065022573)    {IX};
+            \node[] (XI) at (2*1.4142135623730951 , 2*1.414213562373095)    {XI};
+            \node[] (XX) at (2*1.8477590650225735 , 2*0.7653668647301796)   {XX};
+            \node[] (IY) at (2*2.0, 0.0)                                  {IY};
+            \node[] (YI) at (2* 1.847759065022573 , 2*-0.7653668647301808)   {YI};
+            \node[] (YY) at (2* 1.4142135623730947 , 2*-1.4142135623730954)  {YY};
+            \node[] (IZ) at (2* 0.76536686473018 , 2*-1.8477590650225733)    {IZ};
+            \node[] (ZI) at (2* 0 , 2*-2.0)                                  {ZI};
+            \node[] (ZZ) at (2* -0.7653668647301807 , 2*-1.847759065022573)  {ZZ};
+            \node[] (XZ) at (2* -1.4142135623730954 , 2*-1.414213562373095)  {XZ};
+            \node[] (YX) at (2* -1.8477590650225737 , 2*-0.7653668647301793) {YX};
+            \node[] (ZY) at (2* -2.0 , 2*0)                                  {ZY};
+            \node[] (XY) at (2* -1.8477590650225735 , 2*0.7653668647301798)  {XY};
+            \node[] (YZ) at (2* -1.414213562373095 , 2*1.4142135623730951)   {YZ};
+            \node[] (ZX) at (2* -0.7653668647301795 , 2*1.8477590650225735)  {ZX};
+
+            \draw[line width=0.2mm, black ,-] (IX) -- (ZX) ;
+            \draw[line width=0.2mm, black ,-] (IX) -- (YX) ;
+            \draw[line width=0.2mm, black ,-] (IX) -- (ZI) ;
+            \draw[line width=0.2mm, black ,-] (IX) -- (YI) ;
+            \draw[line width=0.2mm, black ,-] (IX) -- (XX) ;
+            \draw[line width=0.2mm, black ,-] (IX) -- (XI) ;
+
+            \draw[line width=0.2mm, black ,-] (XI) -- (XY) ;
+            \draw[line width=0.2mm, black ,-] (XI) -- (XZ) ;
+            \draw[line width=0.2mm, black ,-] (XI) -- (IZ) ;
+            \draw[line width=0.2mm, black ,-] (XI) -- (IY) ;
+            \draw[line width=0.2mm, black ,-] (XI) -- (XX) ;
+
+            \draw[line width=0.2mm, black ,-] (XX) -- (YZ);
+            \draw[line width=0.2mm, black ,-] (XX) -- (ZY);
+            \draw[line width=0.2mm, black ,-] (XX) -- (ZZ);
+            \draw[line width=0.2mm, black ,-] (XX) -- (YY);
+
+            \draw[line width=0.2mm, black ,-] (IY) -- (XY);
+            \draw[line width=0.2mm, black ,-] (IY) -- (ZY);
+            \draw[line width=0.2mm, black ,-] (IY) -- (ZI);
+            \draw[line width=0.2mm, black ,-] (IY) -- (YY);
+            \draw[line width=0.2mm, black ,-] (IY) -- (YI);
+
+            \draw[line width=0.2mm, black ,-] (YI) -- (YZ);
+            \draw[line width=0.2mm, black ,-] (YI) -- (YX);
+            \draw[line width=0.2mm, black ,-] (YI) -- (IZ);
+
+            \draw[line width=0.2mm, black ,-] (YY) -- (ZX);
+            \draw[line width=0.2mm, black ,-] (YY) -- (XZ);
+            \draw[line width=0.2mm, black ,-] (YY) -- (ZZ);
+
+            \draw[line width=0.2mm, black ,-] (IZ) -- (YZ);
+            \draw[line width=0.2mm, black ,-] (IZ) -- (XZ);
+            \draw[line width=0.2mm, black ,-] (IZ) -- (ZZ);
+            \draw[line width=0.2mm, black ,-] (IZ) -- (ZI);
+
+            \draw[line width=0.2mm, black ,-] (ZI) -- (ZX);
+            \draw[line width=0.2mm, black ,-] (ZI) -- (ZY);
+            \draw[line width=0.2mm, black ,-] (ZI) -- (ZZ);
+            
+            \draw[line width=0.2mm, black ,-] (ZZ) -- (XY);
+            \draw[line width=0.2mm, black ,-] (ZZ) -- (YX);
+        
+
+            \draw[line width=0.2mm, black ,-] (XZ) -- (ZX);
+            \draw[line width=0.2mm, black ,-] (XZ) -- (ZY);
+            \draw[line width=0.2mm, black ,-] (XZ) -- (YX);
+
+            \draw[line width=0.2mm, black ,-] (YX) -- (XY);
+            \draw[line width=0.2mm, black ,-] (YX) -- (ZY);
+
+            \draw[line width=0.2mm, black ,-] (ZY) -- (YZ);
+
+            \draw[line width=0.2mm, black ,-] (XY) -- (ZX);
+            \draw[line width=0.2mm, black ,-] (XY) -- (YZ);
+
+            \draw[line width=0.2mm, black ,-] (ZX) -- (YZ);
+        \end{tikzpicture}

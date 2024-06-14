@@ -1,0 +1,57 @@
+\chapter{Miscellaneous Mathematics}
+
+\section{Tensor Product}
+
+\begin{definition}{\textbf{Tensor product}}
+    The given two vector space, $V$ and $W$ over the field $\mathbb{F}$,
+    a tensor product is a bi-linear mapping with notation, $\otimes$, such that
+
+    \begin{equation}
+        \otimes: V \times W \rightarrow \mathcal{U} = V \otimes W
+    \end{equation}
+\end{definition}
+
+The generated space $\mathcal{U} = V \otimes W$ also be a 
+vector space over field $\mathbb{F}$. The tensor product generates a larger vector space 
+with two-given vector spaces. 
+
+\begin{theorem}{\textbf{Properties of Tensor producted space}}
+
+    \begin{itemize}
+        \item Tensor product of the spanning sets of the each VS is a spanning set of the producted space.
+        \item For finite VS $\dim(V) = n, \dim(W) = m$, $\dim(V \otimes W) = n \cdot m$.
+        \item Dual space of the tensor producted space is a tensor product of dual spaces of each VS.
+    \end{itemize}
+\end{theorem}
+
+In matrix space, $\mathbf{M}_{}(\mathbb{C})$ is form a Hilbert-space with Hilbert-Schmidt inner product.
+
+\begin{definition}{\textbf{Hilbert-Schmidt Inner Product}}
+    For the given two matrices, $A, B$, their inner product is defined as 
+
+    \begin{equation}
+        \langle A | B \rangle = \mbox{Tr}(A^\dagger B)
+    \end{equation}
+    
+\end{definition}
+
+A typical tensor product of matrix space is a \textit{Kronecker product}.
+
+\begin{definition}{\textbf{Kronecker Product}}
+    \begin{equation}
+        A \otimes B = \begin{pmatrix}
+            a_{11} B & \cdots & a_{1m} B\\
+            \vdots & \ddots & \vdots \\
+            a_{n1} B & \cdots & a_{nm} B
+        \end{pmatrix}
+    \end{equation}
+\end{definition}
+
+\section{Tensor product representation of quantum circuit}
+
+
+
+
+\section{Lie-algebra}
+Lie-group and Lie-algebra is a mathematical formulation to express the group sturcture in VS for a convience.
+

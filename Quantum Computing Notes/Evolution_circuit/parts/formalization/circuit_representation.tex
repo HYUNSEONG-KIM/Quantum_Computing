@@ -1,0 +1,453 @@
+\section{Circuit representation of the evolution operator}
+
+This section is about a practical implementation of the evolution operator.
+From the above sections, we overlook some basic decomposition of 
+evolution operators of general quantum systems.
+
+\subsection{Pauli-matrices and decomposition}
+
+The general convention of Hamiltonian evolution operator is 
+an inner product to Pauli-vector, $\mathbf{\hat{\sigma}}$.
+\begin{equation}
+    \mathcal{H} = \mathcal{H} \cdot \mathbf{\hat{\sigma}}
+\end{equation}.
+In 2-dimension system, it becomes $[\hat{\sigma_X}, \hat{\sigma_Y}, \hat{\sigma_Z}]^T$.
+\begin{equation}
+    \label{eq:pauli-matrix}
+    \sigma_X = \begin{pmatrix}
+        0 & 1\\
+        1 & 0
+    \end{pmatrix}, \,
+    \sigma_Y = \begin{pmatrix}
+        0 & -i\\
+        i & 0
+    \end{pmatrix}, \,
+    \sigma_Z = \begin{pmatrix}
+        1 & 0\\
+        0 & -1
+    \end{pmatrix}
+\end{equation}
+\index{Pauli!Polynomial}
+Precisely, such convention is a Pauli-polynomial as shown in Eq (\ref{eq:pauli-decompositon}).
+Now, how did the general evolution operators implemented on quantum circuit?
+It becomes rotations on specific axes of the given Hilbert space.
+With the Pauli-polynomial representation of the given Hamiltonian,
+the next relationship is hold true, see proof in Appendix \ref{appendix-proof-1}.
+\begin{equation}
+    \label{eq:hamiltonain-exponential}
+    \exp(-i \theta \mathcal{H} \cdot \hat{\sigma}) 
+    = \cos(\theta ||\mathcal{H}||) \hat{I} - i \sin(\theta ||\mathcal{H}||) \hat{\mathcal{H}} \cdot \hat{\sigma}
+\end{equation}
+
+For general $2^n$-dimension system, it is enough to show that the construction rule of every Pauli-$n$ strings.
+We first look at single qubit cases and expand it to the general $n$-qubit system.
+
+\subsection{Evolution operator on single qubit system}
+
+The Pauli-string of 1-qubit system are just $\{X, Y, Z\}$.
+
+\begin{equation}
+    \mathcal{H} = \lambda_{X} X + \lambda_{Y} Y + \lambda_{Z} Z
+\end{equation}
+
+Then, an evolution operator of total Hamiltonian consist of 
+3 rotation gates.
+
+\begin{enumerate}
+    \item $\exp(-i t_{X} X) = \cos(t_{X}) \hat{I} - i \sin(t_{X}) \hat{X} = RX(2t_{X})$
+    \item $\exp(-i t_{Y} Y) = \cos(t_{Y}) \hat{I} - i \sin(t_{Y}) \hat{Y} = RY(2t_{Y})$
+    \item $\exp(-i t_{Z} Z) = \cos(t_{Z}) \hat{I} - i \sin(t_{Z}) \hat{Z} = RZ(2t_{Z})$
+\end{enumerate}
+
+Be aware that they are not commute each other. 
+You must use Product or ST2 formula when you deal with them simultaneously.
+
+We have 3 rotation gates by the axis, but we can generate the other two rotation with one rotation gate and 
+transformation gates. 
+See an eigen decomposition form of each matrix.
+
+\begin{equation}
+    A = Q D Q^{\dagger}
+\end{equation}
+where, $Q = [e_1, e_{-1}]$, $e_{\lambda}$ is an eigenvector corresponding to eigenvalue, $\lambda$.
+Since, $\sigma_{i}, i \in [X, Y, Z]$ have same eigenvalues, $1, -1$, $D = Z$.
+The eigenvector of $X, Y$ are
+
+\begin{itemize}
+    \item $X$: $\frac{1}{\sqrt{2}} \begin{pmatrix}
+        1 \\
+        1
+    \end{pmatrix}, \frac{1}{\sqrt{2}} \begin{pmatrix}
+        1 \\
+        -1
+    \end{pmatrix}$
+    \item $Y$: $\frac{1}{\sqrt{2}} \begin{pmatrix}
+        1 \\
+        i
+    \end{pmatrix}, \frac{1}{\sqrt{2}} \begin{pmatrix}
+        1 \\
+        -i
+    \end{pmatrix}$
+\end{itemize}
+then,
+\begin{align}
+    Q_{X} = \frac{1}{\sqrt{2}} \begin{pmatrix}
+        1 & 1\\
+        1 & -1
+    \end{pmatrix}, \,
+    Q_{Y} = \frac{1}{\sqrt{2}} \begin{pmatrix}
+        1 & 1\\
+        i & -i
+    \end{pmatrix}
+\end{align}
+
+We can decompose the $Q_{Y}$ with next procedure.
+
+\begin{align}
+    e_{1, Y}  = \begin{pmatrix}
+        1 & 0 \\
+        0 & i
+    \end{pmatrix} e_{1, x}, \,
+    e_{-1, Y}  = \begin{pmatrix}
+        1 & 0 \\
+        0 & i
+    \end{pmatrix} e_{-1, x} \\
+    Q_Y = \begin{pmatrix}
+        e_{1, Y} & e_{-1, Y}
+    \end{pmatrix} = 
+    \begin{pmatrix}
+        \begin{pmatrix}
+            1 & 0 \\
+            0 & i
+        \end{pmatrix} e_{1, x} &
+        \begin{pmatrix}
+            1 & 0 \\
+            0 & i
+        \end{pmatrix} e_{-1, x}
+    \end{pmatrix} = 
+    \begin{pmatrix}
+        1 & 0 \\
+        0 & i
+    \end{pmatrix} 
+    \begin{pmatrix}
+        e_{1, X} & e_{-1, X}
+    \end{pmatrix} \\
+    \therefore Q_Y = \begin{pmatrix}
+        1 & 0 \\
+        0 & i
+    \end{pmatrix}  Q_X
+\end{align}
+The each $Q$ matrix components are standard quantum gates, Hadamard and S gates.
+\begin{itemize}
+    \item Hadamard: $H = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & 1 \\
+        1 & -1
+    \end{pmatrix}$
+    \item S: $S = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        1 & 0 \\
+        0 & i
+    \end{pmatrix}$
+\end{itemize}
+Thus, we have next
+\begin{align}
+    X = H Z H \\
+    Y = S H Z H S^\dagger
+\end{align}.
+
+From the above result we could represent $X, Y$ rotation with 
+$Z$, Hadamard and S gates.
+
+\begin{equation}
+    RX(2\theta) = \exp(-i \theta X) = \exp(-i \theta ( H Z H)) = H\exp(- i\theta Z) H
+\end{equation}
+
+\begin{figure}[!htb]
+    \centering
+    %\begin{quantikz}
+    %     \gate{RX(\theta)} 
+    %    \end{quantikz}=\begin{quantikz}
+    %     \gate{H} & \gate{RZ(\theta)} & \gate{H} 
+    %\end{quantikz}
+%
+    %\begin{quantikz}
+    %    \gate{RY(\theta)}
+    %    \end{quantikz}=\begin{quantikz}
+    %    \gate{S^\dagger} &\gate{H} & \gate{RZ(\theta)} & \gate{H} & \gate{S}
+    %\end{quantikz}
+%
+    %\begin{quantikz}
+    %    \gate{RY(\theta)}
+    %    \end{quantikz}=\begin{quantikz}
+    %    \gate{S^\dagger} & \gate{RX(\theta)} & \gate{S}
+    %\end{quantikz}
+
+    \begin{quantikz}
+        &\gate{RX(\theta)}&\\
+        &\gate{RY(\theta)}&\\
+        &\gate{RY(\theta)}&
+    \end{quantikz}
+    =
+    \begin{quantikz}
+        &\gate{H} & \gate{RZ(\theta)} & \gate{H}& \\
+        \gate{S^\dagger} &\gate{H} & \gate{RZ(\theta)} & \gate{H} & \gate{S}\\
+        &\gate{S^\dagger} & \gate{RX(\theta)} & \gate{S}&
+    \end{quantikz}
+    \caption{Circuit representation of each rotation gates.}
+    \label{fig:circuit:rotation_basic_represenation}
+\end{figure}
+
+\begin{example}[Bloch representation]
+    The \begin{quantikz}
+        \gate{H}\end{quantikz} and \begin{quantikz}\gate{S}
+    \end{quantikz} are basis transformation matrices and 
+    in Bloch sphere representation, they are the rotation 
+    transformations of qubit state vector.
+
+    \begin{center}
+        \input{media/bloch_rotation.pgf}
+        \captionof{figure}{
+            Bloch sphere of qubit. 
+            Each rotation arrow at the end of the axis indicates 
+            RX, RY, RZ rotation.}
+        \label{fig:bloch-sphere-example}
+    \end{center}
+
+    In Bloch sphere representation, Hadamard gate is a $\pi$ rotation along, $\frac{1}{\sqrt{2}}(1, 0, 1)$,
+    and S gate is a $\pi/2$ rotation along, $Z$ axis.
+    \begin{center}
+        \input{media/h_rotation.pgf}
+        \input{media/s_rotation.pgf}
+        \captionof{figure}{
+            Applied axis transformation by Hadamard and S gates.
+            The left is a Hadamard transformation and the right is a S gate transformation.}
+        \label{fig:h-s-rotation}
+    \end{center}
+\end{example}
+
+
+\subsection{N-qubit system}
+
+%The $\Delta t$ and norm of the Hamiltonian, $|\mathcal{H}|$ act as a rotation angle, 
+%and the direction of the $\mathcal{H} \cdot \mathbf{\hat{\sigma}}$ vector acts as a rotation axis 
+%on phase space of the qubit system. We will see details in the next section.
+%
+%A Pauli-basis of 
+%$n$-qubit system 
+%
+%Most of the properties of Pauli-matrices are preserved in 
+%$n$-fold Pauli-basis.
+
+The extension of the single wires to $N$-wires on quantum circuit is 
+an approximation of operators of $N$ dimensional $\mathcal{H}$ with tensor product of 1-dim Hilbert spaces. 
+In addition, such extension is efficient.
+\textit{Solovay-Kitaev Theorem} guarantees that the possibility and efficiency
+such that "Any $n$-wires unitary operators could be represented with finite combination of 
+universal quantum gate sets". 
+The theorem permits the developers of the quantum computer to only implement 
+few number of single and two qubit gates for universal applications.
+
+In the previous exercise, we stated that 
+the evolution on single Pauli term is same with the rotation 
+along a specific axis in Hilbert-space, corresponding to the Pauli term.
+Same statement hold for $n$ qubit wires.
+
+\begin{equation*}
+    Z_1 Z_2 = \begin{bmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & -1 & 0 & 0\\
+        0 & 0  & -1 & 0\\
+        0 & 0 & 0 & 1 
+    \end{bmatrix},
+    I_1 Z_2  = \begin{bmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0\\
+        0 & 0  & -1 & 0\\
+        0 & 0 & 0 & -1 
+    \end{bmatrix}
+\end{equation*}
+
+$R(\theta; P_i) = \cos(\theta) I+ i \sin(\theta)P_i$
+
+%Here we introduce the good framework to analysis the axis of the wires in each 
+% Bloch sphere representation.
+
+%\begin{example}
+%    Lamor-precession of single particle in uniform magnetic field, $B$ can be formulated as next,
+%
+%    \begin{equation}
+%        H = \mathbf{\mu} \mathbf{B}
+%    \end{equation}
+%\end{example}
+
+\subsubsection{CX structure}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{quantikz}
+        &\ctrl{3}&           &          &                       &         &        & \ctrl{3}&\\
+        &        &\ctrl{2}   &          &                       &         &\ctrl{2}&         &\\
+        &        &           & \ctrl{1} &                       &\ctrl{1} &        &         &\\
+        &\targ{} &\targ{}    & \targ{}  &\gate{RZ(2 \Delta t)}&\targ{}  &\targ{} &\targ{}  & 
+    \end{quantikz}
+    \caption{$\Delta t$ evolution circuit of $H=ZZZZ$ Hamiltonian.}
+    \label{fig:ZZZ_evolve_1}
+\end{figure}
+
+
+In the other manuscripts, the next type circuit also 
+common.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{quantikz}
+        &\ctrl{1}&           &          &                     &         &        &\ctrl{1}&\\
+        &\targ{} &\ctrl{1}   &          &                     &         &\ctrl{1}&\targ{} &\\
+        &        &\targ{}    & \ctrl{1} &                     &\ctrl{1} &\targ{} &        &\\
+        &        &           & \targ{} &\gate{RZ(2 \Delta t)} &\targ{}  &        &        &
+    \end{quantikz}
+    \caption{$\Delta t$ evolution circuit of $H=ZZZZ$ Hamiltonian 2nd type.}
+    \label{fig:ZZZ_evolve_2}
+\end{figure}
+
+The Fig \ref{fig:ZZZ_evolve_1} is called by \textit{fountain} type, 
+and Fig \ref{fig:ZZZ_evolve_2} is called by \textit{chain} type.
+
+\begin{exercise}
+    Show that the above two circuits are identical.
+\end{exercise}
+
+If you construct the circuit in matrix form,
+you can verify that those two circuits are identical.
+In the end, the mixture of two type also identical
+and the position of the $RZ$ gate is also freely determined
+by the situation. 
+The only thing we need is a CNOT gate path
+visit each i-th qubits in the Hamiltonian at once\footnote{Considering qubit rearangement.}.
+
+\begin{center}
+\begin{quantikz}
+    &\ctrl{3}&           &          &                      &             &           &\ctrl{3}&\\
+    &        &\targ{}    & \targ{}  & \gate{RZ(2 \Delta t)}& \targ{}     & \targ{}   &       &\\
+    &        &           & \ctrl{-1}&                      & \ctrl{-1}   &           &       &\\
+    &\targ{} &\ctrl{-2}  &          &                      &             & \ctrl{-2} &\targ{}&
+\end{quantikz}
+\end{center}
+
+\subsubsection{Basis transformation}
+
+\begin{equation}
+    \exp(-i \Delta t XYZZ)
+\end{equation}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{quantikz}
+       &\gate{H}         &          &\ctrl{1}&           &          &                     &         &        &\ctrl{1}& \gate{H}&         &\\
+       &\gate{S^\dagger} & \gate{H} &\targ{} &\ctrl{1}   &          &                     &         &\ctrl{1}&\targ{} & \gate{H}& \gate{S}&\\
+       &                 &          &        &\targ{}    & \ctrl{1} &                     &\ctrl{1} &\targ{} &        &         &         & \\
+       &                 &          &        &           & \targ{} &\gate{RZ(2 \Delta t)} &\targ{}  &        &        &         &         & 
+    \end{quantikz}
+\end{figure}
+
+\subsection{Implementation with Phase operator}
+
+\begin{equation*}
+    \mbox{P}(\theta) = \begin{bmatrix}
+        1 & 0 \\
+        0 & e^{i \theta}
+    \end{bmatrix}, 
+    \mbox{RZ}(\theta) = \begin{bmatrix}
+        e^{-i \theta/2} & 0 \\
+        0 & e^{i \theta/2}
+    \end{bmatrix}
+\end{equation*}
+\begin{figure}[!ht]
+    \begin{quantikz}
+        \ctrl{1}\\
+        \gate{P(\theta)}
+    \end{quantikz}
+\end{figure}
+However, in multi-qubit system a rotation z gate and 
+phase gate work differently because of the local phases.
+Even though, we can implement the same operation
+with phase gates without rotation z gates.
+
+\begin{center}
+    \begin{quantikz}
+        & \ctrl{1} &                  & \ctrl{1} & \\
+        & \targ{}  & \gate{RZ(\theta)} & \targ{} &
+    \end{quantikz}
+    = $e^{-i \theta/2} \begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & e^{i \theta} & 0 &0\\
+    0 & 0 & e^{i \theta}& 0\\
+    0 & 0 & 0   & 1
+    \end{bmatrix}$
+    \\
+    \begin{quantikz}
+        & \gate{P(\alpha)} & \ctrl{1} & \\
+        & \gate{P(\beta)}  & \gate{P(\gamma)} &
+    \end{quantikz}
+    = $\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & e^{i \beta} & 0 &0\\
+    0 & 0 & e^{i \alpha}& 0\\
+    0 & 0 & 0   & e^{i (\alpha + \beta) \gamma} 
+    \end{bmatrix}$
+\end{center}
+
+If $\alpha = \beta = \theta$ and $\gamma = -2 \theta$, the two circuit are identical
+without considering global phase.
+Similarly, we can arange RZ gates to construct the evolution circuit 
+without CX gate, but using controlled-RZ gate.
+
+\begin{exercise}
+    Show that the RZ and controlled-RZ could generate $ZZ, IZ, ZI$ evolution gate 
+    on 2 qubit circuit. 
+\end{exercise}
+
+\section{Additional Note}
+
+
+\subsection{Clifford Group}
+
+The evolution circuit comprise large 3 gate sets.
+
+\begin{itemize}
+    \item Rotation gates: $RZ$
+    \item Entaglement gates: $CNOT$
+    \item Basis Transformation gates: $H, S$
+\end{itemize}
+
+
+For example, using two rotation gates, $RZ, RX$
+we can eliminate $H, S$ gates in the evolution circuit.
+On the other hand, we can use 3 rotation gates
+without those basis change gates. 
+
+
+% 2 qubit gates
+
+% 3 -qubit gates
+
+Note that, when you work with gate model,
+it is very common case that using an ancilla registers
+to reduce the circuit depth, or to implement some algorithms.
+During the process, you must take care of the relative 
+phase between the original register and the ancilla register.
+Sometimes it does not affect but before the calculation 
+you must ensure the consistency.
+Think about Ahrno-Bohm effect, it is not a strange 
+effect that the local phase difference affect the overall
+result.
+
+\subsection{Pauli-Frame}
+
+As a rotation, geographical representation only work for 
+1-qubit case.
+In $N$-qubit case, there is no representation method 
+including all quantum information and state.
+Same hold for each rotation gate in Trotterization circuit.
+We accept the circuit in Fig () is a rotation around axis \textbf{nemo}.
+What about the next figure?
+

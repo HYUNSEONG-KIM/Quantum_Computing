@@ -1,0 +1,34 @@
+\chapter{Proofs}
+
+\section{Basic proofs}
+
+\subsection{Eq (\ref{eq:hamiltonain-exponential})}
+\label{appendix-proof-1}
+
+For convenience, $\mathbf{v} = \mathcal{H}$
+\begin{equation}
+    \exp(- \theta \mathbf{v} \cdot \matbf{\sigma}) = \sum_{k=0} \frac{(-i\theta \mathbf{v} \cdot \mathbf{\sigma})^k}{k!} \\
+\end{equation}
+
+Pauli-matrices have next relationship,
+\begin{align}
+    \sigma_j \sigma_k = \dela_{jk}  + i\sum_{l} \epsilon_{jkl}\sigma_l \\
+    [\sigma_j, \sigma_k] =& (\delta_{jk} - \delta_{kj}) + i (\sum_{l} \epsilon_{jkl}\sigma_l - \sum_{m} \epsilon_{jkm}\sigma_m)\\
+     =& i (\sum_{l, m} \epsilon{jkl} \delta_l + \epsilon_{jkm} \delta_m)\\
+     = & \begin{cases}
+        2 i \epsilon_{jkl}\delta_l & j \neq k \\
+        0 & j=k
+     \end{cases}
+\end{align}
+then,
+\begin{align}
+    (\mathbf{v} \cdot \mathbf{\sigma})^{2n +1} = |\mathbf{v}|^{2n+1} (\hat{\mathbf{v}} \cdot \mathbf{\sigma})
+    (\mathbf{v} \cdot \mathbf{\sigma})^{2n} = |\mathbf{v}|^{2n} (\hat{I})
+\end{align}.
+therefore,
+
+\begin{align}
+    =& \sum_{k=0}^\infty \frac{(-i)^{2k}}{(2k)!} (\theta |\mathbf{v}|)^{2k} \hat{I} + \sum_{k=0}^\infty \frac{(-i)^{2k+1}}{(2k+1)!} (\theta |\mathbf{v}|)^{2k+1} (\hat{\mathbf{v}} \cdot \mathbf{\sigma})\\
+    =& \sum_{k=0}^\infty \frac{(-1)^{k}}{(2k)!} (\theta |\mathbf{v}|)^{2k} \hat{I} -i \sum_{k=0}^\infty \frac{(-1)^{k}}{(2k+1)!} (\theta |\mathbf{v}|)^{2k+1} (\hat{\mathbf{v}} \cdot \mathbf{\sigma}) \\
+    = & \cos(\theta |\mathbf{v}|) \hat{I} - i \sin(\theta |\mathbf{v}|) (\hat{\mathbf{v}} \cdot \mathbf{\sigma})
+\end{align}

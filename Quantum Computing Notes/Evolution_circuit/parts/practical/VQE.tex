@@ -1,0 +1,63 @@
+\chapter{Variational method}
+
+It is considered practically useful method in
+near-err
+\section{Introduction}
+
+\subsection{Variatiaonal Principle}
+
+\subsection{Circuit as ansatz}
+
+The term \textit{ansatz} means an assumption 
+in mathematics or physics to solve the given problem.
+In the physics, it is commonly refer a model representing 
+or containing the solution of the problem.
+The statement of \textit{Is the ansatz proper to solve the problem?}
+refers the whether is it possible that "The solution could be represented with the model"
+or, in optimization problem, "The ansatz achive the desire solution".
+
+Using a paramerized circuit, we can treat the quantum circuit 
+as a neural network in machine leanring. 
+However, if the result is not bounded, 
+the optimization is meaningless for any kinds purpose.
+That is why we need a \textit{Variational principle}.
+Since, quantum circuit is a kind of quantum system and their
+ground state and energy is limited in finite value.
+Same statement holds for parameterized circuit, there always 
+exists a ground state energy\footnote{Not a state. There could be degenerated states.}.
+We can optimize the circuit without any worry about their convergence.
+
+\subsection{Universality of Circuit}
+
+One of the strong background of the neural network model is 
+\textit{Universal Approximation Theorem}. 
+
+How about quantum circuit? Do we have any those type of theorem?
+The answer is yes!. Quantum circuit is also a universal approximator.
+In addition, it is more powerful. Even with a single qubit we can achieve the property\cite{PhysRevA.104.012405-Universal-approxi}.
+
+\section{}
+
+\section{Ansatzs}
+
+\subsection{Hardware Efficient}
+
+\subsection{Evolution Based}
+
+
+\section{Application}
+
+\subsection{QUBO}
+
+\subsection{Evolution}
+
+\subsubsection{Real time}
+
+\subsubsection{Imaginary time}
+
+\section{Implementation}
+
+\subsection{Pennylane}
+
+\subsection{Qiskit}
+
