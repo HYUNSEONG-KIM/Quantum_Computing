@@ -267,7 +267,7 @@ class PauliPoly:
             coef, pauli = p.to_pennylane()
             pdict[pauli] = coef
         return PauliSentence(pdict)
-    def to_qiskit(self, with_list=False):
+    def to_qiskit(self, with_list=False, sparse=True):
 
         coefs = []
         paulis = []
@@ -278,6 +278,9 @@ class PauliPoly:
         if with_list:
             from qiiskit.quantum_info import PauliList
             paulis = PauliList(paulis)
+        if sparse:
+            from qiskit.quantum_info import SparsePauliOp
+            return SparsePauliOp(paulis, coeffs = coefs)
         return coefs, paulis
     @classmethod
     def from_xz_mat(cls, mat:Union[np.ndarray, np.matrix], tol:float=1E-16)->PauliPoly:

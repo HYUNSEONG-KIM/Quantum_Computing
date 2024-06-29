@@ -1,7 +1,10 @@
 \chapter{Variational method}
 
 It is considered practically useful method in
-near-err
+NISQ era\footnote{Noisy intermediate scale quantum era}.
+
+
+Review \cite{cerezo_variational_2021}.
 \section{Introduction}
 
 \subsection{Variatiaonal Principle}
@@ -25,7 +28,24 @@ Since, quantum circuit is a kind of quantum system and their
 ground state and energy is limited in finite value.
 Same statement holds for parameterized circuit, there always 
 exists a ground state energy\footnote{Not a state. There could be degenerated states.}.
+
+Whatever energy we measure from quantum circuit, it is always higher or equal with the ground state.
+
+\begin{equation*}
+    E_{ground} \leq \langle \psi | H | \psi \rangle
+\end{equation*}
+
+
 We can optimize the circuit without any worry about their convergence.
+
+
+\begin{principle}
+    \textbf{Variational Principle}
+
+    \begin{equation}
+        E_{g} \leq \langle \psi | H | \psi \rangle \leq E_{\mbox{max}}
+    \end{equation}
+\end{principle}
 
 \subsection{Universality of Circuit}
 
@@ -60,4 +80,7 @@ In addition, it is more powerful. Even with a single qubit we can achieve the pr
 \subsection{Pennylane}
 
 \subsection{Qiskit}
+
+\bibliographystyle{unsrt}
+\bibliography{vqe}
 

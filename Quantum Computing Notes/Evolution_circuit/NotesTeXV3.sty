@@ -62,7 +62,9 @@
 \usepackage{marginnote,sidenotes,fancyhdr,geometry}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage[many]{tcolorbox}
-
+\usepackage{chapterbib}
+\usepackage{natbib}
+\usepackage{subfiles}
 % ----------------------------------------------------------------------
 %           User Top Level Packages: Additional & Styling
 % ----------------------------------------------------------------------
@@ -203,9 +205,9 @@
 \tcolorboxenvironment{definition}{
   boxrule=0pt,
   boxsep=0pt,
-  colback={White!90!Cerulean},
+  colback={White!90!Magenta},
   enhanced jigsaw, 
-  borderline west={1pt}{0pt}{Cerulean},
+  borderline west={1pt}{0pt}{Magenta},
   sharp corners,
   before skip=10pt,
   after skip=10pt,
@@ -224,6 +226,23 @@
   before skip=10pt,
   after skip=10pt,
   sharp corners,
+  left=5pt,
+  right=5pt,
+  breakable,
+}
+
+%--------------------------------------------------------------------
+\theoremstyle{theorem}
+\newtheorem{principle}{Principle}
+\tcolorboxenvironment{principle}{
+  boxrule=0pt,
+  boxsep=0pt,
+  colback={White!90!Cerulean},
+  enhanced jigsaw, 
+  borderline west={1pt}{0pt}{Cerulean},
+  sharp corners,
+  before skip=10pt,
+  after skip=10pt,
   left=5pt,
   right=5pt,
   breakable,
