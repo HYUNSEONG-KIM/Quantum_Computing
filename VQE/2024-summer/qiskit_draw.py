@@ -3,8 +3,13 @@ from tkinter import ttk
 from tkinter import Scrollbar
 from tkinter import Event
 import random
-from qiskit.circuit.library import EfficientSU2
+
+from qiskit.circuit.library import EfficientSU2, ExcitationPreserving
+
 import re
+
+from color import color_function
+#-------------------
 
 def extract_numbers(qubit_string):
     pattern = r"Qubit\(QuantumRegister\((\d+), '[a-zA-Z]'\), (\d+)\)"
@@ -28,15 +33,15 @@ def get_info_node(node):
 
 style_gate = {
     "h":{
-        "bg": "red",
+        "bg": "salmon",
         "tc": "black",
     },
     "rx":{
-        "bg": "blue",
+        "bg": "pale green",
         "tc": "white"
     },
     "ry":{
-        "bg": "cyan",
+        "bg": "CadetBlue1",
         "tc": "white"
     },
     "rz":{
@@ -52,7 +57,9 @@ style_gate = {
 class CircuitCanvas(tk.Canvas):
     def __init__(self, master=None, **kwargs):
         super().__init__(master, **kwargs)
-        self.pack(side=tk.LEFT)
+        #self.pack(side=tk.LEFT)
+        self.ansatz = None
+
         self.loc = [100, 90]
         self.d = 40
         self.nodes = []
@@ -60,15 +67,6 @@ class CircuitCanvas(tk.Canvas):
         self.param_index = []
         #self.draw_sample()
         self.configure(scrollregion=self.bbox("all"))
-        
-        # Adding scrollbars
-        self.hbar = Scrollbar(master, orient=tk.HORIZONTAL, command=self.xview)
-        self.hbar.pack(side=tk.BOTTOM, fill=tk.X)
-        self.configure(xscrollcommand=self.hbar.set)
-
-        self.vbar = Scrollbar(master, orient=tk.VERTICAL, command=self.yview)
-        self.vbar.pack(side=tk.RIGHT, fill=tk.Y)
-        self.configure(yscrollcommand=self.vbar.set)
 
         # Mouse zoom 
         self.bind("<MouseWheel>", self.zoom)
@@ -98,17 +96,19 @@ class CircuitCanvas(tk.Canvas):
         return x, y
     def draw_circuit(self, nodes):
         x, y = self.loc
-        qubits = extract_numbers(str(nodes[0][0].qargs))[0]
+        qubits_num = extract_numbers(str(nodes[0][0].qargs))[0]
         total_len = len(nodes)
 
-        print("Qubits", qubits)
+        print("Qubits", qubits_num )
         print("totla_len:", total_len)
         # Draw lines
-        for i in range(qubits):
+        for i in range(qubits_num):
             dy = i*self.d
-            self.create_line(x-self.d, y+dy-1, x+total_len*self.d, y+dy-1, fill="black")
-            self.create_line(x-self.d, y+dy, x+total_len*self.d, y+dy, fill="black")
-            self.create_line(x-self.d, y+dy+1, x+total_len*self.d, y+dy+1, fill="black")
+            self.create_line(x-2*self.d, y+dy-1   , x+(total_len+1)*self.d, y+dy-1, fill="black")
+            self.create_line(x-2*self.d, y+dy     , x+(total_len+1)*self.d, y+dy, fill="black")
+            self.create_line(x-2*self.d, y+dy+1   , x+(total_len+1)*self.d, y+dy+1, fill="black")
+
+        self.multi_gate((x-3*self.d, y), qubits_num , "|Ψ>", "gold", 2, 20)
 
         for i, node in enumerate(nodes):
             for j, n in enumerate(node):
@@ -155,9 +155,9 @@ class CircuitCanvas(tk.Canvas):
                             self.param_multi_gate((x0, y0), qubits, name, params[0], "pink", 1)
                         )
             x += self.d
-    # Ansatz
-    def apply_ansatz(self, text):
-        pass
+        # Draw Measurement
+        self.multi_gate((x+self.d, y), qubits_num , "     M\n<Ψ|H|Ψ>", "yellow", 2, 30)
+
     #Basic gates ====
     def gate(self, loc, text, color, font_size=15, bg=True):
         x, y = loc
@@ -235,39 +235,53 @@ class CircuitCanvas(tk.Canvas):
             for pidx, param in zip(self.param_index, params):
                 gate = self.gates[pidx]
                 name = gate["text"]
-                color_map = cmap[name]
-                new_color = color_map[params]
-                self.itemconfig(gate, fill=new_color)
-    #def 
+                new_color = color_function(param)
+                rec_id = gate["rec"] if "rec" in gate.keys() else gate["subgate"]["rec"]
+                self.itemconfig(rec_id, fill=new_color)
+    # Ansatz
+    def apply_ansatz(self, text, qubits):
+        self.delete('all')
+        if text == "EfficientSU2":
+            self.ansatz = EfficientSU2(qubits, reps=3)
+        else:
+            self.ansatz = ExcitationPreserving(qubits, entanglement='linear')
+        nodes = self.ansatz.decompose().draw().nodes
+        self.draw_circuit(nodes)
 
 # Create the main window
-root = tk.Tk()
-root.title("Ising VQA")
+if __name__=="__main__":
+    root = tk.Tk()
+    root.title("Ising VQA")
 
-canvas_frame = tk.LabelFrame(root, text="Graph Canvas", relief="solid", bd=2)
-canvas_frame.pack(side=tk.LEFT, fill=tk.Y)
-canvas = CircuitCanvas(canvas_frame, width=800, height=400, bg="white")
+    canvas_frame = tk.LabelFrame(root, text="Graph Canvas", relief="solid", bd=2)
+    canvas_frame.pack(side=tk.LEFT, fill=tk.Y)
+    canvas = CircuitCanvas(canvas_frame, width=800, height=400, bg="white")
+    canvas.pack(side=tk.TOP, fill=tk.Y)
+    # Adding scrollbars
+    canvas_hbar = Scrollbar(canvas_frame, orient=tk.HORIZONTAL, command=canvas.xview)
+    canvas_hbar.pack(side=tk.BOTTOM, fill=tk.X)
+    canvas.configure(xscrollcommand=canvas_hbar.set)
 
-button_frame = tk.Frame(root)
-button_frame.pack(side=tk.RIGHT, fill=tk.Y)
-change_color_button = tk.Button(button_frame, text="Change Color", command=canvas.change_random_rectangle_color)
-change_color_button.pack(pady=20)
+    canvas_vbar = Scrollbar(canvas_frame, orient=tk.VERTICAL, command=canvas.yview)
+    canvas_vbar.pack(side=tk.RIGHT, fill=tk.Y)
+    canvas.configure(yscrollcommand=canvas_vbar.set)
 
-ansatz_name = tk.StringVar()
-ansatz_combo = ttk.Combobox(button_frame, width=30, textvariable=ansatz_name)
-ansatz_combo["value"] = ["EfficientSU2", "ExcitationPreserving"]
-ansatz_combo.pack()
-apply_ansatz_button = tk.Button(
-    button_frame, text="Apply", 
-    command=lambda x: canvas.apply_ansatz(ansatz_name.get())
-    )
-apply_ansatz_button.pack(pady=5)
-#-----------
-from qiskit.circuit.library import ExcitationPreserving
-ansatz = ExcitationPreserving(4, entanglement='linear')
-#ansatz.decompose().draw()
-#ansatz = EfficientSU2(4, reps=2)
-nodes = ansatz.decompose().draw().nodes
-canvas.draw_circuit(nodes)
 
-root.mainloop()
+
+    button_frame = tk.Frame(root)
+    button_frame.pack(side=tk.RIGHT, fill=tk.Y)
+    change_color_button = tk.Button(button_frame, text="Change Color", command=canvas.change_random_rectangle_color)
+    change_color_button.pack(pady=20)
+
+    ansatz_name = tk.StringVar()
+    ansatz_combo = ttk.Combobox(button_frame, width=30, textvariable=ansatz_name)
+    ansatz_combo["value"] = ["EfficientSU2", "ExcitationPreserving"]
+    ansatz_combo.pack()
+    apply_ansatz_button = tk.Button(
+        button_frame, text="Apply", 
+        command=lambda: canvas.apply_ansatz(ansatz_name.get())
+        )
+    apply_ansatz_button.pack(pady=5)
+    #-----------
+
+    root.mainloop()

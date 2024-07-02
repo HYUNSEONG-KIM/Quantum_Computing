@@ -1,5 +1,6 @@
 import tkinter as tk
 
+
 class CircleCanvas(tk.Canvas):
     def __init__(self, master=None, **kwargs):
         super().__init__(master, **kwargs)
@@ -10,16 +11,21 @@ class CircleCanvas(tk.Canvas):
         self.bind("<Shift-B1-Motion>", self.move_circle)
         self.bind("<a>", self.toggle_circle_color)
 
+        self.bind("<Enter>", self.on_mouse_enter)
+
         self.circles = {}  # Store circles and their data
         self.lines = []  # Store lines and their endpoints
         self.selected_circles = []  # Keep track of selected circles
         self.moving_circle = None  # Currently moving circle
 
+        self.marker = None
+    def on_mouse_enter(self, event):
+        self.focus_set()
     def create_circle(self, event):
         x, y = event.x, event.y
         r = 10  # Radius of the circle
         circle_id = self.create_oval(x-r, y-r, x+r, y+r, fill="blue", outline="black")
-        self.circles[circle_id] = {"coords": (x, y), "lines": set()}
+        self.circles[circle_id] = {"coords": (x, y), "lines": set(), "fill":"blue"}
 
     def delete_circle(self, event):
         item = self.find_closest(event.x, event.y)
@@ -101,6 +107,7 @@ class CircleCanvas(tk.Canvas):
             current_color = self.itemcget(item[0], "fill")
             new_color = "red" if current_color == "blue" else "blue"
             self.itemconfig(item[0], fill=new_color)
+            self.circles[item[0]]["fill"] = "red"
 
     def count_cut(self):
         cut = 0
@@ -110,22 +117,32 @@ class CircleCanvas(tk.Canvas):
             if cir_c1 != cir_c2:
                 cut += 1
         return cut
+    def draw_id_on_circle(self):
+        if self.marker is None:
+            self.marker = []
+            for c in self.circles:
+                x1, y1, x2, y2= self.coords(c)
+                cx = (x1 + x2) / 2
+                cy = (y1 + y2) / 2
+                self.marker.append(
+                    self.create_text(
+                        cx, cy-30, 
+                        text=c,
+                        font=('Helvetica', 12), fill='black' 
+                        )
+                    )
+                print(c)
+        else: #delete markers
+            for id in self.marker:
+                self.delete(id)
+            self.marker = None
+    def export_graph(self):
+        return self.circles, self.lines
 
-# Build an ising hamiltonian and show ising lattice on canvas
-from matplotlib.backend_bases import key_press_handler
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
-
-# Embeding a matplotlib and show ansatz selection
-class Ansatz(tk.LabelFrame):
-    def __init__(self, master=None, **kwargs):
-        super().__init__(master, **kwargs)
-        self.pack(side=tk.LEFT)
-
-
-
-def update_label():
+def update_label(canvas, label):
     num_lines = canvas.count_cut()
     label.config(text=f"Number of cut: {num_lines}")
+
 
 
 if __name__ == "__main__":
