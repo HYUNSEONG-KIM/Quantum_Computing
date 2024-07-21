@@ -255,7 +255,7 @@ if __name__=="__main__":
 
     canvas_frame = tk.LabelFrame(root, text="Graph Canvas", relief="solid", bd=2)
     canvas_frame.pack(side=tk.LEFT, fill=tk.Y)
-    canvas = CircuitCanvas(canvas_frame, width=800, height=400, bg="white")
+    canvas = CircuitCanvas(canvas_frame, width=400, height=200, bg="white")
     canvas.pack(side=tk.TOP, fill=tk.Y)
     # Adding scrollbars
     canvas_hbar = Scrollbar(canvas_frame, orient=tk.HORIZONTAL, command=canvas.xview)

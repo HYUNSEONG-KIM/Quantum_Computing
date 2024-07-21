@@ -8,7 +8,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 class ShowMatrix(tk.Frame):
     def __init__(self, master=None, **kwargs):
         super().__init__(master, **kwargs)
-        self.fig, self.ax = plt.subplots(figsize=(5, 5))
+        self.fig, self.ax = plt.subplots(figsize=(1.5, 1.5))
         self.ax.axis("off")
         self.fig_canvas = FigureCanvasTkAgg(self.fig, master=self)
         self.fig_canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.Y)
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     button.pack(pady=20)
     
     # Create a matplotlib figure and axis
-    show_matrix = ShowMatrix(master=root, width=500, height=500)
+    show_matrix = ShowMatrix(master=root, width=300, height=300)
     show_matrix.pack(side=tk.TOP, fill=tk.Y)
     
     show_matrix.draw_matrix(matrix)

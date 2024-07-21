@@ -5,6 +5,8 @@ import numpy as np
 from qiskit.circuit.library import EfficientSU2
 from qiskit.quantum_info import SparsePauliOp
 
+from qiskit import QuantumCircuit
+
 # SciPy minimizer routine
 from scipy.optimize import minimize
 
@@ -29,7 +31,7 @@ class VQEFrame(tk.LabelFrame):
         self.opt_param = None
         self.ansatz = None
         self.state_vector = None
-        self.canvas = tk.Canvas(master=self, width=500, height=500, bg = "white")
+        self.canvas = tk.Canvas(master=self, width=300, height=300, bg = "white")
         self.canvas.pack(side=tk.BOTTOM, fill=tk.X)
     def get_params(self, ansatz, hamiltonian, ansatz_frame):
         cost_history_dict = {
@@ -69,9 +71,11 @@ class VQEFrame(tk.LabelFrame):
         self.opt_param  = res.x
         self.ansatz = ansatz
     def cal_st_vector(self):
-        st_vec = Statevector(self.ansatz.decompose())
-        st_vec_sym  = st_vec.to_sympy()
-        self.state_vector = st_vec_sym.to_lambda()(*self.opt_param)
+        extracted_params = self.ansatz.parameters
+        param_bindings = {param: value for param, value in zip(extracted_params, self.opt_param)}
+        qc = self.ansatz.bind_parameters(param_bindings)
+        st_vec = Statevector(qc)
+        self.state_vector = st_vec
 
 
  

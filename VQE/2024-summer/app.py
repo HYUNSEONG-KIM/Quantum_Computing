@@ -41,19 +41,19 @@ if __name__=="__main__":
     control_frame = tk.Frame(graph_casnvas_frame)
     control_frame.pack(side=tk.TOP, fill=tk.X)
     label = tk.Label(control_frame, text="Number of cut: 0", font=("Arial", 15))
-    label.pack(pady=20)
+    label.pack(pady=10)
     button = tk.Button(control_frame, text="Count Cut", command=lambda:update_label(graph_canvas, label))
     button.pack(pady=5)
     button2 = tk.Button(control_frame, text="Mark Circle")
     button2.pack(pady=1)
 
-    graph_canvas = CircleCanvas(graph_casnvas_frame, width=500, height=500, bg="white")
+    graph_canvas = CircleCanvas(graph_casnvas_frame, width=300, height=300, bg="white")
     graph_canvas.pack(side=tk.BOTTOM, fill=tk.Y)
 
     button2.config(command=lambda: graph_canvas.draw_id_on_circle())
 
     #=================
-    classic_frame = ClassicSolver(root,  text="Classic", width=500, height=700)
+    classic_frame = ClassicSolver(root,  text="Classic", width=300, height=450)
     classic_frame.grid(row=0, column=1, rowspan=2)
     classic_solve_button = tk.Button(classic_frame, text="Solve")
 
@@ -70,11 +70,8 @@ if __name__=="__main__":
     #Matrix==================
     m_frame = tk.LabelFrame(master=root, text="Hamiltonian")
     m_frame.grid(row=2, column=0)
-
     # image_frame, 
-
-
-    show_matrix_frame = ShowMatrix(master=m_frame , width=500, height=500)
+    show_matrix_frame = ShowMatrix(master=m_frame , width=350, height=350)
     show_matrix_frame.grid(row=1, column=0)
 
     def get_h_matrix(canvas):
@@ -131,7 +128,7 @@ if __name__=="__main__":
     ansatz_frame.grid(row=2, column=1, columnspan=3)
     canvas_frame = tk.LabelFrame(ansatz_frame, text="Circuit ansatz", relief="solid", bd=2)
     canvas_frame.grid(row=0, column=0)
-    canvas = CircuitCanvas(canvas_frame, width=800, height=300, bg="white")
+    canvas = CircuitCanvas(canvas_frame, width=500, height=250, bg="white")
     canvas.pack(side=tk.TOP, fill=tk.Y)
     # Adding scrollbars
     canvas_hbar = Scrollbar(canvas_frame, orient=tk.HORIZONTAL, command=canvas.xview)
@@ -175,14 +172,22 @@ if __name__=="__main__":
     # VQE frame---------------
  
 
-    vqe_frame = VQEFrame(root, text="VQE", width=400, height=400)
+    vqe_frame = VQEFrame(root, text="VQE", width=250, height=250)
     vqe_frame.grid(row=0, column=2, rowspan=2)
 
     vqe_button = tk.Button(master=vqe_frame, text="run")
     vqe_button.pack(side=tk.TOP)
+    vqe_state_button = tk.Button(master=vqe_frame, text="State")
+    vqe_state_button.pack(side=tk.TOP)
 
     vqe_params = None
     run_time = 10
+    cost_history_dict = {
+            "prev_vector": None,
+            "iters": 0,
+            "cost_history": [],
+            "params":[]
+        }
     def run_param_update():
         from qiskit_aer.primitives import EstimatorV2 as Estimator
 
@@ -191,13 +196,8 @@ if __name__=="__main__":
         from qiskit_symb.quantum_info import Statevector
         # SciPy minimizer routine
         from scipy.optimize import minimize
-        global vqe_params, canvas, run_time
-        cost_history_dict = {
-            "prev_vector": None,
-            "iters": 0,
-            "cost_history": [],
-            "params":[]
-        }
+        global vqe_params, canvas, run_time, cost_history_dict
+        
         estimator = Estimator()
         n_p = canvas.ansatz.num_parameters
         x0 = 2*np.pi * np.random.random(n_p)
@@ -205,7 +205,9 @@ if __name__=="__main__":
         time.sleep(10/1000)
 
         def cost_func(params, ansatz, hamiltonian, estimator):
+            global cost_history_dict
             time.sleep(10/1000)
+
             pub = (ansatz, [hamiltonian], [params])
             result = estimator.run(pubs=[pub]).result()
             energy = result[0].data.evs[0]
@@ -215,25 +217,48 @@ if __name__=="__main__":
             cost_history_dict["cost_history"].append(energy)
 
             print(f"Iters. done: {cost_history_dict['iters']} [Current cost: {energy}]")
-
-            vqe_frame.canvas.create_text(250, 250, 
-                                    text=f"{energy:.4}",
-                                    font=('Helvetica', 20), 
-                                    fill="black")
-            ansatz_frame.update_color_by_params(params - 2*np.round(params/(2*np.pi)) *np.pi)
             return energy
+        def callback_work(params):
+            print("callback call")
+            global cost_history_dict, root
+            i = cost_history_dict["iters"]
+            e = cost_history_dict["cost_history"][-1]
+            vqe_frame.canvas.delete("all")
+            vqe_frame.canvas.create_text(100, 100, 
+                                    text=f"Iters:{i}/1500",
+                                    font=('Helvetica', 15), 
+                                    fill="black")
+            vqe_frame.canvas.create_text(100, 125, 
+                                    text=f"Energy:{e:.4}",
+                                    font=('Helvetica', 15), 
+                                    fill="black")
+            canvas.update_color_by_params(params - 2*np.round(params/(2*np.pi)) *np.pi)
+            
+            root.update()
+            root.update_idletasks()
         
-        res = minimize(
-            cost_func,
+        res = minimize(cost_func,
             x0,
-            args =  ( canvas.ansatz.decompose(), qiskit_hamiltonian, estimator),
-            method="cobyla" # Cobyla method
+            args =  (canvas.ansatz.decompose(), qiskit_hamiltonian, estimator),
+            method="cobyqa", # Cobyla method,
+            callback=callback_work,
+            options={"maxiter":1000}
         )
+        cost_history_dict["iters"] = 0
+
         vqe_frame.opt_param = res.x
         vqe_frame.ansatz = canvas.ansatz
+        #vqe_frame.cal_st_vector()
+    def state_cal():
         vqe_frame.cal_st_vector()
+        state_vec = vqe_frame.state_vector
 
+        vqe_frame.canvas.create_text(125, 175, 
+                                    text=str(state_vec),
+                                    font=('Helvetica', 20), 
+                                    fill="black")
     vqe_button.config(command=run_param_update)
+    vqe_state_button.config(command=state_cal)
     ## Ansatz color _update
 
     #----------

@@ -20,6 +20,9 @@ def zizj(n, i, j):
     return krons(oper_list)
 
 if __name__ == "__main__":
-    print(zizj(3, 0, 1))
-    print(zizj(2, 0, 1))
-    print(zizj(5, 2, 3))
+    m = np.zeros([16, 16], dtype = complex)
+    m += zizj(4, 0, 1)
+    m += zizj(4, 3, 2)
+    m += zizj(4, 2, 3)
+    m += zizj(4, 0, 3)
+    print(m.real)

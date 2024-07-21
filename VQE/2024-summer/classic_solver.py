@@ -8,7 +8,7 @@ class ClassicSolver(tk.LabelFrame):
     def __init__(self, master= None, **kwargs):
         super().__init__(master, **kwargs)
 
-        self.canvas = tk.Canvas(master=self, width=500, height=500, bg="white")
+        self.canvas = tk.Canvas(master=self, width=300, height=300, bg="white")
         self.canvas.pack(side=tk.BOTTOM, fill=tk.X)
         self.c_label_cut = tk.Label(self, text="Max_cut = 0", font=("Arial", 15))
         self.c_label_cut.pack(pady=20)
