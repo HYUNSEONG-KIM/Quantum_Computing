@@ -7,9 +7,9 @@
 \contentsline {subsection}{\numberline {1.2.2}Problem of commutation}{8}{subsection.1.2.2}%
 \contentsline {subsection}{\numberline {1.2.3}Suzuki Trotter expansion}{10}{subsection.1.2.3}%
 \contentsline {subsubsection}{Stone-von Neumann Theorem}{11}{equation.1.2.29}%
-\contentsline {subsection}{\numberline {1.2.4}Terminology Note}{12}{subsection.1.2.4}%
+\contentsline {subsection}{\numberline {1.2.4}Terminology Note}{11}{subsection.1.2.4}%
 \contentsline {subsection}{\numberline {1.2.5}Further methods}{12}{subsection.1.2.5}%
-\contentsline {section}{\numberline {1.3}Formalization of time evolution}{13}{section.1.3}%
+\contentsline {section}{\numberline {1.3}Formalization of time evolution}{12}{section.1.3}%
 \contentsline {subsection}{\numberline {1.3.1}Type of systems}{13}{subsection.1.3.1}%
 \contentsline {subsection}{\numberline {1.3.2}Spin operator representation of General system}{13}{subsection.1.3.2}%
 \contentsline {subsubsection}{Operator transformation}{14}{equation.1.3.4}%
@@ -17,12 +17,15 @@
 \contentsline {subsection}{\numberline {1.4.1}Pauli-matrices and decomposition}{14}{subsection.1.4.1}%
 \contentsline {subsection}{\numberline {1.4.2}Evolution operator on single qubit system}{15}{subsection.1.4.2}%
 \contentsline {subsection}{\numberline {1.4.3}N-qubit system}{17}{subsection.1.4.3}%
-\contentsline {subsubsection}{CX structure}{17}{subsection.1.4.3}%
-\contentsline {subsubsection}{Basis transformation}{18}{exercise.7}%
-\contentsline {subsection}{\numberline {1.4.4}Implementation with Phase operator}{18}{subsection.1.4.4}%
-\contentsline {section}{\numberline {1.5}Additional Note}{19}{section.1.5}%
-\contentsline {subsection}{\numberline {1.5.1}Clifford Group}{19}{subsection.1.5.1}%
-\contentsline {subsection}{\numberline {1.5.2}Pauli-Frame}{19}{subsection.1.5.2}%
+\contentsline {subsubsection}{Multi qubit Pauli matrices}{17}{subsection.1.4.3}%
+\contentsline {subsubsection}{Evolution as conditional rotation}{17}{subsection.1.4.3}%
+\contentsline {subsubsection}{CNOT gate}{18}{figure.caption.5}%
+\contentsline {subsubsection}{CX structure}{18}{exercise.8}%
+\contentsline {subsubsection}{Basis transformation}{19}{exercise.9}%
+\contentsline {subsection}{\numberline {1.4.4}Implementation with Phase operator}{19}{subsection.1.4.4}%
+\contentsline {section}{\numberline {1.5}Additional Note}{20}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Clifford Group}{20}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Pauli-Frame}{20}{subsection.1.5.2}%
 \contentsline {chapter}{\numberline {2}Optimization of evolution circuit}{21}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Introduction}{21}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Mutally commuting groups}{21}{section.2.2}%
@@ -74,6 +77,9 @@
 \contentsline {subsection}{\numberline {6.5.2}Qiskit}{12}{subsection.6.5.2}%
 \contentsline {chapter}{\numberline {7}Material Simulation}{15}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Hardness of the simulation}{15}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Classical methods}{15}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Density Functional Theory}{15}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Monte Carlo}{15}{subsection.7.2.2}%
 \contentsline {chapter}{\numberline {8}Tunneling Phenomenon}{17}{chapter.8}%
 \contentsline {section}{\numberline {8.1}Introduction to tunneling}{17}{section.8.1}%
 \contentsline {subsection}{\numberline {8.1.1}alpha-decay}{17}{subsection.8.1.1}%

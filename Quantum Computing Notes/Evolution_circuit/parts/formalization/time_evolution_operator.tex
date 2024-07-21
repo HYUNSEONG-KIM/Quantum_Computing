@@ -35,7 +35,7 @@ Here is why the gate model is called a discrete computation model.
 It is because we cannot directly implement the such general time-propagator 
 per each system. Only thing we can manipulate is just an approximation 
 of the propagator with basic block gates. 
-Fortunately, the universal gate set to represent approximate all unitary operator
+Fortunately, the universal gate set to approximate all unitary operator
 is well investigated. See \textit{Solovay-Kitaev theorem}.
 \index{Solovay!Solovay-Kitaev theorem}
 \index{Kitaev!Solovay-Kitaev theorem}
@@ -63,10 +63,10 @@ is well investigated. See \textit{Solovay-Kitaev theorem}.
 \index{Lie}
 \index{Sophus Lie}
 
-Then, what we need? What does the operator mean inside of exponential?
+Then, what do we need? What does the operator mean inside of exponential?
 It is called exponential mapping of operator, and 
 it plays a key concept of time-evolution in quantum mechanics.
-The major properties and definiton were first investigated by \textit{Sophus Lie} with his research on continuous group and 
+The major properties and definition were first investigated by \textit{Sophus Lie} with his research on continuous group and 
 differential geometry.
 It has tremendous interesting properties and applications in both physics and mathematics.
 However, in here, we only look up 
@@ -112,7 +112,7 @@ If $\hat{A}$ was a digonal matrix, then the next relationship hold.
     \end{bmatrix}
 \end{equation*}
 
-In general not only for the digonal matrix, 
+In general not only for the diagonal matrix, 
 the exponential map preserves the eigenvectors of the original matrix.
 
 \begin{exercise}
@@ -219,7 +219,7 @@ with Hilbert-Schmidt inner product.
 The $1/N$ is a normalization factor. 
 
 \begin{exercise}
-    Prove that the Hilbert-Schmidt inner product satisifes inner product axiom.
+    Prove that the Hilbert-Schmidt inner product satisfies inner product axioms.
 
     \begin{itemize}
         \item Positive definiteness: $\langle X | X \rangle \geq 0$.
@@ -268,7 +268,7 @@ Somtimes we denote the Hamiltonian as vector notation whose basis is Pauli group
 \end{equation}
 
 \begin{exercise}
-    Suppose that basis of vectros is Pauli group.
+    Suppose that basis of vectors is Pauli group.
 
     Find a coefficient formula of inner product of two vector
     where the inner product of two vector, $v, w$ 
@@ -291,8 +291,8 @@ Somtimes we denote the Hamiltonian as vector notation whose basis is Pauli group
 
 One thing you have to notice is that the coefficient $\lambda_j$ are all real valued.
 It is a spectrum theorem for Hermit matrix. See Theorem \ref{theorem:hermit_spectrum} in Appendix \ref{appendix_chap:hermit_uni}.
-It is because the complex valued linear combination does not preserve the hermiticity of the 
-summation. You can check yourself with verify the $H_3 = H_1 + i H_2$, whether $H_3$ satisfies hermiticity or does not
+It is because the complex valued linear combination does not preserve Hermiticity of the 
+summation. You can check yourself with verify the $H_3 = H_1 + i H_2$, whether $H_3$ satisfies Hermiticity or does not
 when $H_1$ and $H_2$ were Hermit matrices.
 
 \subsection{Problem of commutation}
@@ -310,7 +310,7 @@ About the $x, y \in (+, \times, \mathbb{R} \mbox{ or } \mathbb{C})$,
     \exp(x) \exp(y) = \exp(y) \exp(x) = \exp(x+y)
 \end{equation}
 
-holds true. However, such expression does not hold in general case and moreover, 
+It holds true. However, such expression does not hold in general case and moreover, 
 $\exp(x)\exp(y) = \exp(z)$ solution may not exist.
 
 For example, in matrix group, $\mathbf{M}_2 (\mathbb{C})$,
@@ -347,10 +347,10 @@ it is not surjective.
 However, at least, the $\Pi_k \exp\left(H_k\right)$
 seems appropriate for starting point to be closed to
 to $\exp\left( \sum_k H_k \right)$.
-Then, how much gap between the two operators? and
-how can we reduce the gap?
+Then, how much gap between the two operators? 
+In addition, how can we reduce the gap?
 What relationship do they have including non-commutting local terms?
-It is represented with \textit{BCH formula}\cite{suzuki_convergence_1977}.
+These questions are written in \textit{BCH formula}\cite{suzuki_convergence_1977}.
 \index{Baker-Campbell-Hausdorff formula}
 \index{BCH-formula}
 
@@ -392,7 +392,7 @@ where, $||\cdot||$ is Hilbert-Schmidt norm.
     \begin{equation*}
         ||A|| := \sqrt{\sum_{i \in I} ||Ae_i||^2}
     \end{equation*} 
-    where, $\{e_i\}_{i \in I}$ is an orthnormal basis.
+    where, $\{e_i\}_{i \in I}$ is an orthonormal basis.
 \end{definition}
 
 Simply, we can rewrite the above norm as
@@ -400,6 +400,10 @@ Simply, we can rewrite the above norm as
 \begin{equation}
     ||A|| = \sqrt{\sum_{i j} ||a_{ij}||^2} = \sqrt{\text{Tr} (A^\ast A)}
 \end{equation}
+
+\begin{exercise}
+    Show that $\sum_{i \in I} ||Ae_i||^2 = \text{Tr} (A^\ast A)$
+\end{exercise}
 
 \begin{theorem} \textbf{Convergence of BCH formula 2}
     \label{theorem:converges_BCH_2}
@@ -503,7 +507,7 @@ Generally, the $H = \sum_k H_k$ term Hamiltonian could be expanded with ST2 expa
     e^{-i H t} \approx \left( e^{-i H_1 t/2} e^{-i H_2 t/2} \cdots e^{-i H_n t/2} \right)\left(e^{-i H_n t/2} \cdots e^{-i H_2 t/2} e^{-i H_1 t/2} \right)
 \end{equation}
 
-Be aware the oreder of the local Hamiltonians, in the 1st term, the order is ascending but, in the 2nd term
+Be aware the order of the local Hamiltonians, in the 1st term, the order is ascending but, in the 2nd term
 it is descending order. It is a recursive formula of Eq (\ref{eq:2nd_suzuki}).
 
 For the higher expansion, it is defined with recursively
@@ -622,9 +626,10 @@ The brief introduction of the methods is written on Wolf's lecture note\cite{de2
 
 \section{Formalization of time evolution}
 
-Now, we have a basic material for 
-simulation of general \textit{time-independent}
-Hamiltonian. However, the real quantum world 
+We reviewed several theorems in previous section.
+The materials were for special type of Hamiltonian;
+\textit{time-independent}.
+However, the real quantum world 
 and our interests do not only live in time-independent system.
 General time-dependent, non-commuting by each time systems are also 
 our intense of study.
@@ -648,12 +653,12 @@ The commutation between two different time in time-dependent Hamiltonian.
 \end{equation}
 
 
-The most general situation in the real world, is time dependent and the Hamiltonian is non-commute 
+The most general situation is time dependent and the Hamiltonian is non-commute 
 in different time.
 In the case, the evolution operator is not represented with simple
 exponential term. It is represented with series, \textit{Dyson Series}\index{Dyson Series}.
 
-\begin{theorem}\textbf{Dyson Series}
+\begin{theorem}\textbf{Dyson Series}\index{Dyson Series}
     
     \begin{equation*}
         U(t, t_0) = \sum_n (-i \hbar^{-1})^n \int_{t_0}^{t} dt_1 \int_{t_0}^{t_1} dt_2 \cdots \int_{t_0}^{t_{n-1}} dt_n \Pi_{i=1} H(t_i)
@@ -665,10 +670,13 @@ to be exponential. The approximation of the time ordered exponential
 with several independent evolution gate is well-studied by Suzuki\cite{suzuki_general_1993}.
 The answer is same with commuting Hamiltonian however, 
 the theoretical background is well studied in his 1993 paper.
+\index{Time ordered}
+
 
 \begin{equation}
     H(t) = \sum_{i} A_i (t)
 \end{equation}
+
 
 
 

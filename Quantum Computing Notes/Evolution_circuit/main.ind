@@ -18,7 +18,7 @@
   \indexspace
 
   \item Kitaev
-    \subitem Solovay-Kitaev theorem, 5
+    \subitem Solovay-Kitaev theorem, 4
 
   \indexspace
 
@@ -33,6 +33,7 @@
   \item Pauli
     \subitem Polynomial, 14
   \item Pauli matrices, 6
+  \item Pauli string, 17
   \item Product Formula, 10
     \subitem Lie-Trotter, 10
     \subitem Trotter, 10
@@ -41,7 +42,11 @@
   \indexspace
 
   \item Solovay
-    \subitem Solovay-Kitaev theorem, 5
+    \subitem Solovay-Kitaev theorem, 4
   \item Sophus Lie, 5
+
+  \indexspace
+
+  \item Time ordered, 13
 
 \end{theindex}

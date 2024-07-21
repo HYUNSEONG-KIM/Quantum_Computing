@@ -161,26 +161,8 @@ $Z$, Hadamard and S gates.
     RX(2\theta) = \exp(-i \theta X) = \exp(-i \theta ( H Z H)) = H\exp(- i\theta Z) H
 \end{equation}
 
-\begin{figure}[!htb]
+\begin{figure}
     \centering
-    %\begin{quantikz}
-    %     \gate{RX(\theta)} 
-    %    \end{quantikz}=\begin{quantikz}
-    %     \gate{H} & \gate{RZ(\theta)} & \gate{H} 
-    %\end{quantikz}
-%
-    %\begin{quantikz}
-    %    \gate{RY(\theta)}
-    %    \end{quantikz}=\begin{quantikz}
-    %    \gate{S^\dagger} &\gate{H} & \gate{RZ(\theta)} & \gate{H} & \gate{S}
-    %\end{quantikz}
-%
-    %\begin{quantikz}
-    %    \gate{RY(\theta)}
-    %    \end{quantikz}=\begin{quantikz}
-    %    \gate{S^\dagger} & \gate{RX(\theta)} & \gate{S}
-    %\end{quantikz}
-
     \begin{quantikz}
         &\gate{RX(\theta)}&\\
         &\gate{RY(\theta)}&\\
@@ -195,6 +177,7 @@ $Z$, Hadamard and S gates.
     \caption{Circuit representation of each rotation gates.}
     \label{fig:circuit:rotation_basic_represenation}
 \end{figure}
+
 
 \begin{example}[Bloch representation]
     The \begin{quantikz}
@@ -237,19 +220,51 @@ $Z$, Hadamard and S gates.
 %Most of the properties of Pauli-matrices are preserved in 
 %$n$-fold Pauli-basis.
 
-The extension of the single wires to $N$-wires on quantum circuit is 
-an approximation of operators of $N$ dimensional $\mathcal{H}$ with tensor product of 1-dim Hilbert spaces. 
-In addition, such extension is efficient.
-\textit{Solovay-Kitaev Theorem} guarantees that the possibility and efficiency
-such that "Any $n$-wires unitary operators could be represented with finite combination of 
-universal quantum gate sets". 
-The theorem permits the developers of the quantum computer to only implement 
-few number of single and two qubit gates for universal applications.
+In the previous section, we briefly discussed basic theorems for approximating the evolution 
+process with local terms, and provided a practical example with a single qubit. 
+Now, we extend the construction to N-qubit systems. 
+Achieving a higher-dimensional version of the operator is not possible 
+by simply repeating the single-qubit operator across the entire system\footnote{Hadamard is possible, but very special case.}. 
+Sometimes we only have approximation representation in higher case.
+Luckily, evolution circuit is not. 
+We can construct a solid structure of the circuit for multi-qubit systems,
+so that we can find an exact $N$ qubit circuit 
+for multi-qubit Pauli operators\footnote{We don't have to consider Solovay-Kitaev process.}.
+
+\subsubsection{Multi qubit Pauli matrices}
+
+\textit{Pauli strings}: Pauli string is a representation of multi-qubit Pauli operator with combination of single Pauli operators, $I, X, Y, Z$.
+For example, Pauli string of $P = I \otimes X \otimes Y \otimes X$ is $IXYX$.
+\index{Pauli string}
+We usually called $n$-fold Pauli string when we want to emphasize the dimension.
 
 In the previous exercise, we stated that 
 the evolution on single Pauli term is same with the rotation 
-along a specific axis in Hilbert-space, corresponding to the Pauli term.
-Same statement hold for $n$ qubit wires.
+along a specific axis in Hilbert-space, corresponding to the Pauli terms, $I, X, Y, Z$.
+Same statement hold for $n$ qubit wires, since tensor product of Pauli terms also hold
+same properties of single terms\footnote{That is why they are called by Pauli string.}.
+Therefore, we can use same formula here, $R(\theta; P_i) = \cos(\theta) I+ i \sin(\theta)P_i$.
+
+
+\subsubsection{Evolution as conditional rotation}
+
+Recall the $RZ$ gate as matrix form, 
+
+\begin{equation}
+    Z = \begin{bmatrix}1 & 0 \\ 0 & -1 \end{bmatrix}, \, RZ(\theta) = \begin{bmatrix} e^{-i \theta} & 0 \\ 0 & e^{i \theta} \end{bmatrix}
+\end{equation}
+
+We can interpret the gate as conditional phase rotation by the states.
+
+\begin{equation}
+    RZ(\theta) = \begin{cases}
+        |0 \rangle \rightarrow e^{- i\theta} |0\rangle \\
+        |1 \rangle \rightarrow e^{  i\theta} |1\rangle \\
+    \end{cases}
+\end{equation}
+
+Now observe the next Pauli term. 
+We can use same convention what we did in 1 qubit Pauli Hamiltonian.
 
 \begin{equation*}
     Z_1 Z_2 = \begin{bmatrix}
@@ -258,15 +273,82 @@ Same statement hold for $n$ qubit wires.
         0 & 0  & -1 & 0\\
         0 & 0 & 0 & 1 
     \end{bmatrix},
-    I_1 Z_2  = \begin{bmatrix}
-        1 & 0 & 0 & 0 \\
-        0 & 1 & 0 & 0\\
-        0 & 0  & -1 & 0\\
-        0 & 0 & 0 & -1 
-    \end{bmatrix}
+    %I_1 Z_2  = \begin{bmatrix}
+    %    1 & 0 & 0 & 0 \\
+    %    0 & 1 & 0 & 0\\
+    %    0 & 0  & -1 & 0\\
+    %    0 & 0 & 0 & -1 
+    %\end{bmatrix}
 \end{equation*}
 
-$R(\theta; P_i) = \cos(\theta) I+ i \sin(\theta)P_i$
+\begin{equation}
+    \label{eq:Z1Z2_rot}
+    \exp(- i \theta Z_1 Z_2) = \begin{cases}
+        |\psi \rangle \rightarrow e^{- i\theta} |\psi\rangle & \mbox{if } \psi = 00 \mbox{ or } 11\\
+        |\psi \rangle \rightarrow e^{  i\theta} |\psi\rangle & \mbox{if } \psi = 01 \mbox{ or } 10\\
+    \end{cases}
+\end{equation}
+
+See Fig \ref{fig:evol_cir_z1z2}. It is a corresponding evolution circuit of $Z_1Z_2$ Hamiltonian. 
+\begin{marginfigure}
+    \centering
+    \begin{quantikz}
+        &\ctrl{1}& & \ctrl{1}&\\
+        & \targ{}& \gate{RZ(2 \Delta t)}& \targ{} &\\
+    \end{quantikz}
+    \caption{Evolution circuit example of $Z_1Z_2$.}
+    \label{fig:evol_cir_z1z2}
+\end{marginfigure}
+
+\subsubsection{CNOT gate}
+
+How the CNOT gate and Rotation Z gate could implement $\exp(-i t Z_1 Z_2)$
+operation? First, look at definition of CNOT gate, it flips the target 
+qubit along X axis, by the control qubit state. 
+
+\begin{center}
+    \begin{quantikz}
+        &\ctrl{1}&\\
+        & \targ{}  &\\
+    \end{quantikz} = 
+    $\begin{bmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1 \\
+        0 & 0 & 1 & 0 \\
+    \end{bmatrix} = (|0 \rangle \langle 0| \otimes I + |1\rangle \langle 1| \otimes X)$
+    \captionof{figure}{CNOT gate}
+\end{center}
+
+Meanwhile, in basis view point, we can treat them as 
+a mapping operator as 
+$\{|00\rangle, |11\rangle\} \rightarrow |0\rangle$, and 
+$\{|01\rangle, |10\rangle\} \rightarrow |1\rangle$.
+See Fig \ref{fig:CNOT_basis}.
+
+\begin{equation*}
+    | x_1 \rangle \otimes |x_2 \rangle \rightarrow | x_1 \rangle \otimes | x_1 \oplus x_2 \rangle 
+\end{equation*}
+
+\begin{marginfigure}
+    \centering
+    \begin{quantikz}
+        \lstick{$|{x_1}\rangle$}&\ctrl{1}&\rstick{$|x_1 \rangle$}\\
+        \lstick{$|{x_2}\rangle$}&\targ{ }&\rstick{$|x_1 \oplus x_2 \rangle$}
+    \end{quantikz} 
+    \caption{CNOT as basis change operator.}
+    \label{fig:CNOT_basis}
+\end{marginfigure}
+
+Therefore, the $I \otimes RZ(2 \Delta t)$ works of $\exp(-i \Delta t Z_1 Z_2)$ in Eq (\ref{eq:Z1Z2_rot}).
+
+\begin{exercise}
+    Is 
+    \begin{quantikz}
+        &\targ{}&  \gate{RZ(2 \Delta t)} & \targ{}&\\
+        & \ctrl{-1}& & \ctrl{-1} &\\
+    \end{quantikz} circuit identical to Fig \ref{fig:evol_cir_z1z2}? Why?
+\end{exercise}
 
 %Here we introduce the good framework to analysis the axis of the wires in each 
 % Bloch sphere representation.
@@ -279,7 +361,7 @@ $R(\theta; P_i) = \cos(\theta) I+ i \sin(\theta)P_i$
 %    \end{equation}
 %\end{example}
 
-\subsubsection{CX structure}
+\subsubsection{CX structure}%--------------------
 
 \begin{figure}[!ht]
     \centering
@@ -294,8 +376,7 @@ $R(\theta; P_i) = \cos(\theta) I+ i \sin(\theta)P_i$
 \end{figure}
 
 
-In the other manuscripts, the next type circuit also 
-common.
+In other manuscripts, next type circuit is also common.
 
 \begin{figure}[!ht]
     \centering
@@ -313,7 +394,8 @@ The Fig \ref{fig:ZZZ_evolve_1} is called by \textit{fountain} type,
 and Fig \ref{fig:ZZZ_evolve_2} is called by \textit{chain} type.
 
 \begin{exercise}
-    Show that the above two circuits are identical.
+    Show that the above two circuits are identical. 
+    Do not use a matrix representation. \textit{Hint: See a property of direct sum or bitwise XOR, both are identical in binary vector}.
 \end{exercise}
 
 If you construct the circuit in matrix form,
@@ -335,6 +417,10 @@ visit each i-th qubits in the Hamiltonian at once\footnote{Considering qubit rea
 
 \subsubsection{Basis transformation}
 
+We only analyzed $I, Z$ strings. 
+General strings consist of $I, Z, X, Y$ yields next circuit for evolution operator.
+
+
 \begin{equation}
     \exp(-i \Delta t XYZZ)
 \end{equation}
@@ -349,7 +435,17 @@ visit each i-th qubits in the Hamiltonian at once\footnote{Considering qubit rea
     \end{quantikz}
 \end{figure}
 
+\begin{example}
+    Understanding the circuit with graphic notation of basis.
+
+\end{example}
+
+
 \subsection{Implementation with Phase operator}
+
+The evolution circuit was a conditional phase rotation by 
+the system state. However, there is a Phase operator in quantum 
+computer.
 
 \begin{equation*}
     \mbox{P}(\theta) = \begin{bmatrix}
@@ -361,12 +457,14 @@ visit each i-th qubits in the Hamiltonian at once\footnote{Considering qubit rea
         0 & e^{i \theta/2}
     \end{bmatrix}
 \end{equation*}
-\begin{figure}[!ht]
+
+\begin{marginfigure}
     \begin{quantikz}
-        \ctrl{1}\\
-        \gate{P(\theta)}
+        &\ctrl{1}&\\
+        &\gate{P(\theta)}&
     \end{quantikz}
-\end{figure}
+\end{marginfigure}
+
 However, in multi-qubit system a rotation z gate and 
 phase gate work differently because of the local phases.
 Even though, we can implement the same operation
@@ -406,6 +504,19 @@ without CX gate, but using controlled-RZ gate.
     on 2 qubit circuit. 
 \end{exercise}
 
+
+Note that, when you work with gate model,
+it is very common case that using an ancilla registers
+to reduce the circuit depth, or to implement some algorithms.
+During the process, you must take care of the relative 
+phase between the original register and the ancilla register.
+Sometimes it does not affect but before the calculation 
+you must ensure the consistency.
+Think about Ahrno-Bohm effect, it is not a strange 
+effect that the local phase difference affect the overall
+result.
+
+
 \section{Additional Note}
 
 
@@ -430,16 +541,7 @@ without those basis change gates.
 
 % 3 -qubit gates
 
-Note that, when you work with gate model,
-it is very common case that using an ancilla registers
-to reduce the circuit depth, or to implement some algorithms.
-During the process, you must take care of the relative 
-phase between the original register and the ancilla register.
-Sometimes it does not affect but before the calculation 
-you must ensure the consistency.
-Think about Ahrno-Bohm effect, it is not a strange 
-effect that the local phase difference affect the overall
-result.
+
 
 \subsection{Pauli-Frame}
 
@@ -451,3 +553,12 @@ Same hold for each rotation gate in Trotterization circuit.
 We accept the circuit in Fig () is a rotation around axis \textbf{nemo}.
 What about the next figure?
 
+
+Back to the conditional rotation interpretation of 
+the evolution matrix.
+
+
+
+There is an additional physical meaning in Pauli Frame.
+It represents a mutually commuting axes set that we 
+can manipulate on the circuit.
