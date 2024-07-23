@@ -4,17 +4,17 @@ Adiabatic computation
 
 
 In practical implementation, adiabatic model of quantum computation
-has many advantanges in scale, speed and formulation of problem to run on the system.
-On the gate model, we consider many approximation formula and represetation of the evolution operator. 
+has many advantages in scale, speed and formulation of problem to run on the system.
+On the gate model, we consider many approximation formula and representation of the evolution operator. 
 The reason was that we cannot know exactly what form of the time-evolution operator form corresponding to the given hamiltonian matrix;hermite. 
 However, in adiabatic computation, the unitary transformation is a \textbf{job of nature}. 
-Only things we have to consider are how to apply the hamiltonian to the given qubit system and 
+Only things we have to consider are how to apply the Hamiltonian to the given qubit system and 
 accelerating convergence speed enough to use in calculation.
 This computation model has very huge benefit in binary optimization problem than the gate model computation.
 
 In this chapter, we are going to simulate adiabatic
-process on gate model computer and compare the result obtanined
-from a commerical adiabatic process machine.
+process on gate model computer and compare the result obtained
+from a commercial adiabatic process machine.
 
 \section{Formulation for Adiabatic computing}
 
@@ -24,7 +24,7 @@ which is corresponding eigenstate of the initial hamiltonian eigenstate.
 
 The term slowly is very important, it depends on the initial and final hamiltonian of the system. 
 If the evolution time is $T$, and the eigenvalues of initial and final hamiltonian are $E_i$
-and, $E_f$, the evolution time must be satisfies next,
+and, $E_f$, the evolution time must satisfy next,
 
 \begin{equation}
     \frac{2 \pi}{|E_f - E_i| << T}
@@ -33,7 +33,7 @@ and, $E_f$, the evolution time must be satisfies next,
 That is to solve the system with adiabatic method, we have to manipulate the time, $T$.
 It is called by \textit{adiabatic configuration}. 
 The configuration depends on the initial and final system, 
-so the determination requires some physical instuition by the researcher.
+so the determination requires some physical intuition by the researcher.
 
 \begin{equation}
     \mathcal{H}_{adia} (f(s), T) = T(1- f(s)) \mathcal{H}_{initial} + f(s) \mathcal{H}_{solve}
