@@ -47,52 +47,52 @@
 \contentsline {subsection}{\numberline {3.1.3}}{6}{subsection.3.1.3}%
 \contentsline {chapter}{\numberline {4}Adiabatic process on gate model}{7}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Formulation for Adiabatic computing}{7}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Implementation}{8}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}QUBO}{8}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Ising model}{8}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Pennylane implmentation}{8}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Graph partitioning problem}{8}{subsection.4.3.1}%
-\contentsline {chapter}{\numberline {5}Imaginary Time evolution}{9}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Imaginary time}{9}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Non-unitary on unitary}{10}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Embeding in unitary}{10}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}VQE approximation}{10}{subsection.5.2.2}%
-\contentsline {section}{\numberline {5.3}Spectrum Search}{10}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Variational method}{11}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Introduction}{11}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Variatiaonal Principle}{11}{subsection.6.1.1}%
-\contentsline {subsection}{\numberline {6.1.2}Circuit as ansatz}{11}{subsection.6.1.2}%
-\contentsline {subsection}{\numberline {6.1.3}Universality of Circuit}{12}{subsection.6.1.3}%
-\contentsline {section}{\numberline {6.2}}{12}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Ansatzs}{12}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Hardware Efficient}{12}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Evolution Based}{12}{subsection.6.3.2}%
-\contentsline {section}{\numberline {6.4}Application}{12}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}QUBO}{12}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Evolution}{12}{subsection.6.4.2}%
-\contentsline {subsubsection}{Real time}{12}{subsection.6.4.2}%
-\contentsline {subsubsection}{Imaginary time}{12}{subsection.6.4.2}%
-\contentsline {section}{\numberline {6.5}Implementation}{12}{section.6.5}%
-\contentsline {subsection}{\numberline {6.5.1}Pennylane}{12}{subsection.6.5.1}%
-\contentsline {subsection}{\numberline {6.5.2}Qiskit}{12}{subsection.6.5.2}%
-\contentsline {chapter}{\numberline {7}Material Simulation}{15}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Hardness of the simulation}{15}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Classical methods}{15}{section.7.2}%
-\contentsline {subsection}{\numberline {7.2.1}Density Functional Theory}{15}{subsection.7.2.1}%
-\contentsline {subsection}{\numberline {7.2.2}Monte Carlo}{15}{subsection.7.2.2}%
-\contentsline {chapter}{\numberline {8}Tunneling Phenomenon}{17}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Introduction to tunneling}{17}{section.8.1}%
-\contentsline {subsection}{\numberline {8.1.1}alpha-decay}{17}{subsection.8.1.1}%
-\contentsline {section}{\numberline {8.2}Tunneling time problem}{17}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Criticisims on tunneling time}{18}{section.8.3}%
-\contentsline {subsection}{\numberline {8.3.1}Classical approach}{18}{subsection.8.3.1}%
-\contentsline {subsection}{\numberline {8.3.2}Measurement- Experimental}{18}{subsection.8.3.2}%
-\contentsline {subsubsection}{Larmor Precession}{18}{subsection.8.3.2}%
-\contentsline {subsection}{\numberline {8.3.3}Hartman effect and Superluminal velocity}{18}{subsection.8.3.3}%
-\contentsline {section}{\numberline {8.4}Simulation and Measurement on Quantum circuit}{18}{section.8.4}%
-\contentsline {subsection}{\numberline {8.4.1}Page Wootter Mechanics}{19}{subsection.8.4.1}%
-\contentsline {subsubsection}{Evolution as a basis change}{19}{equation.8.4.3}%
-\contentsline {subsubsection}{Structure of PaW mechancis}{19}{equation.8.4.3}%
+\contentsline {section}{\numberline {4.2}Naive Implementation}{8}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Example QUBO}{10}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Ising model}{10}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Pennylane implmentation}{10}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Graph partitioning problem}{10}{subsection.4.3.1}%
+\contentsline {chapter}{\numberline {5}Imaginary Time evolution}{11}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Imaginary time}{11}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Non-unitary on unitary}{12}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Embeding in unitary}{12}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}VQE approximation}{12}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Spectrum Search}{12}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Variational method}{13}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introduction}{13}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Variatiaonal Principle}{13}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Circuit as ansatz}{13}{subsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.1.3}Universality of Circuit}{14}{subsection.6.1.3}%
+\contentsline {section}{\numberline {6.2}}{14}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Ansatzs}{14}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Hardware Efficient}{14}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Evolution Based}{14}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}Application}{14}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}QUBO}{14}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Evolution}{14}{subsection.6.4.2}%
+\contentsline {subsubsection}{Real time}{14}{subsection.6.4.2}%
+\contentsline {subsubsection}{Imaginary time}{14}{subsection.6.4.2}%
+\contentsline {section}{\numberline {6.5}Implementation}{14}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Pennylane}{14}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Qiskit}{14}{subsection.6.5.2}%
+\contentsline {chapter}{\numberline {7}Material Simulation}{17}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Hardness of the simulation}{17}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Classical methods}{17}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}Density Functional Theory}{17}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}Monte Carlo}{17}{subsection.7.2.2}%
+\contentsline {chapter}{\numberline {8}Tunneling Phenomenon}{19}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Introduction to tunneling}{19}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}alpha-decay}{19}{subsection.8.1.1}%
+\contentsline {section}{\numberline {8.2}Tunneling time problem}{19}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Criticisims on tunneling time}{20}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Classical approach}{20}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Measurement- Experimental}{20}{subsection.8.3.2}%
+\contentsline {subsubsection}{Larmor Precession}{20}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}Hartman effect and Superluminal velocity}{20}{subsection.8.3.3}%
+\contentsline {section}{\numberline {8.4}Simulation and Measurement on Quantum circuit}{20}{section.8.4}%
+\contentsline {subsection}{\numberline {8.4.1}Page Wootter Mechanics}{21}{subsection.8.4.1}%
+\contentsline {subsubsection}{Evolution as a basis change}{21}{equation.8.4.3}%
+\contentsline {subsubsection}{Structure of PaW mechancis}{21}{equation.8.4.3}%
 \contentsline {part}{III\hspace {1em}Further Topics}{1}{part.3}%
 \contentsline {section}{\numberline {8.5}Simulation Techniques}{3}{section.8.5}%
 \contentsline {subsection}{\numberline {8.5.1}VQE evolution}{3}{subsection.8.5.1}%

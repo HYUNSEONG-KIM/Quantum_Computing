@@ -1,7 +1,7 @@
 \section{Circuit representation of the evolution operator}
 
 This section is about a practical implementation of the evolution operator.
-From the above sections, we overlook some basic decomposition of 
+From the above sections, we overlooked some basic decomposition techniques of 
 evolution operators of general quantum systems.
 
 \subsection{Pauli-matrices and decomposition}
@@ -28,11 +28,11 @@ In 2-dimension system, it becomes $[\hat{\sigma_X}, \hat{\sigma_Y}, \hat{\sigma_
     \end{pmatrix}
 \end{equation}
 \index{Pauli!Polynomial}
-Precisely, such convention is a Pauli-polynomial as shown in Eq (\ref{eq:pauli-decompositon}).
+Precisely, such convention is a Pauli-polynomial as shown in Eq (\ref{eq:PauliDecompositon}).
 Now, how did the general evolution operators implemented on quantum circuit?
 It becomes rotations on specific axes of the given Hilbert space.
 With the Pauli-polynomial representation of the given Hamiltonian,
-the next relationship is hold true, see proof in Appendix \ref{appendix-proof-1}.
+the next relationship is hold true, see proof in Appendix \ref{AppendixProof01}.
 \begin{equation}
     \label{eq:hamiltonain-exponential}
     \exp(-i \theta \mathcal{H} \cdot \hat{\sigma}) 
@@ -40,17 +40,17 @@ the next relationship is hold true, see proof in Appendix \ref{appendix-proof-1}
 \end{equation}
 
 For general $2^n$-dimension system, it is enough to show that the construction rule of every Pauli-$n$ strings.
-We first look at single qubit cases and expand it to the general $n$-qubit system.
+We first look at single qubit cases and we are going to expand it to the general $n$-qubit system.
 
 \subsection{Evolution operator on single qubit system}
 
-The Pauli-string of 1-qubit system are just $\{X, Y, Z\}$.
+The Pauli-string of 1-qubit system are $\{X, Y, Z\}$.
 
 \begin{equation}
     \mathcal{H} = \lambda_{X} X + \lambda_{Y} Y + \lambda_{Z} Z
 \end{equation}
 
-Then, an evolution operator of total Hamiltonian consist of 
+Therefore, the evolution operator of total Hamiltonian consists of 
 3 rotation gates.
 
 \begin{enumerate}
@@ -444,7 +444,7 @@ General strings consist of $I, Z, X, Y$ yields next circuit for evolution operat
 \subsection{Implementation with Phase operator}
 
 The evolution circuit was a conditional phase rotation by 
-the system state. However, there is a Phase operator in quantum 
+the system state. There is a Phase operator in quantum 
 computer.
 
 \begin{equation*}
@@ -465,8 +465,8 @@ computer.
     \end{quantikz}
 \end{marginfigure}
 
-However, in multi-qubit system a rotation z gate and 
-phase gate work differently because of the local phases.
+They are same in single qubit system, however, in multi-qubit system a rotation z gate and 
+a phase gate work differently because of the local phases.
 Even though, we can implement the same operation
 with phase gates without rotation z gates.
 
