@@ -65,25 +65,143 @@ however, the starting and final stages, as well as the evolving process, follow 
 That is why they offer some annealing time and initial state parameters to the user API. 
 Some problems require much more time to achieve the appropriate adiabatic process
 
-\section{Implementation}
+\section{Naive Implementation}
 
 The previous simulations were time-independent
 Hamiltonian systems, but adiabatic process is 
 using a time-dependent Hamiltonian.
 The commutation problem still arises in here.
 If the $H(t_1)$ and $H(t_2)$ are not commuting, 
-then we cannot apply the 
+then we cannot apply the usual exponential formula.
+
 Still, product formula work well except the additional error 
 term was added to the system.
 
+We can approximate this process with generating step Hamiltonians as 
 
-\subsection{QUBO}
+\begin{equation}
+    H_qc(t) = \left( 1- \frac{t}{T}\right) \mu H_i + \left( \frac{t}{T}\right) H_{solve}
+\end{equation}
+
+where, $\mu$ is a wieght coefficient of initial state.
+
+%\begin{algorithm}
+%    \caption{Adiabatic Process Approximation}\label{alg:naive_adiabatic}
+%    \begin{algorithmic}
+%    \Require $H_i, \mu, H_f$ \Comment{Initial Hamiltonian}
+%    \Ensure $y = x^n$
+%    \State $y \gets 1$
+%    \State $X \gets x$
+%    \State $N \gets n$
+%    \While{$i < step$}
+%    \If{$N$ is even}
+%        \State $X \gets X \times X$
+%        \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
+%    \ElsIf{$N$ is odd}
+%        \State $y \gets y \times X$
+%        \State $N \gets N - 1$
+%    \EndIf
+%    \EndWhile
+%    \end{algorithmic}
+%    \end{algorithm}
+
+\begin{lstlisting}
+    [Adiabatic Processs Approximation]
+
+    H_i <- initial hamiltonian
+    mu <- weight of the H_i
+    H_f <- problem hamiltonian
+    --------------------------------------------------
+    func_evolve(t, H, tn): 
+        Applying time evolution operator on state
+            evolution time: t, 
+            hamiltonian: H 
+            trroter decompose level: tn.
+    
+    func_Hqc(s, t, mu): (1-s/t) mu * H_i + (s/t) H_f
+        Return instaneous hamiltonian of the given time step: s.
+        --------------------------------------------------
+    [Defined Adabatic schedule parameters]
+    
+    T <-  # total evolution time
+    steps <-  # time difference step number
+    dt <- T/steps
+    
+    trotter_num <- # trotter decompose level
+    
+    [Prepare the circuit]
+    
+    initiate the system with Hadamard basis |+>
+    
+    while i < step
+        t = dt*i
+        H_t = func_Hqc(t, T, mu)
+        ----------------
+        func_evolve(dt, H_t, trotter_num)
+    
+    Sampling, Measure Expectation Value ... et cetra
+\end{lstlisting}
+
+
+\begin{example}[Problem Modeling]
+    In this example, we refer a simple NP-hard problem.
+    It is finding a source distribution producing flat radiation.
+    
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{media/source_distribution.jpg}
+        \captionof{figure}{Source optimization problem.}
+    \end{center}
+    % Matrix -imshow, 
+    %
+
+    \begin{itemize}
+        \item Radiation on the given surface = $\mathbf{r}$
+        \item Propagation matrix = $K$
+        \item Source distribution: $\mathbf{x}$, binary vector
+    \end{itemize}
+    
+    \begin{equation*}
+        K\mathbf{x} = \mathbf{r}
+    \end{equation*}
+    
+    We want to obtain a flat radiation to some area far from the source plane, so let us apply difference matrix to both term. 
+    If flatness is achieved, then the right term would be zero.
+
+    The radiation function is $f(x) = (1+ x^2)^{-1}$
+    This problem could be converted to a quadratic optimization problem by next equation.
+    \begin{equation}
+        \min \mathbf{x}^T A \mathbf{x}
+    \end{equation}
+    where, $A = Q^TQ, Q = D K$.
+    The optimal solution is 
+    \begin{equation*}
+        \mathbf{x}_{opt} = \begin{bmatrix}
+            1& 1& 0 & 1 & 0 & 1& 1&
+        \end{bmatrix}
+    \end{equation*}
+    Since, $A$ is Hermit matrix so that we can interpret it as givein Hamiltonian.
+\end{example}
+
+You can refer a Pennylane and D-Wave implementation code of the result written by the author\cite{Kim_adiabatic_implementation}.
+
+\subsection{Example QUBO}
 
 Quadratic unconstrained binary optimization problem.
 It is widely tried in adiabatic computation and 
 in gate-model computation VQE(Variational Quantum Eigensolver) method is 
 dominant however, in this chapter we will solve the 
 QUBO problem on gate model computer mimicing the adiabatic process.
+
+
+
+
+\begin{equation}
+    D K \mathbf{x} = D \mathbf{r} = 0
+\end{equation}
+
+
+
+
 
 \subsection{Ising model}
 
