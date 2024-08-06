@@ -47,7 +47,7 @@ if __name__=="__main__":
     button2 = tk.Button(control_frame, text="Mark Circle")
     button2.pack(pady=1)
 
-    graph_canvas = CircleCanvas(graph_casnvas_frame, width=300, height=300, bg="white")
+    graph_canvas = CircleCanvas(graph_casnvas_frame, width=600, height=600, bg="white")
     graph_canvas.pack(side=tk.BOTTOM, fill=tk.Y)
 
     button2.config(command=lambda: graph_canvas.draw_id_on_circle())
