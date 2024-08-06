@@ -10,3 +10,9 @@ Toy_topics/datasets/qchem/LiH/STO-3G/2.1/LiH_STO-3G_2.1.h5
 *.log
 *.fls
 *.fdb_latexmk
+Quantum Computing Notes/Evolution_circuit/main.fdb_latexmk
+Quantum Computing Notes/Evolution_circuit/main.fls
+Quantum Computing Notes/Evolution_circuit/main.log
+Quantum Computing Notes/Evolution_circuit/main.out
+Quantum Computing Notes/Evolution_circuit/main.out
+Quantum Computing Notes/Evolution_circuit/main.synctex.gz
