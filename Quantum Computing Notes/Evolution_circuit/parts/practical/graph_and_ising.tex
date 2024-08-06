@@ -1,4 +1,114 @@
-\chapter{Ising and Partitioning}
+\chapter{Optimization modeling via Quantum Computer}
 
 \section{Introduction}
+
+
+\subsection{QUBO}
+
+
+\subsection{Ising model}
+
+\section{Modeling}
+
+The strategy to solve the binary optimization problem
+is mapping a binary state as spin-$1/2$ qubits states.
+There are two type of binary problem by the permitted values
+of the state, $\{0, 1\}$ problem and $\{-1, 1\}$ problem.
+The two problems are identical.
+We can make a well-defined transformation.
+
+\begin{equation}
+    \{0, 1\} \leftrightarrow \{-1, 1\}
+\end{equation}
+
+Let, $z \in \{-1, 1\}$ and $x \in \{0, 1\}$, 
+
+\begin{example} Transformation of binary value.
+
+    \begin{equation*}
+        z_i = \frac{1}{2}(1- x_i)
+    \end{equation*}
+\end{example}
+
+\begin{exercise}
+    
+    Make a formula of binary transformations about next two transformation.
+
+    \begin{equation*}
+        f(x)_{\rightarrow} \begin{cases}
+            0 & \mbox{if } x=-1 \\
+            1 & \mbox{otherwise}
+        \end{cases}
+    \end{equation*}
+
+    \begin{equation*}
+        f(z)_{\rightarrow} \begin{cases}
+            -1 & \mbox{if } z=0 \\
+            1 & \mbox{otherwise}
+        \end{cases}
+    \end{equation*}
+\end{exercise}
+
+
+
+\begin{equation}
+x_i = \frac{1}{2}(1-z_i)
+\end{equation}
+
+\subsection{Max-cut}
+
+\begin{definition}Max-cut problem
+
+    For a given graph, $G=(V,E)$, we define a \textbf{cut} as an edge whose ends are in different partition of vertex.
+    Find a 2 partition of vertex, $V$ whose number of cut is maximized in the graph.
+\end{definition}
+
+
+It is a well-known NP-hard problem in computer science. 
+There is no polynomial algorithm to solve the problem for arbitrary graph.
+
+\begin{example} Portfolio Optimization problem
+
+    Hedging is a fundamental method to avoid a loss in financial management.
+    It is widely adopted principle not only for professional market traders,
+    but also for individuals.
+    
+    Many products in the market have been well-analyzed about their 
+    relationship. For example, when one product become higher or lower valued 
+    by the situation, we could not predict an exact price of related products,
+    but at least their asymptotic range of value change.
+
+    The strategy of portfolio optimization preventing loss is finding 
+    a combination that has a minimum relation between the internal elements.
+    
+\end{example}
+\subsection{Max-Clique}
+
+\subsection{Restricted Problem}
+
+Many practical problems are required to meet specific constraints,
+such as number of vertices must be 3 or 5 in the problem.
+
+\subsubsection{Node number restriction}
+
+The next term makes a quadratic energy state as $(x-\mu)^2$.
+
+\begin{equation*}
+    H = (\frac{1}{2}\sum_{i} (I - Z_i) - \mu I)^2
+\end{equation*}
+
+
+\section{Optimization method}
+
+From the above sections, we reviewed some mapping that graph optimization problems 
+could be modeled as ising Hamiltonians.
+Unlikely, the graph optimization problem, a quantum system eventually fall into a ground state 
+with proper environment condition. In addition, these processes are already known in quantum mechanics.
+Finding a ground state energy of the system is directly related to specific optimization problem.
+
+The reverse direction has been widely used in quantum simulation. 
+In density functional theory, we optimize a specific functional to reach an optimal point
+using computational methods. 
+We can attempt this method for solving various optimization problems.
+
 
